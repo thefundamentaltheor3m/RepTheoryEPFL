@@ -1,9 +1,9 @@
-\documentclass[a4paper, 12pt]{article}
+\documentclass[a4paper, 12pt, openany]{book}
 
 \input{packages}
 
 \rhead{{Page \thepage}}%\hspace{1pt} of \pageref{LastPage}}}
-\lhead{\textit\slshape\nouppercase{\rightmark}}
+\lhead{\textit\slshape\nouppercase{\leftmark}}
 
 \numberwithin{equation}{section} 
 
@@ -32,13 +32,13 @@
 
 \maketitle
 
-\thispagestyle{empty}
-
 \tableofcontents
+
+\thispagestyle{empty}
 
 \newpage
 
-\input{Weekly_Notes/Week_1.tex}
+\input{Chapters/1_Intro.tex}
 
 \printbibliography
 
