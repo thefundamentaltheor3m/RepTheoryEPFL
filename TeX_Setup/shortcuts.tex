@@ -90,6 +90,7 @@
 \newcommand{\eutot}[1]{\phi\!\parenth{#1}}  % Euler's Totient Function
 \newcommand{\phiof}[1]{\varphi\!\parenth{#1}}
 \newcommand{\xiof}[1]{\xi\!\parenth{#1}}
+\newcommand{\rhoof}[1]{\rho\!\parenth{#1}}
 
 \newcommand{\inj}{\hookrightarrow}
 \newcommand{\surj}{\twoheadrightarrow}
@@ -107,10 +108,8 @@
 \newcommand{\matsq}[2]{\mathbf{M}_{{#1} \times {#1}}\!\parenth{\mathbb{#2}}}
 \newcommand{\MnR}{\mathbf{M}_{n}\!\parenth{\real}}
 \newcommand{\Mn}[2]{\mathbf{M}_{#1}\!\parenth{#2}}
-\newcommand{\GL}[2]{\mathbf{GL}_{#1}\!\parenth{{#2}}}
-\newcommand{\SL}[2]{\mathbf{SL}_{#1}\!\parenth{\mathbb{#2}}}
-\newcommand{\GLnR}{\GL{n}{\R}}
-\newcommand{\SLnR}{\SL{n}{\R}}
+\newcommand{\GL}[1]{\operatorname{GL}\!\parenth{#1}}
+\newcommand{\SL}[1]{\operatorname{SL}\!\parenth{#1}}
 
 \newcommand{\Span}[1]{\mathrm{Sp}\!\parenth{#1}}
 
@@ -192,6 +191,8 @@
 
 \newcommand{\Spec}[1]{\operatorname{Spec}\!\parenth{#1}}
 
+\newcommand{\id}{\operatorname{id}}
+
 % NUMBER SETS:
 
 \newcommand{\real}{\mathbb{R}}
@@ -217,3 +218,8 @@
 \newcommand{\bcos}{\because}
 \newcommand{\st}{\text{ s.t. }}
 
+
+% BOILERPLATE
+
+\newcommand{\letg}{Let $G$ be a group}
+\newcommand{\letgv}{\letg\ and let $\parenth{V, \rho}$ be a representation of $G$}

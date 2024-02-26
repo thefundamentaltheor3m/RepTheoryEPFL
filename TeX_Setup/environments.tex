@@ -1,19 +1,13 @@
 \usepackage{amsthm}
 
 \newtheorem*{theorem*}{Theorem}
-\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}[theorem]{Corollary}%[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{algorithm}[theorem]{Algorithm}
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{example}[theorem]{Example}
-\newenvironment{boxexample}{
-    \begin{tcolorbox}\begin{example}
-}{
-    \end{example}\end{tcolorbox}
-}
 \newtheorem{problem}{Problem}
 \newenvironment{boxproblem}{
     \begin{tcolorbox}[colback=orange!3!white,colframe=orange!70!black]\begin{problem}
@@ -37,9 +31,15 @@
 \newtheorem*{solution}{Solution}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
+\newtheorem{definition}[theorem]{Definition}
 \newenvironment{boxdefinition}{
     \begin{tcolorbox}[colback=cyan!10!white,colframe=cyan!70!black]\begin{definition}
 }{
     \end{definition}\end{tcolorbox}
+}
+\newtheorem{example}[theorem]{Example}
+\newenvironment{boxexample}{
+    \begin{tcolorbox}\begin{example}
+}{
+    \end{example}\end{tcolorbox}
 }
