@@ -10,18 +10,18 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{problem}{Problem}
 \newenvironment{boxproblem}{
-    \begin{tcolorbox}[colback=orange!3!white,colframe=orange!70!black]\begin{problem}
+    \begin{tcolorbox}[colback=orange!3!white,colframe=orange!70!black, breakable, enhanced]\begin{problem}
 }{
     \end{problem}\end{tcolorbox}
 }
 \newenvironment{boxtheorem}{
-    \begin{tcolorbox}[colback=green!3!white,colframe=green!70!black]\begin{theorem}
+    \begin{tcolorbox}[colback=green!3!white,colframe=green!70!black, breakable, enhanced]\begin{theorem}
 }{
     \end{theorem}\end{tcolorbox}
 }
 \newtheorem*{notation}{Notation}
 \newenvironment{boxnotation}{
-    \begin{tcolorbox}[colback=magenta!3!white,colframe=magenta!70!black]\begin{notation}
+    \begin{tcolorbox}[colback=magenta!3!white,colframe=magenta!70!black, breakable, enhanced]\begin{notation}
 }{
     \end{notation}\end{tcolorbox}
 }
@@ -33,13 +33,13 @@
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newenvironment{boxdefinition}{
-    \begin{tcolorbox}[colback=cyan!10!white,colframe=cyan!70!black]\begin{definition}
+    \begin{tcolorbox}[colback=cyan!10!white,colframe=cyan!70!black, breakable, enhanced]\begin{definition}
 }{
     \end{definition}\end{tcolorbox}
 }
 \newtheorem{example}[theorem]{Example}
 \newenvironment{boxexample}{
-    \begin{tcolorbox}\begin{example}
+    \begin{tcolorbox}[breakable, enhanced]\begin{example}
 }{
     \end{example}\end{tcolorbox}
 }
