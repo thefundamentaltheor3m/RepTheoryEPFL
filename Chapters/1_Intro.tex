@@ -1,2 +1,31 @@
-\chapter{An Introduction to the Theory of Representations}
+%% WEEK 1
 
+\chapter{An Introduction to the Theory of Representations of Groups}
+\thispagestyle{empty}
+
+As I understand it, the fundamental idea behind Representation Theory is to study the actions of groups on vector spaces. While arbitrary vector spaces over arbitrary fields might not have naturally visualisable geometric properties, representations of groups in the ones that do can greatly illustrate the nature of these groups, especially to individuals like myself who delight in (somewhat literally) \textit{seeing} mathematics come alive.
+
+\begin{wrapfigure}[9]{r}{0.48\linewidth}
+    \centering
+    \vspace{-2.25em}
+    \begin{tikzpicture}
+        \drawplane
+        \drawsquare{1.5}
+        \draw[-{Stealth}, red, dashed] (1.4,1.6) to [bend right = 45] (-1.4,1.6);
+        \draw[-{Stealth}, red, dashed] (-1.6,1.4) to [bend right = 45] (-1.6,-1.4);
+        \draw[-{Stealth}, red, dashed] (-1.4,-1.6) to [bend right = 45] (1.4,-1.6);
+        \draw[-{Stealth}, red, dashed] (1.6,-1.4) to [bend right = 45] (1.6,1.4);
+    \end{tikzpicture}
+\end{wrapfigure}
+
+A key motivating example in the study of representation theory would be the representations of Dihedral groups over $\R^2$. It is very natural to (at least informally) view the Dihedral group $D_n$ of order $2n$ as the group of symmetries of the regular $n$-gon; in other words, elements of $D_n$ have natural actions on a regular $n$-gon that preserve its structure. For instance, $D_4$ contains an element that rotates a square clockwise by $90^\circ$, an action under which the square is, of course, invariant.
+
+If one were to now plot this square in $\R^2$, then action of the same element on the square can be extended to an orthogonal transformation of $\R^2$ that maps the $x$-axis to the $y$-axis and vice-versa, but in a manner preserving orientation (ie, that \textit{rotates the plane clockwise by $90^\circ$}). In a similar fashion, one can extend the actions of all dihedral groups $D_n$ to actions on the entirety of $\R^2$. More precisely, to every element of a dihedral group, one can ascribe a specific \textit{matrix} that transforms $\R^2$ in a manner preserving the regular $n$-gon.
+
+This motivates the formal definition of a representation.
+
+\section{What is a Representation?}
+
+\begin{boxdefinition}
+    
+\end{boxdefinition}

@@ -1,0 +1,22 @@
+% Structure and Numbering
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\rhead{{Page \thepage}}%\hspace{1pt} of \pageref{LastPage}}}
+\lhead{\textit\slshape\nouppercase{\leftmark}}
+
+\numberwithin{equation}{section} 
+
+% Spacing and indentation
+
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.5}
+
+\usepackage[skip=12pt, indent=0pt]{parskip}
+%\usepackage{indentfirst}
+
+\allowdisplaybreaks  % Allows align environments to continue for several pages

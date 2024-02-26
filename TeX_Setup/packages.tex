@@ -57,57 +57,6 @@
 \usepackage{tikz}
 \usepackage{float}
 
-% Theorem layout
-
-\usepackage{amsthm}
-
-\newtheorem*{theorem*}{Theorem}
-\newtheorem{theorem}{Theorem}%[section]
-\newtheorem{corollary}[theorem]{Corollary}%[theorem]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{algorithm}[theorem]{Algorithm}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{example}[theorem]{Example}
-\newenvironment{boxexample}{
-    \begin{tcolorbox}\begin{example}
-}{
-    \end{example}\end{tcolorbox}
-}
-\newtheorem{problem}{Problem}
-\newenvironment{boxproblem}{
-    \begin{tcolorbox}[colback=orange!3!white,colframe=orange!70!black]\begin{problem}
-}{
-    \end{problem}\end{tcolorbox}
-}
-\newenvironment{boxtheorem}{
-    \begin{tcolorbox}[colback=green!3!white,colframe=green!70!black]\begin{theorem}
-}{
-    \end{theorem}\end{tcolorbox}
-}
-\newtheorem*{notation}{Notation}
-\newenvironment{boxnotation}{
-    \begin{tcolorbox}[colback=magenta!3!white,colframe=magenta!70!black]\begin{notation}
-}{
-    \end{notation}\end{tcolorbox}
-}
-
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-\newtheorem*{solution}{Solution}
-
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-
-% Structure and Numbering
-
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-
-\pagestyle{fancy}
-\fancyhf{}
-
 % Tikz
 \usepackage{tikz-cd}
 \usepackage{tikz-3dplot}

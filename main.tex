@@ -1,23 +1,12 @@
-\documentclass[a4paper, 12pt, openany]{book}
+\documentclass[a4paper, 12pt, openany, oneside]{book}
 
-\input{packages}
+\input{TeX_Setup/packages.tex}
 
-\rhead{{Page \thepage}}%\hspace{1pt} of \pageref{LastPage}}}
-\lhead{\textit\slshape\nouppercase{\leftmark}}
+\input{TeX_Setup/format.tex}
 
-\numberwithin{equation}{section} 
+\input{TeX_Setup/environments.tex}
 
-% Spacing and indentation
-
-\usepackage{setspace}
-\renewcommand{\baselinestretch}{1.5}
-
-\usepackage[skip=12pt, indent=0pt]{parskip}
-%\usepackage{indentfirst}
-
-\input{shortcuts}
-
-\allowdisplaybreaks  % Allows align environments to continue for several pages
+\input{TeX_Setup/shortcuts.tex}
 
 \title{\vspace{-2em}MATH-314: Representation Theory of Finite Groups}
 \author{Sidharth Hariharan}

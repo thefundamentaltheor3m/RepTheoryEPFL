@@ -5,9 +5,9 @@
 % TIKZ:
 
 \newcommand{\drawplane}{  % For use with TikZ
-    \draw[step=0.5cm,gray,very thin] (-3,-1) grid (3,3);
-    \draw[thick,->] (-3,0) -- (3,0) node[anchor=west] {$\operatorname{Re}$};
-    \draw[thick,->] (0,-1) -- (0,3) node[anchor=south] {$\operatorname{Im}$};
+    \draw[step=0.5cm,gray,very thin] (-3,-3) grid (3,3);
+    \draw[thick,->] (-3,0) -- (3,0) node[anchor=west] {$x$};
+    \draw[thick,->] (0,-3) -- (0,3) node[anchor=south] {$y$};
     \node[black, anchor=north east] at (0, 0) {$0$};
 }
 \usetikzlibrary{decorations.markings}
@@ -15,11 +15,7 @@
       markings,
       mark=at position #1 with {\arrow{>}}},postaction={decorate}
 }}
-% \newenvironment{cd}{
-%     \[ \begin{tikzcd}
-% }{
-%     \end{tikzcd} \]
-% }
+
 \newenvironment{cd}{
     \begin{equation} \begin{tikzcd}
 }{
@@ -29,6 +25,14 @@
     \begin{equation*} \begin{tikzcd}
 }{
     \end{tikzcd} \end{equation*}
+}
+
+\newcommand{\drawsquare}[1]{
+    \draw[thick, blue]
+    (-{#1},-{#1}) node [anchor=north east] {C} --
+    (-{#1}, {#1}) node[anchor=south east] {B} --
+    ({#1}, {#1}) node[anchor=south west] {A} --
+    ({#1}, -{#1}) node [anchor=north west] {D} -- cycle;
 }
 
 % DELIMITERS:
@@ -213,77 +217,3 @@
 \newcommand{\bcos}{\because}
 \newcommand{\st}{\text{ s.t. }}
 
-% PS 2:
-
-\newcommand{\lof}[1]{\ell\!\parenth{#1}}
-% \newcommand{\dn}{\parenth{p^2, x^2 - p}}
-
-% PS 4:
-
-% \newcommand{\pd}[1]{\operatorname{projdim}\!\parenth{#1}}
-\newcommand{\Exttext}{\operatorname{Ext}}
-% \newcommand{\Ext}[2]{\Exttext^{#1}\!\parenth{#2}}
-% \newcommand{\Exti}[1]{\Ext{i}{#1}}
-% \newcommand{\EiN}[1]{\Exti{#1, N}}
-% \newcommand{\EnMp}[1]{\Ext{n}{#1, P_n}}
-% \newcommand{\Hom}[1]{\operatorname{Hom}_R\!\parenth{#1}}
-% \newcommand{\HN}[1]{\Hom{#1,N}}
-% \newcommand{\HMp}[1]{\Hom{#1,P_n}}
-% \newcommand{\Hfunc}{\HN{\ \sbullet[.5] \ }}
-\newcommand{\id}{\operatorname{id}}
-
-% PS 6:
-
-\newcommand{\ER}[2]{\Exttext^{#1}_{R}\!\parenth{#2}}
-\newcommand{\ERx}[2]{\Exttext^{#1}_{R[x]}\!\parenth{#2}}
-\newcommand{\ERiN}[1]{\ER{i}{#1, N}}
-\newcommand{\ERxiN}[1]{\ERx{i}{#1, N}}
-\newcommand{\Ext}[4]{\Exttext^{#1}_{#2}\!\parenth{#3, #4}}
-\newcommand{\HR}[1]{\operatorname{Hom}_{R}\!\parenth{#1}}
-\newcommand{\HRx}[1]{\operatorname{Hom}_{R[x]}\!\parenth{#1}}
-\newcommand{\HRN}[1]{\HR{#1, N}}
-\newcommand{\HRxN}[1]{\HRx{#1, N}}
-\newcommand{\bP}{\mathbf{\Psi}}
-\newcommand{\I}{\mathcal{I}}
-\newcommand{\phdot}{\ \sbullet[.5] \ }  % placeholder dot
-\newcommand{\Pdot}{P_{\sbullet[.5]}}
-\newcommand{\adot}{\alpha_{\sbullet[.5]}}
-\newcommand{\bdot}{\beta_{\sbullet[.5]}}
-\newcommand{\pdtext}{\operatorname{projdim}}
-\newcommand{\pdRx}[1]{\pdtext_{R[x]}\!\parenth{#1}}
-\newcommand{\pdR}[1]{\pdtext_R\!\parenth{#1}}
-\newcommand{\xn}{x_1, \ldots, x_n}
-\newcommand{\pdkx}[1]{\pdtext_{k[\xn]}\!\parenth{#1}}
-
-% PS 8:
-
-\newcommand{\dn}{\parenth{xz - y^2, yt - z^2, xt - yz}}
-\newcommand{\td}[2]{\operatorname{trdeg}_{#1}\!\parenth{#2}}
-
-% PS 10:
-
-\newcommand{\bw}{\bigwedge}
-\newcommand{\otr}{\otimes_R}
-\newcommand{\TrM}{T^r(M)}
-\newcommand{\IrM}{I^r(M)}
-\newcommand{\WrM}{\text{$\bw$}^r(M)}
-\newcommand{\JrM}{J^r(M)}
-\newcommand{\TiM}{T^i(M)}
-\newcommand{\IiM}{I^i(M)}
-\newcommand{\WiM}{\text{$\bw$}^i(M)}
-\newcommand{\JiM}{J^i(M)}
-\newcommand{\Trf}{T^r(f)}
-\newcommand{\Irf}{I^r(f)}
-\newcommand{\Wrf}{\text{$\bw$}^r(f)}
-\newcommand{\Wrg}{\text{$\bw$}^r(g)}
-\newcommand{\Wrfg}{\text{$\bw$}^r\!\parenth{f \circ g}}
-
-% PS 11:
-
-\newcommand{\p}{\mathfrak{p}}
-\newcommand{\J}{\mathcal{J}}
-\newcommand{\TiO}{$\text{\ref{PS11:Prob1:2}} \implies \text{\ref{PS11:Prob1:1}}$}
-\newcommand{\OiT}{$\text{\ref{PS11:Prob1:1}} \implies \text{\ref{PS11:Prob1:2}}$}
-\newcommand{\m}{\mathfrak{m}}
-\newcommand{\A}{\mathcal{A}}
-\newcommand{\q}{\mathfrak{q}}
