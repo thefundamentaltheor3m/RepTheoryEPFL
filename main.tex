@@ -1,0 +1,45 @@
+\documentclass[a4paper, 12pt]{article}
+
+\input{packages}
+
+\rhead{{Page \thepage}}%\hspace{1pt} of \pageref{LastPage}}}
+\lhead{\textit\slshape\nouppercase{\rightmark}}
+
+\numberwithin{equation}{section} 
+
+% Spacing and indentation
+
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.5}
+
+\usepackage[skip=12pt, indent=0pt]{parskip}
+%\usepackage{indentfirst}
+
+\input{shortcuts}
+
+\allowdisplaybreaks  % Allows align environments to continue for several pages
+
+\title{\vspace{-2em}MATH-216: Representation Theory of Finite Groups}
+\author{Sidharth Hariharan}
+\date{École Polytechnique Fédérale de Lausanne - Spring 2024}
+
+\begin{document}
+
+\setlength{\abovedisplayskip}{7.5pt}  % Space above an align environment
+\setlength{\belowdisplayskip}{7.5pt}  % Space below an align environment
+\setlength{\abovedisplayshortskip}{2pt}
+\setlength{\belowdisplayshortskip}{2pt}
+
+\maketitle
+
+\thispagestyle{empty}
+
+\tableofcontents
+
+\newpage
+
+\input{Weekly_Notes/Week_1.tex}
+
+\printbibliography
+
+\end{document}

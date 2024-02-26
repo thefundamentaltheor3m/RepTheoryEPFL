@@ -1,0 +1,119 @@
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+
+\usepackage{tcolorbox}
+\usepackage{authblk}  % Lets you add an \affil{} to your title, stating your affiliation {eg. Sigma Mathematics Society}
+\usepackage{ragged2e}
+\usepackage{csquotes}
+\usepackage{pdfpages}
+
+\usepackage[a4paper, total={6.6in, 9in}, textheight=720pt, voffset=35pt, footnotesep=25pt]{geometry} % Adjust margins as necessary
+
+\usepackage{xfrac}
+\usepackage{cancel}
+
+\usepackage[inline]{enumitem}
+
+%\usepackage{tgpagella}
+
+\usepackage{blindtext}
+\usepackage{lipsum}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\hypersetup{
+    citebordercolor = 1 1 1,
+    linkbordercolor = 1 1 1,
+    filebordercolor = 1 1 1,
+    menubordercolor = 1 1 1,
+    urlbordercolor = 1 1 1,
+    colorlinks  =   true,
+    linkcolor   =   blue,
+    citecolor   =   magenta,
+    urlcolor    =   blue
+}
+
+\usepackage{biblatex} % Modify citation format using [style=yourstyle] parameter--eg \usepackage[style=mla-new]{biblatex}
+\bibliography{References.bib}
+\addbibresource{References.bib}
+
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+%\usepackage{MnSymbol}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+% \usepackage{mathabx}
+
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+
+\usepackage{graphicx}
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}  % Bullet of customisable size
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{float}
+
+% Theorem layout
+
+\usepackage{amsthm}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{corollary}[theorem]{Corollary}%[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\newenvironment{boxexample}{
+    \begin{tcolorbox}\begin{example}
+}{
+    \end{example}\end{tcolorbox}
+}
+\newtheorem{problem}{Problem}
+\newenvironment{boxproblem}{
+    \begin{tcolorbox}[colback=orange!3!white,colframe=orange!70!black]\begin{problem}
+}{
+    \end{problem}\end{tcolorbox}
+}
+\newenvironment{boxtheorem}{
+    \begin{tcolorbox}[colback=green!3!white,colframe=green!70!black]\begin{theorem}
+}{
+    \end{theorem}\end{tcolorbox}
+}
+\newtheorem*{notation}{Notation}
+\newenvironment{boxnotation}{
+    \begin{tcolorbox}[colback=magenta!3!white,colframe=magenta!70!black]\begin{notation}
+}{
+    \end{notation}\end{tcolorbox}
+}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+% Structure and Numbering
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+% Tikz
+\usepackage{tikz-cd}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{positioning}
+\usetikzlibrary{cd}
+\usetikzlibrary{shapes.geometric}
+\usepackage{pgfplots}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}

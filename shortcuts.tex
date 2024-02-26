@@ -1,0 +1,289 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM COMMANDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% TIKZ:
+
+\newcommand{\drawplane}{  % For use with TikZ
+    \draw[step=0.5cm,gray,very thin] (-3,-1) grid (3,3);
+    \draw[thick,->] (-3,0) -- (3,0) node[anchor=west] {$\operatorname{Re}$};
+    \draw[thick,->] (0,-1) -- (0,3) node[anchor=south] {$\operatorname{Im}$};
+    \node[black, anchor=north east] at (0, 0) {$0$};
+}
+\usetikzlibrary{decorations.markings}
+\tikzset{->-/.style={decoration={
+      markings,
+      mark=at position #1 with {\arrow{>}}},postaction={decorate}
+}}
+% \newenvironment{cd}{
+%     \[ \begin{tikzcd}
+% }{
+%     \end{tikzcd} \]
+% }
+\newenvironment{cd}{
+    \begin{equation} \begin{tikzcd}
+}{
+    \end{tikzcd} \end{equation}
+}
+\newenvironment{cd*}{
+    \begin{equation*} \begin{tikzcd}
+}{
+    \end{tikzcd} \end{equation*}
+}
+
+% DELIMITERS:
+
+\newcommand{\parenth}[1]{\left( #1 \right)}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\cycl}[1]{\left\langle #1 \right\rangle}
+
+% FUNCTIONS:
+
+\newcommand{\fx}{f\!\parenth{x}}
+\newcommand{\fof}[1]{f\!\parenth{#1}}
+\newcommand{\Fp}{F\!\parenth{p}}
+\newcommand{\Fof}[1]{F\!\parenth{#1}}
+\newcommand{\Gp}{G\!\parenth{p}}
+\newcommand{\Gof}[1]{G\!\parenth{#1}}
+\newcommand{\FGp}{\parenth{F \circ G}\!\parenth{p}}
+\newcommand{\FGof}[1]{\parenth{F \circ G}\!\parenth{#1}}
+\newcommand{\px}{p\!\parenth{x}}
+\newcommand{\pof}[1]{p\!\parenth{#1}}
+\newcommand{\pofbig}[1]{p\Big(#1\Big)}
+\newcommand{\gx}{g\!\parenth{x}}
+\newcommand{\gof}[1]{g\!\parenth{#1}}
+\newcommand{\hx}{h\!\parenth{x}}
+\newcommand{\hof}[1]{h\!\parenth{#1}}
+\newcommand{\Tv}{T\!\parenth{\vec{v}}}
+\newcommand{\Tu}{T\!\parenth{\vec{u}}}
+\newcommand{\Tof}[1]{T\!\parenth{#1}}
+\newcommand{\Tofvec}[1]{\Tof{\vec{#1}}}
+
+\newcommand{\psin}[1]{\sin\!{\parenth{#1}}}
+\newcommand{\pcos}[1]{\cos\!{\parenth{#1}}}
+\newcommand{\ptan}[1]{\tan\!{\parenth{#1}}}
+\newcommand{\sinsq}[1]{\sin^2\!\parenth{#1}}
+\newcommand{\cossq}[1]{\cos^2\!\parenth{#1}}
+\newcommand{\tansq}[1]{\tan^2\!\parenth{#1}}
+\newcommand{\parcsin}[1]{\arcsin\!{\parenth{#1}}}
+\newcommand{\parccos}[1]{\arccos\!{\parenth{#1}}}
+\newcommand{\parctan}[1]{\arctan\!{\parenth{#1}}}
+
+\newcommand{\logbase}[2]{\log_{#1}\!\parenth{#2}}
+\newcommand{\nthroot}[2]{\sqrt[\leftroot{-3}\uproot{3} #1]{#2}}
+\newcommand{\cbrt}[1]{\nthroot{3}{#1}}
+
+\newcommand{\pgcd}[2]{\gcd\!\parenth{{#1},{#2}}}
+\newcommand{\plcm}[2]{\operatorname{lcm}\!\parenth{{#1},{#2}}}
+\newcommand{\pgcds}[1]{\gcd\!\parenth{#1}}
+\newcommand{\plcms}[1]{\operatorname{lcm}\!\parenth{#1}}
+
+\newcommand{\eutot}[1]{\phi\!\parenth{#1}}  % Euler's Totient Function
+\newcommand{\phiof}[1]{\varphi\!\parenth{#1}}
+\newcommand{\xiof}[1]{\xi\!\parenth{#1}}
+
+\newcommand{\inj}{\hookrightarrow}
+\newcommand{\surj}{\twoheadrightarrow}
+
+% CALCULUS:
+
+\newcommand{\dx}{\operatorname{d}\!x}
+\newcommand{\dy}{\operatorname{d}\!y}
+\newcommand{\diff}[1]{\operatorname{d}\!{#1}}
+\newcommand{\dydx}{\frac{\dy}{\dx}}
+
+% LINEAR ALGEBRA:
+
+\newcommand{\mat}[3]{\mathrm{M}_{{#1} \times {#2}}\!\parenth{{#3}}}
+\newcommand{\matsq}[2]{\mathbf{M}_{{#1} \times {#1}}\!\parenth{\mathbb{#2}}}
+\newcommand{\MnR}{\mathbf{M}_{n}\!\parenth{\real}}
+\newcommand{\Mn}[2]{\mathbf{M}_{#1}\!\parenth{#2}}
+\newcommand{\GL}[2]{\mathbf{GL}_{#1}\!\parenth{{#2}}}
+\newcommand{\SL}[2]{\mathbf{SL}_{#1}\!\parenth{\mathbb{#2}}}
+\newcommand{\GLnR}{\GL{n}{\R}}
+\newcommand{\SLnR}{\SL{n}{\R}}
+
+\newcommand{\Span}[1]{\mathrm{Sp}\!\parenth{#1}}
+
+\newcommand{\pdim}[1]{\dim\!\parenth{#1}}
+
+\newcommand{\RSp}[1]{\operatorname{RSp}\!\parenth{#1}}
+\newcommand{\CSp}[1]{\operatorname{CSp}\!\parenth{#1}}
+\newcommand{\rank}[1]{\operatorname{rank}\!\parenth{#1}}
+\newcommand{\pim}[1]{\operatorname{im}\!\parenth{#1}}
+\newcommand{\pker}[1]{\operatorname{ker}\!\parenth{#1}}
+\newcommand{\pdet}[1]{\det\!\parenth{#1}}
+
+\newcommand{\cA}[1]{c_A \! \parenth{#1}}
+\newcommand{\cB}[1]{c_B \! \parenth{#1}}
+\newcommand{\mA}[1]{m_A \! \parenth{#1}}
+\newcommand{\mB}[1]{m_B \! \parenth{#1}}
+\newcommand{\cAx}{\cA{x}}
+\newcommand{\cBx}{\cB{x}}
+\newcommand{\mAx}{\mA{x}}
+\newcommand{\mBx}{\mB{x}}
+\newcommand{\cof}[2]{c_{#1}\!\parenth{#2}}
+\newcommand{\mof}[2]{m_{#1}\!\parenth{#2}}
+
+\newcommand{\Cof}[1]{C\!\parenth{#1}}
+\newcommand{\+}{\oplus}
+\newcommand{\pdeg}[1]{\deg\!\parenth{#1}}
+
+\newcommand{\RCF}[1]{\operatorname{RCF}\!\parenth{#1}}
+\newcommand{\JCF}[1]{\operatorname{JCF}\!\parenth{#1}}
+
+\newcommand{\Jsub}[2]{J_{#1}\!\parenth{#2}}
+
+\newcommand{\Aof}[1]{A\!\parenth{#1}}
+
+\newcommand{\Tsub}[2]{T_{#1}\!\parenth{#2}}
+
+% Measure Theory
+
+\newcommand{\muof}[1]{\mu\!\parenth{#1}}
+\newcommand{\muA}{\muof{A}}
+\newcommand{\muB}{\muof{B}}
+\newcommand{\mutof}[1]{\Tilde{\mu}\!\parenth{#1}}
+\newcommand{\mustof}[1]{\mu^*\!\parenth{#1}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\sigmaof}[1]{\sigma\!\parenth{#1}}
+\newcommand{\psiof}[1]{\psi\!\parenth{#1}}
+
+% Intervals
+
+\newcommand{\oc}[2]{\left(#1, #2\right]}
+\newcommand{\co}[2]{\left[#1, #2\right)}
+
+% GROUPS/ALGEBRA IN GENERAL:
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\Sym}[1]{\operatorname{Sym}\!\parenth{#1}}
+\newcommand{\ord}[1]{\operatorname{ord}\!\parenth{#1}}
+\newcommand{\supp}[1]{\operatorname{supp}\!\parenth{#1}}
+\newcommand{\sgn}[1]{\operatorname{sgn}\!\parenth{#1}}
+\newcommand{\tcyc}[2]{\begin{pmatrix} #1 & #2 \end{pmatrix}}
+
+\newcommand{\nsg}{\trianglelefteq}
+
+\newcommand{\Rmul}{R^{\times}}
+\newcommand{\kmul}{k^{\times}}
+\newcommand{\kX}{k\!\brac{X}}
+\newcommand{\RX}{R\!\brac{X}}
+
+\newcommand{\quotient}[2]{
+    \left.\raisebox{.2em}{${#1}$} \middle/ \raisebox{-.2em}{${#2}$} \right.
+}
+
+\newcommand{\Vof}[1]{V\!\parenth{#1}}
+
+\newcommand{\Frac}[1]{\operatorname{Frac}\!\parenth{#1}}
+
+\newcommand{\Spec}[1]{\operatorname{Spec}\!\parenth{#1}}
+
+% NUMBER SETS:
+
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\rational}{\mathbb{Q}}
+\newcommand{\naturalnum}{\mathbb{N}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\complex}{\mathbb{C}}
+
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\real}
+\newcommand{\N}{\naturalnum}
+\newcommand{\Z}{\integers}
+\newcommand{\C}{\complex}
+\newcommand{\B}{\mathcal{B}}
+
+\newcommand{\psup}[1]{\sup\!\parenth{#1}}
+\newcommand{\pinf}[1]{\inf\!\parenth{#1}}
+
+% LOGIC:
+
+\newcommand{\ergo}{\therefore}
+\newcommand{\bcos}{\because}
+\newcommand{\st}{\text{ s.t. }}
+
+% PS 2:
+
+\newcommand{\lof}[1]{\ell\!\parenth{#1}}
+% \newcommand{\dn}{\parenth{p^2, x^2 - p}}
+
+% PS 4:
+
+% \newcommand{\pd}[1]{\operatorname{projdim}\!\parenth{#1}}
+\newcommand{\Exttext}{\operatorname{Ext}}
+% \newcommand{\Ext}[2]{\Exttext^{#1}\!\parenth{#2}}
+% \newcommand{\Exti}[1]{\Ext{i}{#1}}
+% \newcommand{\EiN}[1]{\Exti{#1, N}}
+% \newcommand{\EnMp}[1]{\Ext{n}{#1, P_n}}
+% \newcommand{\Hom}[1]{\operatorname{Hom}_R\!\parenth{#1}}
+% \newcommand{\HN}[1]{\Hom{#1,N}}
+% \newcommand{\HMp}[1]{\Hom{#1,P_n}}
+% \newcommand{\Hfunc}{\HN{\ \sbullet[.5] \ }}
+\newcommand{\id}{\operatorname{id}}
+
+% PS 6:
+
+\newcommand{\ER}[2]{\Exttext^{#1}_{R}\!\parenth{#2}}
+\newcommand{\ERx}[2]{\Exttext^{#1}_{R[x]}\!\parenth{#2}}
+\newcommand{\ERiN}[1]{\ER{i}{#1, N}}
+\newcommand{\ERxiN}[1]{\ERx{i}{#1, N}}
+\newcommand{\Ext}[4]{\Exttext^{#1}_{#2}\!\parenth{#3, #4}}
+\newcommand{\HR}[1]{\operatorname{Hom}_{R}\!\parenth{#1}}
+\newcommand{\HRx}[1]{\operatorname{Hom}_{R[x]}\!\parenth{#1}}
+\newcommand{\HRN}[1]{\HR{#1, N}}
+\newcommand{\HRxN}[1]{\HRx{#1, N}}
+\newcommand{\bP}{\mathbf{\Psi}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\phdot}{\ \sbullet[.5] \ }  % placeholder dot
+\newcommand{\Pdot}{P_{\sbullet[.5]}}
+\newcommand{\adot}{\alpha_{\sbullet[.5]}}
+\newcommand{\bdot}{\beta_{\sbullet[.5]}}
+\newcommand{\pdtext}{\operatorname{projdim}}
+\newcommand{\pdRx}[1]{\pdtext_{R[x]}\!\parenth{#1}}
+\newcommand{\pdR}[1]{\pdtext_R\!\parenth{#1}}
+\newcommand{\xn}{x_1, \ldots, x_n}
+\newcommand{\pdkx}[1]{\pdtext_{k[\xn]}\!\parenth{#1}}
+
+% PS 8:
+
+\newcommand{\dn}{\parenth{xz - y^2, yt - z^2, xt - yz}}
+\newcommand{\td}[2]{\operatorname{trdeg}_{#1}\!\parenth{#2}}
+
+% PS 10:
+
+\newcommand{\bw}{\bigwedge}
+\newcommand{\otr}{\otimes_R}
+\newcommand{\TrM}{T^r(M)}
+\newcommand{\IrM}{I^r(M)}
+\newcommand{\WrM}{\text{$\bw$}^r(M)}
+\newcommand{\JrM}{J^r(M)}
+\newcommand{\TiM}{T^i(M)}
+\newcommand{\IiM}{I^i(M)}
+\newcommand{\WiM}{\text{$\bw$}^i(M)}
+\newcommand{\JiM}{J^i(M)}
+\newcommand{\Trf}{T^r(f)}
+\newcommand{\Irf}{I^r(f)}
+\newcommand{\Wrf}{\text{$\bw$}^r(f)}
+\newcommand{\Wrg}{\text{$\bw$}^r(g)}
+\newcommand{\Wrfg}{\text{$\bw$}^r\!\parenth{f \circ g}}
+
+% PS 11:
+
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\TiO}{$\text{\ref{PS11:Prob1:2}} \implies \text{\ref{PS11:Prob1:1}}$}
+\newcommand{\OiT}{$\text{\ref{PS11:Prob1:1}} \implies \text{\ref{PS11:Prob1:2}}$}
+\newcommand{\m}{\mathfrak{m}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\q}{\mathfrak{q}}
