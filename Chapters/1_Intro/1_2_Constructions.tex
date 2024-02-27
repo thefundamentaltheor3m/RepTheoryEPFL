@@ -1,1 +1,25 @@
-\subsection{Invariant Constructions}
+\section{Invariant Constructions}
+
+In this section, we briefly examine how ordinary linear algebraic constructions can interact with representations. We are particularly interested in the notion of \textit{invariance}, wherein a construction respects the structure of the representation(s) involved.
+
+\subsection{Direct Sums of Representations}
+
+The most elementary operation we can think about when we have two objects is \textit{putting them together}. One of the most meaningful ways of doing so in the context of linear algebra is the direct sum of two vector spaces. It turns out that this extends rather naturally to representations.
+
+\begin{boxdefinition}
+    \letgvv. We define the direct sum of $\parenth{V,\rho}$ and $\parenth{V', \rho'}$ to be the pair $\parenth{V \+ V', \rho \+ \rho'}$, where $V \+ V'$ is the direct sum of $V$ and $V'$ as vector spaces and $\rho \+ \rho' : G \to \GL{V \+ V'}$ is the map given by
+    \begin{align*}
+        \parenth{\rho \+ \rho'}\!\parenth{g}\!\parenth{v \+ v'} &= \rho(g)(v) \+ \rho'(g)(v')
+    \end{align*}
+    for all $g \in G$.
+\end{boxdefinition}
+
+\begin{proposition}
+    \letgvv.
+    \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
+        \item The direct sum $\parenth{V \+ V', \rho \+ \rho'}$ of $\parenth{V,\rho}$ and $\parenth{V', \rho'}$ is, indeed, a representation of $G$.
+        \item $V$ and $V'$ are $G$-invariant subspaces\footnote{Technically, isomorphic to the subspaces $V \+ \set{0}$ and $\set{0} \+ V'$, but we overlook such distinctions.} of $V \+ V'$.
+    \end{enumerate}
+\end{proposition}
+
+\subsection{The $G$-Invariant Inner-Product}
