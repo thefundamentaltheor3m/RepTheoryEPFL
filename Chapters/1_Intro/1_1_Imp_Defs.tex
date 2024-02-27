@@ -153,10 +153,20 @@ Given that MATH-314 focuses on \textit{finite} groups, the following result is q
 \begin{boxexample}[Simple Examples of Irreducible Representations] \label{Ch1:Eg:Irreds}
     \hfill
     \begin{enumerate}
-        \item Any reputation of degree $1$ is irreducible.
+        \item Any representation of degree $1$ is irreducible.
         \item Let $K$ be a field. The trivial embedding $\SL{n,K} \inj \GL{n,K}$ gives an irreducible representation of $\SL{n,K}$ over $K^n$.
-        \begin{proof}[Proof that $K^n$ contains no nonzero, proper $\SL{n,K}$-invariant subspaces]
-            For the sake of contradiction, suppose $\set{0} \neq W \lneq V$ is $\SL{n,K}$-invariant. 
+        \begin{proof}
+            Assume $n > 1$ (else, the result follows from the previous point). For the sake of contradiction, suppose there exists a nonzero, $\SL{n,K}$-invariant subspace $W$ of $K^n$ having dimension $m < n$. Let $\B = \set{e_1, \ldots, e_m}$ be a basis of $W$, extending to a basis $\bar{\B} = \set{e_1, \ldots, e_m, e_{m+1}, \ldots, e_n}$ of $V$. Consider the linear map $T \in \SL{n,K}$ having matrix
+            \begin{align*}
+                \brac{T}_{\bar{\B}} &=
+                \begin{bmatrix}
+                    & & & \parenth{-1}^{n+1} \\
+                    & & \iddots & \\
+                    & -1 & & \\
+                    1 & & &
+                \end{bmatrix}
+            \end{align*}
+            with respect to $\bar{B}$. Clearly, $\Tof{e_1} = e_n$, even though $e_1 \in W$ and $e_n \notin W$, contradicting the $\SL{n,K}$-invariance of $W$.
         \end{proof}
     \end{enumerate}
 \end{boxexample}
