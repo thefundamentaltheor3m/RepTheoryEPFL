@@ -39,7 +39,13 @@
 }
 \newtheorem{example}[theorem]{Example}
 \newenvironment{boxexample}{
-    \begin{tcolorbox}[breakable, enhanced]\begin{example}
+    \begin{tcolorbox}[colframe=green!30!black, breakable, enhanced, breakable, enhanced]\begin{example}
 }{
     \end{example}\end{tcolorbox}
+}
+\newtheorem{nexample}[theorem]{Non-Example}
+\newenvironment{boxnexample}{
+    \begin{tcolorbox}[colframe=red!50!black, breakable, enhanced]\begin{nexample}
+}{
+    \end{nexample}\end{tcolorbox}
 }
