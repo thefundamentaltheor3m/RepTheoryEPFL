@@ -63,6 +63,10 @@ As it turns out, we also have a notion of morphisms of representations.
     Such a map $T$ is said to be \textit{$G$-linear}.
 \end{boxdefinition}
 
+\begin{remark}
+    The term $G$-linear comes from the fact that a homomorphism of representations satisfies the property that $\Tof{g(v)} = \gof{\Tof{v}}$, where the notation $\gof{\cdot}$ represents the action of some $g \in G$, encoded by a representation. In this sense, $T$ is somehow ``linear over $G$''.
+\end{remark}
+
 A natural way to define two representations to be equal, or `isomorphic,' is as follows.
 
 \begin{definition}[Equivalence of Representations]
@@ -121,6 +125,17 @@ One can also observe easily that a subrepresentation is given uniquely by a $G$-
 \begin{boxexample} \label{Ch1:Eg:Regular_is_Subrep}
     Let $G$ be a finite group and $K$ a field. Consider the regular representation $\rho : G \to K[G]$. Let $\set{e_g : g \in G}$ denote a basis of $K[G]$. Then, the subspace $W := \Span{\sum_{g \in G} e_g}$ is $G$-invariant.
 \end{boxexample}
+
+It turns out that morphisms of representations also give us subrepresentations.
+
+\begin{proposition}\label{Ch1:Prop:ker_im_subreps}
+    \letgv. Let $T : \Vp \to \Vp$ be a homomorphism of representations. Then, the subspaces $\pker{T}$ and $\pim{T}$ of $V$ are $G$-invariant.
+\end{proposition}
+\begin{proof}
+    Fix $g \in G$ and $v \in \pker{T}$. We know $\Tof{\rho(g)(v)} = \rho(g)\!\parenth{\Tof{v}}$. Since $\Tof{v} = 0$, $\Tof{\rho(g)(v)} = 0$. Hence, $\rho(g)(v) \in \pker{T}$, proving that $\pker{T}$ is $G$-invariant.
+
+    Now, fix $w \in \pim{T}$. Then, $w = \Tof{u}$ for some $u \in V$. Clearly, $\rho(g)(w) = \rho(g)\!\parenth{\Tof{u}} = \Tof{\rho(g)(u)} \in \pim{T}$, proving that $\pim{T}$ is $G$-invariant as well.
+\end{proof}
 
 \subsection{Irreducibility}
 

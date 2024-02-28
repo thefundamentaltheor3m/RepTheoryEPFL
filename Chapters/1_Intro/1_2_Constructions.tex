@@ -7,13 +7,11 @@ In this section, we briefly examine how ordinary linear algebraic constructions 
 The most elementary operation we can think about when we have two objects is \textit{putting them together}. One of the most meaningful ways of doing so in the context of linear algebra is the direct sum of two vector spaces. It turns out that this extends rather naturally to representations.
 
 \begin{boxdefinition}[The Direct Sum of Two Representations]
-    \letgvv. We define the direct sum of $\parenth{V,\rho}$ and $\parenth{V', \rho'}$ to be the pair $\parenth{V \+ V', \rho \+ \rho'}$, where $V \+ V'$ is the direct sum of $V$ and $V'$ as vector spaces and $\rho \+ \rho' : G \to \GL{V \+ V'}$ is the map given by
+    \letgvv. We define the direct sum of $\parenth{V,\rho}$ and $\parenth{V', \rho'}$ to be the pair $\parenth{V \+ V', \rho \+ \rho'}$, where $V \+ V'$ is the direct sum of $V$ and $V'$ as vector spaces and $\rho \+ \rho' : G \to \GL{V \+ V'}$ maps every $g \in G$ to the map
     \begin{align*}
-        \parenth{\rho \+ \rho'}\!\parenth{g}\!\parenth{v \+ v'} &= \rho(g)(v) \+ \rho'(g)(v')
+        \parenth{\rho \+ \rho'}\!\parenth{g}\!\parenth{v \+ v'} &= \rho(g)(v) \+ \rho'(g)(v') \in \GL{V}
     \end{align*}
-    for all $g \in G$.
 \end{boxdefinition}
-
 \begin{proposition}
     \letgvv.
     \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
@@ -34,6 +32,7 @@ The most elementary operation we can think about when we have two objects is \te
 
         \item Fix $g \in G$ and $v \in V$. Clearly, $\parenth{\rho \+ \rho'}\!(g)(v) = \rho(g)(v)$. Since $\rho(g) \in \GL{V}$, it follows that $\rho(g)(v) \in V$. The proof that $V'$ is $G$-invariant is identical.
     \end{enumerate}
+    \vspace{-1em}
 \end{proof}
 
 The above proposition gives us another reason to consider the direct sum to be an ``invariant'' construction: while it enriches both the vector space structure and the representation structure of a summand by adding another representation into the mix, it does not take anything away from the constructions that already exist.
@@ -49,7 +48,7 @@ With direct sums, we also have similar notions to reducibility. These are given 
 \end{boxdefinition}
 Nonzero representations that are not indecomposable are said to be decomposable.
 
-\subsection{Complementary Subrepresentations and Maschke's Theorem}
+\subsection{Complementary Subrepresentations}
 
 It is a well-known fact from Linear Algebra that for any finite-dimensional vector space $V$, for any subspace $W \leq V$, there exists a \textit{complementary} subspace $W' \leq V$ such that $W \+ W' = V$. Over Euclidean spaces, for example, we have the very important notion of \textit{orthogonal} complements.
 
@@ -58,9 +57,9 @@ We can define a similar notion for representations, too.
     \letgv. Let $\parenth{W, \rho\vert_W}$ be a subrepresentation of $\parenth{V, \rho}$. A complementary subrepresentation of $\parenth{W, \rho\vert_W}$ is a subrepresentation $\parenth{U, \rho\vert_U}$ such that $V = U \+ W$.
 \end{boxdefinition}
 This notion of complementarity is, indeed, compatible with the notion of direct sums of representations.
-\begin{lemma}
+\begin{proposition}
     \letgv. Let $\parenth{W, \rho\vert_W}$ and $\parenth{U, \rho\vert_U}$ be complementary subrepresentations. Then, their direct sum $\parenth{V, \rho\vert_W \+ \rho\vert_U}$ is equivalent to $\parenth{V, \rho}$ as a representation of $G$.
-\end{lemma}
+\end{proposition}
 \begin{proof}
     It suffices to show that $\rho = \rho\vert_W \+ \rho\vert_U$. Then, the identity map would give an equivalence of representations. Indeed, every $v \in V$ is expressible uniquely as a direct sum $w \+ u$ for some $w \in W$ and $u \in U$. So, for all $g \in G$,
     \begin{align*}
@@ -72,12 +71,49 @@ This notion of complementarity is, indeed, compatible with the notion of direct 
     where the sum in the second equality is direct because $W$ and $U$ are $\rho(g)$-invariant.
 \end{proof}
 
+We now recall an important result from Linear Algebra.
+
+\begin{definition}[Projection]
+    Let $V$ be a vector space and let $T : V \to V$ be linear. Observe that we have the following equivalence:
+    \begin{align}
+        T^2 = T &\iff \forall w \in \pim{T},\ T(w) = w \label{Ch1:Eq:Proj_Op_Equiv}
+    \end{align}
+    If $T$ satisfies either one of the above conditions, $T$ is said to be a projection.
+\end{definition}
+
+We do not prove \eqref{Ch1:Eq:Proj_Op_Equiv}, but we do prove the following lemma, which will prove to be useful.
+
+\begin{lemma} \label{Ch1:Lem:LinAlg_Proj_Dsum}
+    Let $V$ be a vector space. For all projections $T : V \to V$, $V = \pker{T} \+ \pim{T}$.
+\end{lemma}
+\begin{proof}
+    Let $T : V \to V$ be a projection. We then have the following.
+    \begin{description}
+        \item[\underline{$\pim{T} \cap \pker{T} = \set{0}$:}] Fix $w \in \pim{T} \cap \pker{T}$. Since $w \in \pim{T}$, $\exists v \in V$ such that $w = T(v)$. Furthermore, since $w \in \pker{T}$, $T(w) = 0$. Since $w = \Tof{v}$, this is equivalent to saying that $\Tof{\Tof{v}} = 0$. But, by \eqref{Ch1:Eq:Proj_Op_Equiv}, $\Tof{\Tof{v}} = \Tof{v}$. Hence, $\Tof{v} = 0$. Then, since $\Tof{v} = w$, it follows that $w = 0$.
+        \item[\underline{$V = \pker{T} + \pim{T}$:}] Fix $v \in V$. We write $v = \Tof{v} + \parenth{v - \Tof{v}}$. Clearly, $\Tof{v} \in \pim{T}$. Further, $\Tof{v - \Tof{v}} = \Tof{v} - \Tof{v} = 0$. Hence, $v - \Tof{v} \in \pker{T}$.
+    \end{description}
+    Therefore, we do, indeed, have $V = \pker{T} \+ \pim{T}$.
+\end{proof}
+
+It turns out that this gives us an important criterion for decomposability.
+
+\begin{corollary}\label{Ch1:Cor:G_lin_proj_ker_im}
+    \letgv. If $T : \Vp \to \Vp$ is a $G$-linear projection, then $V = \pker{T} \+ \pim{T}$ is a direct sum of subrepresentations.
+\end{corollary}
+\begin{proof}
+    The result follows immediately from Lemma \ref{Ch1:Lem:LinAlg_Proj_Dsum} and Proposition \ref{Ch1:Prop:ker_im_subreps}.
+\end{proof}
+
+\subsection{Maschke's Theorem}
+
 Given the theme of this section---namely, understanding the compatibility of ordinary linear-algebraic constructions with representation structures---one might wonder under what conditions (if any) we have the existence of a complementary subrepresentations. The answer lies in Maschke's Theorem, which is the first major result of the course.
 
 \begin{boxtheorem}[Maschke's Theorem] \label{SP:Thm:Maschke}
     \letfg, $K$ a field such that $\pchar{K} \nmid \abs{G}$, and $\Vp$ a representation of $G$ over $K$. Then, any subrepresentation of $V$ admits a complementary subrepresentation.
 \end{boxtheorem}
-
+\begin{proof}
+    Let $W \leq V$ be $G$-invariant. The idea is to construct a $G$-linear map $T : V \to V$ with image $W$. Then, by Corollary \ref{Ch1:Cor:G_lin_proj_ker_im}, $\pker{T}$ would give a complementary subrepresentation.
+\end{proof}
 
 \subsection{The $G$-Invariant Inner-Product}
 
