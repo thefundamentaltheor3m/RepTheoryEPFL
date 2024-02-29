@@ -181,7 +181,7 @@ Given the theme of this section---namely, understanding the compatibility of ord
 
 We also have the following important corollary.
 
-\begin{corollary}
+\begin{corollary} \label{Ch1:Cor:Maschke}
     \letfg, $K$ a field such that $\pchar{K} \nmid \abs{G}$. Then, every representation of $G$ over $K$ is completely reducible.
 \end{corollary}
 \begin{proof}
@@ -191,6 +191,23 @@ We also have the following important corollary.
 \begin{remark}
     Nowhere in Definition \ref{Ch1:Def:Comp_Red} do we specify that the decomposition must be finite.
 \end{remark}
+
+We note that both hypotheses of Maschke's Theorem---namely, that $G$ is a finite group and that $\pchar{K} \nmid \abs{G}$---are essential for Theorem \ref{SP:Thm:Maschke} (and hence Corollary \ref{Ch1:Cor:Maschke}) to hold.
+
+\begin{boxnexample}[Failure of Maschke's Theorem when $\pchar{K} \mid \abs{G}$]
+    Let $G = \cycl{a}$ be a cyclic group of prime order $p$. Let $V = \F_p^2$, and define $\rho : G \to \GL{2,\F_p}$ by
+    \begin{align*}
+        \rhoof{a^r} &= \begin{bmatrix}
+            1 & r \\ 0 & 1
+        \end{bmatrix}
+        \quad \text{for $0 \leq r \leq p - 1$.}
+    \end{align*}
+    \begin{enumerate}
+        \item $\Vp$ is a representation of $G$ over $\F_p$.
+        \item $\Vp$ is not irreducible.
+        \item $\Vp$ is not completely reducible.
+    \end{enumerate}
+\end{boxnexample}
 
 \subsection{The $G$-Invariant Inner-Product}
 
