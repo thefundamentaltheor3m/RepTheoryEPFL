@@ -39,7 +39,7 @@ The above proposition gives us another reason to consider the direct sum to be a
 
 With direct sums, we also have similar notions to reducibility. These are given by the following.
 
-\begin{boxdefinition}[Complete Reducibility]
+\begin{boxdefinition}[Complete Reducibility] \label{Ch1:Def:Comp_Red}
     A representation is said to be completely reducible if it is expressible as a direct sum of irreducible representations.
 \end{boxdefinition}
 
@@ -179,7 +179,18 @@ Given the theme of this section---namely, understanding the compatibility of ord
     Therefore, by Corollary \ref{Ch1:Cor:G_lin_proj_ker_im}, $\pker{S}$ is a complementary subrepresentation of $W$.
 \end{proof}
 
+We also have the following important corollary.
 
+\begin{corollary}
+    \letfg, $K$ a field such that $\pchar{K} \nmid \abs{G}$. Then, every representation of $G$ over $K$ is completely reducible.
+\end{corollary}
+\begin{proof}
+    Let $\Vp$ be a representation of $G$ over $K$. If $\Vp$ is irreducible, we are done; else, it admits a nonzero, proper subrepresentation, which, by Maschke's Theorem, admits a complementary subrepresentation that is also proper and nonzero. If both of these are irreducible, then we are done; else, repeat this process.
+\end{proof}
+
+\begin{remark}
+    Nowhere in Definition \ref{Ch1:Def:Comp_Red} do we specify that the decomposition must be finite.
+\end{remark}
 
 \subsection{The $G$-Invariant Inner-Product}
 
