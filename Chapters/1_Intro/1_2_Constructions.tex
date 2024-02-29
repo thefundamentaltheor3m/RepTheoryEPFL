@@ -104,6 +104,25 @@ It turns out that this gives us an important criterion for decomposability.
     The result follows immediately from Lemma \ref{Ch1:Lem:LinAlg_Proj_Dsum} and Proposition \ref{Ch1:Prop:ker_im_subreps}.
 \end{proof}
 
+One also has a converse criterion for $G$-linearity.
+
+\begin{proposition} \label{Ch1:Prop:Proj_Inv_Lin}
+    \letgv, and let $T : V \to V$ be a projection. If $\pker{T}$ and $\pim{T}$ are both $G$-invariant, then $T$ is $G$-linear.
+\end{proposition}
+\begin{proof}
+    Since $T$ is a projection, we know that $V = \pker{T} \+ \pim{T}$. Now, fix $g \in G$ and $v \in V$. We know $v$ can uniquely be expressed as $u + w$, where $u \in \pker{T}$ and $w \in \pim{T}$. Then,
+    \begin{align*}
+        \Tof{\rho(g)(v)} &= \Tof{\underbrace{\rho(g)(u)}_{\in \pker{T}} + \underbrace{\rho(g)(w)}_{\in \pim{T}}} \\
+        &= \rho(g)(w) \\
+        &= \rho(g)\!\parenth{\Tof{v}}
+    \end{align*}
+    proving that $T$ is, indeed, $G$-linear.
+\end{proof}
+
+\begin{boxexample}
+    Consider the situation in Example \ref{Ch1:Eg:Cyclic_Subrep}. As we discussed briefly at the beginning of Subsection \ref{Ch1:Subsec:Subreps}, we can view $\Vp$ as a subrepresentation of $\parenth{V', \rho'}$. Now, consider the linear map $S : V' \to V' : \parenth{x,y,z} \mapsto \parenth{x,y,0}$, where $\parenth{x,y,z}$ are coordinates with respect to the standard basis. This is clearly a projection operator with image $V$, the $\parenth{x,y}$ plane, and kernel the $z$-axis. These are both clearly $G$-invariant, making $S$ a $G$-linear projection.
+\end{boxexample}
+
 \subsection{Maschke's Theorem}
 
 Given the theme of this section---namely, understanding the compatibility of ordinary linear-algebraic constructions with representation structures---one might wonder under what conditions (if any) we have the existence of a complementary subrepresentations. The answer lies in Maschke's Theorem, which is the first major result of the course.
@@ -112,8 +131,55 @@ Given the theme of this section---namely, understanding the compatibility of ord
     \letfg, $K$ a field such that $\pchar{K} \nmid \abs{G}$, and $\Vp$ a representation of $G$ over $K$. Then, any subrepresentation of $V$ admits a complementary subrepresentation.
 \end{boxtheorem}
 \begin{proof}
-    Let $W \leq V$ be $G$-invariant. The idea is to construct a $G$-linear map $T : V \to V$ with image $W$. Then, by Corollary \ref{Ch1:Cor:G_lin_proj_ker_im}, $\pker{T}$ would give a complementary subrepresentation.
+    Let $W \leq V$ be $G$-invariant. The idea is to construct a $G$-linear map from $V$ to $V$ with image $W$. Then, by Corollary \ref{Ch1:Cor:G_lin_proj_ker_im}, its kernel would give a complementary subrepresentation.
+
+    From Linear Algebra, we know that $W$ admits a complementary (but not necessarily $G$-invariant) subspace $U \leq V$. Then, every $v \in V$ can uniquely be expressed as a sum $u + w$, where $u \in U$ and $w \in W$. Define $T : V \to V : u + w \mapsto w$. Clearly, $T$ is a projection operator with image $W$ and kernel $U$.
+
+    If $T$ were $G$-linear, we would be done with the proof; unfortunately, $T$ does not have to be $G$-linear. We therefore ``convert'' $T$ into a $G$-linear projection $S : V \to V$ by \textit{averaging over $G$}. Specifically, define
+    \begin{align}
+        S := \frac{1}{\abs{G}} \sum_{g \in G} \rho(g) \circ T \circ \rho(g)\inv \label{Ch1:Eq:Avging_Maschke_Pf}
+    \end{align}
+    which is well-defined because $\abs{G} \neq 0$ in $K$. We then show the following.
+    \begin{description}
+        \item[\underline{$S$ is a projection with image $W$.}] Fix $v \in V$ and express it as $u + w$ for a unique $u \in U$ and $w \in W$. Then, for all $g \in G$,
+        \begin{itemize}[label = $-$, noitemsep]
+            \item $\Tof{\rho(g)\inv(v)} \in W$ because $T$ is a projection with image $W$.
+            \item $\rho(g)\!\parenth{\Tof{\rho(g)\inv(v)}} \in W$ because $\Tof{\rho(g)\inv(v)} \in W$ and $W$ is $G$-invariant.
+        \end{itemize}
+        Combined with the fact that $W$ is closed under addition, this proves that $\pim{S} \subseteq W$. Conversely, for all $w \in W$ and $g \in G$,
+        \begin{itemize}[label = $-$, noitemsep]
+            \item $\parenth{\rho(g)\inv}\!(w) = \rhoof{g\inv}\!(w) \in W$ because $W$ is $G$-invariant.
+            \item $\Tof{ \rhoof{g\inv}\!(w)} \in W$ because $ \rhoof{g\inv}\!(w) \in W$ and $W$ is $T$-invariant.
+            \item $\rho(g)\!\parenth{\Tof{ \rhoof{g\inv}\!(w)}} \in W$ because $W$ is $G$-invariant.
+        \end{itemize}
+        Combined, again, with the fact that $W$ is closed under addition, this proves that $W \subseteq \pim{S}$. Therefore, we have that $W = \pim{S}$.
+
+        Finally, since $T\vert_W = \id_W$, we have that $\forall w \in \pim{S} = W$,
+        \begin{align*}
+            S(w) &= \frac{1}{\abs{G}} \sum_{g \in G} \rho(g)\!\parenth{\Tof{\underbrace{\rho(g)\inv(w)}_{\in W}}} \\
+            &= \frac{1}{\abs{G}} \sum_{g \in G} \parenth{\rho(g) \circ \rho(g)\inv}\!(w) \\
+            &= \frac{1}{\abs{G}} \sum_{g \in G} w = w
+        \end{align*}
+        proving that $S$ is, indeed, a projection.
+
+        \item[\underline{$S$ is $G$-linear.}]
+        Fix $v \in V$ and $h \in G$. We have
+        \begin{align*}
+            \Sof{\rho(h)(v)} &= \frac{1}{\abs{G}} \sum_{g \in G} \parenth{\rho(g) \circ T \circ \rho(g)\inv}\!\parenth{\rho(h)(v)} \\
+            &=  \frac{1}{\abs{G}} \sum_{g \in G} \parenth{\rho(g) \circ T \circ \rhoof{g\inv h}}\!(v)
+        \end{align*}
+        We now perform a change of variables. Observe that the map $g \mapsto h\inv g : G \to G$ is an automorphism. Hence, writing $g' = h\inv g$, we have
+        \begin{align*}
+            \Sof{\rho(h)(v)} &=  \frac{1}{\abs{G}} \sum_{g' \in G} \parenth{\rhoof{hg'} \circ T \circ \rhoof{\parenth{g'}\inv}}\!(v) \\
+            &= \rhoof{h}\!\parenth{ \frac{1}{\abs{G}} \sum_{g' \in G} \parenth{\rhoof{g'} \circ T \circ \rhoof{g'}\inv}}\!(v) \\
+            &= \rho(h)\!\parenth{\Sof{v}}
+        \end{align*}
+        proving that $S$ is, indeed, $G$-linear.
+    \end{description}
+    Therefore, by Corollary \ref{Ch1:Cor:G_lin_proj_ker_im}, $\pker{S}$ is a complementary subrepresentation of $W$.
 \end{proof}
+
+
 
 \subsection{The $G$-Invariant Inner-Product}
 
