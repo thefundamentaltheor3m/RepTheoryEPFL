@@ -221,25 +221,23 @@ It turns out that Maschke's Theorem also has a \textit{converse}.
     \begin{align*}
         W := \set{\sum_{g \in G} \alpha_g e_g : \sum_{g \in G} \alpha_g = 0}
     \end{align*}
-    of dimension $\pdim{V} - 1$. It turns out that $W$ is $G$-invariant: for all $\sum_{g \in G} \alpha_g e_g \in W$ and $x \in G$, we have
+    of dimension $\pdim{V} - 1$. It turns out that $W$ is $G$-invariant: for all $\sum_{g \in G} \alpha_g e_g \in W$ and $h \in G$, we have
     \begin{align*}
-        \rho(x)\!\parenth{\sum_{g \in G} \alpha_g e_g} &= \sum_{g \in G} \alpha_g e_{xg} \in W
+        \rho(h)\!\parenth{\sum_{g \in G} \alpha_g e_g} &= \sum_{g \in G} \alpha_g e_{hg} \in W
     \end{align*}
     (where the sum of the coefficients $\alpha_g$ is still zero). Then, by assumption, $\exists U \leq V$ that is both $G$-invariant and complementary to $W$. This means that $U$ must be of dimension $1$, and is hence the span of a single vector $u \in U$.
 
-    We study the action of $G$ on $U$. Fix $x \in G$, and write $u = \sum_{g \in G} \beta_g e_g$ for $\beta_g \in K$. Then,
+    We study the action of $G$ on $U$. Fix $h \in G$, and write $u = \sum_{g \in G} \beta_g e_g$ for $\beta_g \in K$. Then,
     \begin{align*}
-        \rho(x)(u) - u
-        &= \sum_{g \in G} \underbrace{\beta_g e_{xg} - \beta_g e_g}_{\in W}
+        \rho(h)(u) - u
+        &= \sum_{g \in G} \underbrace{\beta_g e_{hg} - \beta_g e_g}_{\in W}
     \end{align*}
-    meaning that $\rho(x)(u) - u \in W$. But, $\rho(x)(u) - u \in U$ as well. Since $U \cap W = \set{0}$, this means that $\rho(x)(u) = u$ for all $x \in G$. Hence, the action of $G$ on $U$ is \textit{trivial}. Therefore, for all $x \in G$,
+    meaning that $\rho(h)(u) - u \in W$. But, $\rho(h)(u) - u \in U$ as well. Since $U \cap W = \set{0}$, this means that $\rho(h)(u) = u$ for all $h \in G$. Hence, the action of $G$ on $U$ is \textit{trivial}. Therefore, for all $x \in G$,
     \begin{align*}
-        \sum_{g \in G} \beta_g e_{xg} &= \sum_{g \in G} \beta_g e_g
+        \sum_{g \in G} \beta_g e_{hg} &= \sum_{g \in G} \beta_g e_g
     \end{align*}
-    Comparing coefficients, we conclude that $\beta_{x\inv g} = \beta_g$ for all $x,g \in G$. Letting $x = g$, we get, in particular, that $\forall g \in G$, $\beta_g = \beta_1$. Therefore,
+    Comparing coefficients, we conclude that $\beta_{h\inv g} = \beta_g$ for all $h,g \in G$. Letting $h = g$, we get, in particular, that $\forall g \in G$, $\beta_g = \beta_1$. Therefore, $u = \beta_1 \sum_{g \in G} e_g$. This, in particular, implies that $u' := \sum_{g \in G} e_g \notin W$, because otherwise, $u = \beta_1 u'$ would also lie in $W$, which it does not.
     \begin{align*}
-        && u &= \beta_1 \sum_{g \in G} e_g &&& \\
-        &\implies& \sum_{g \in G} e_g &\notin W &&& \\
         &\implies& \abs{G} &\neq 0 &&& \\
         &\implies& \pchar{K} &\nmid \abs{G} &&&
     \end{align*}
