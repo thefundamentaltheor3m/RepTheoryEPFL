@@ -209,5 +209,55 @@ We note that both hypotheses of Maschke's Theorem---namely, that $G$ is a finite
     \end{enumerate}
 \end{boxnexample}
 
+It turns out that Maschke's Theorem also has a \textit{converse}.
+
+\begin{theorem}[Converse of Maschke's Theorem]
+    \letfg\ such that every finite-dimensional representation of $G$ over some field $K$ is completely reducible. Then, $\pchar{K} \nmid \abs{G}$.
+\end{theorem}
+\begin{proof}
+    Consider the regular representation $\parenth{K[G], \rho}$ of $G$ over $K$, with basis $\B = \set{e_g : g \in G}$. The idea is to take advantage of the $G$-invariant properties of $\B$.
+
+    Consider the subspace
+    \begin{align*}
+        W := \set{\sum_{g \in G} \alpha_g e_g : \sum_{g \in G} \alpha_g = 0}
+    \end{align*}
+    of dimension $\pdim{V} - 1$. It turns out that $W$ is $G$-invariant: for all $\sum_{g \in G} \alpha_g e_g \in W$ and $x \in G$, we have
+    \begin{align*}
+        \rho(x)\!\parenth{\sum_{g \in G} \alpha_g e_g} &= \sum_{g \in G} \alpha_g e_{xg} \in W
+    \end{align*}
+    (where the sum of the coefficients $\alpha_g$ is still zero). Then, by assumption, $\exists U \leq V$ that is both $G$-invariant and complementary to $W$. This means that $U$ must be of dimension $1$, and is hence the span of a single vector $u \in U$.
+
+    We study the action of $G$ on $U$. Fix $x \in G$, and write $u = \sum_{g \in G} \beta_g e_g$ for $\beta_g \in K$. Then,
+    \begin{align*}
+        \rho(x)(u) - u
+        &= \sum_{g \in G} \underbrace{\beta_g e_{xg} - \beta_g e_g}_{\in W}
+    \end{align*}
+    meaning that $\rho(x)(u) - u \in W$. But, $\rho(x)(u) - u \in U$ as well. Since $U \cap W = \set{0}$, this means that $\rho(x)(u) = u$ for all $x \in G$. Hence, the action of $G$ on $U$ is \textit{trivial}. Therefore, for all $x \in G$,
+    \begin{align*}
+        \sum_{g \in G} \beta_g e_{xg} &= \sum_{g \in G} \beta_g e_g
+    \end{align*}
+    Comparing coefficients, we conclude that $\beta_{x\inv g} = \beta_g$ for all $x,g \in G$. Letting $x = g$, we get, in particular, that $\forall g \in G$, $\beta_g = \beta_1$. Therefore,
+    \begin{align*}
+        && u &= \beta_1 \sum_{g \in G} e_g &&& \\
+        &\implies& \sum_{g \in G} e_g &\notin W &&& \\
+        &\implies& \abs{G} &\neq 0 &&& \\
+        &\implies& \pchar{K} &\nmid \abs{G} &&&
+    \end{align*}
+    as required.
+    % Maybe explain a bit more clearly.
+\end{proof}
+
 \subsection{The $G$-Invariant Inner-Product}
 
+It turns out that we also have a notion of inner-products being compatible with representation strutures.
+
+\begin{boxdefinition}[$G$-Invariant Inner-Product]
+    \letgv\ such that $V$ admits an inner-product $\cycl{\cdot, \cdot}$.We say that $\cycl{\cdot, \cdot}$ is $G$-invariant if $\forall g \in G$ and $\forall x, y \in V$,
+    \begin{align*}
+        \cycl{x,y} &= \cycl{\rho(g)(x), \rho(g)(y)}
+    \end{align*}
+\end{boxdefinition}
+
+\begin{proposition}
+    \letgv\ over $\C$ such that $\pim{\rho} \leq \U{V}$ (equivalently, $\Vp$ admits a $G$-invariant inner-product). Then, $V$ is completely reducible. % PS 1, Qn 3
+\end{proposition}
