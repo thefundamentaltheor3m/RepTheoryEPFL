@@ -20,7 +20,7 @@ In this section, we study an important class of field algebras, namely, group al
 
 We have a similar notion of group modules.
 
-\begin{boxdefinition}[Group Module]
+\begin{boxdefinition}[Group Module] \label{Ch1:Def:KG-Module}
     \letg\ and let $V$ be a vector space over a field $K$. We say that $V$ is a $KG$-module if we can define a multiplication $g \cdot v$ for some $g \in G$ and $v \in V$ that satisfies the following conditions for all $u, v \in V$, $g, h \in G$ and $\lambda \in K$:
     \begin{enumerate}[noitemsep]
         \item $g \cdot v \in V$
@@ -31,7 +31,17 @@ We have a similar notion of group modules.
     \end{enumerate}
 \end{boxdefinition}
 
-It turns out that we can move from modules to representations and vice-versa quite easily.
+Note that a $KG$-module is, indeed, a module over $KG$.
+
+\begin{proposition}
+    \letg\ and let $V$ be a vector space over a field $K$. If $V$ is a $KG$-module with multiplication $\cdot$ (as per Definition \ref{Ch1:Def:KG-Module}), then for $v \in V$, the multiplication
+    \begin{align*}
+        \parenth{\sum_{g \in G} \lambda_g e_g} \cdot v &:= \sum_{g \in G} \lambda_g \parenth{g \cdot v}
+    \end{align*}
+    endows $V$ with a module structure over $K[G]$.
+\end{proposition}
+
+Furthermore, it turns out that we can move from modules to representations and vice-versa quite easily.
 
 \begin{proposition}
     \letg\ and let $V$ be a vector space over a field $K$.
@@ -41,7 +51,7 @@ It turns out that we can move from modules to representations and vice-versa qui
     \end{enumerate}
 \end{proposition}
 
-The proof of the above proposition is trivial and merely involves manually checking several basic conditions. Hence, we omit it.
+The proofs of the above propositions are trivial and merely involve manually checking several basic conditions. Hence, we omit them.
 
 We now give a basic `dictionary' of sorts to go back and forth between the language of group modules and that of representations:
 
@@ -63,10 +73,6 @@ We illustrate the above equivalence by stating Maschke's Theorem in the language
 \begin{lemma}[Maschke's Theorem, Module Version]
     \letfg, $K$ a field whose characteristic does not divide the order of $G$. Then, any $KG$-Module $V$ is semi-simple.
 \end{lemma}
-
-Finally, a word on terminology: the reason we call $KG$-Modules what we do is that they are, indeed, modules over $KG$. We make this precise below.
-
-% TODO
 
 \subsection{Schur's Lemmas}
 
