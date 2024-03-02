@@ -37,16 +37,43 @@ The most elementary operation we can think about when we have two objects is \te
 
 The above proposition gives us another reason to consider the direct sum to be an ``invariant'' construction: while it enriches both the vector space structure and the representation structure of a summand by adding another representation into the mix, it does not take anything away from the constructions that already exist.
 
-With direct sums, we also have similar notions to reducibility. These are given by the following.
-
-\begin{boxdefinition}[Complete Reducibility] \label{Ch1:Def:Comp_Red}
-    A representation is said to be completely reducible if it is expressible as a direct sum of irreducible representations.
-\end{boxdefinition}
+With direct sums, we also have similar notions to reducibility.
 
 \begin{boxdefinition}[Indecomposability]
     A nonzero representation is said to be indecomposable if it is inexpressible as a direct sum of two proper, nonzero subrepresentations.
 \end{boxdefinition}
 Nonzero representations that are not indecomposable are said to be decomposable.
+
+We have a natural relationship between irreducibility and indecomposability.
+
+\begin{proposition} \label{Ch1:Prop:Irred_implies_Indecomp}
+    \letgv. If $\Vp$ is irreducible, then it is indecomposable.
+\end{proposition}
+\begin{proof}
+    If $V = \set{0}$, then the result is vacuously true. If $V \neq \set{0}$, then if it is decomposable, it contains a proper, nonzero, $G$-invariant subspace, making it reducible.
+\end{proof}
+
+\begin{boxexample}
+    Let $C_2 = \cycl{a}$ be the cyclic group of order $2$, and let $\Vp$ be the regular representation of $C_2$ over a field $K$.
+    \begin{enumerate}
+        \item \underline{Let $K = \C$.} Then, let $W_1 := \Span{e_1 + e_a}$ and $W_2 := \Span{e_1 - e_a}$. It is obvious that $W_1 \+ W_2 = V$. Furthermore, $W_1$ and $W_2$ are both $C_2$-invariant. Hence, the regular representation of $C_2$ over $\C$ is decomposable.
+        \item \underline{Let $K = \F_2$.} Then, $V = \set{0, e_1, e_a, e_1 + e_a}$. If $\Vp$ were reducible, it would need to be expressible as the direct sum of two subrepresentations of degree $1$. But, the only $G$-invariant subspace of $V$ of dimension $1$ is $\set{0, e_1 + e_a}$. Hence, $\Vp$ cannot be indecomposable.
+    \end{enumerate}
+\end{boxexample}
+The $K = \F_2$ case in the above example demonstrates an important fact: \textit{the converse of Proposition \ref{Ch1:Prop:Irred_implies_Indecomp} is not true.} The regular representation of $C_2$ over $\F_2$ is clearly reducible---the subspace $\set{0, e_1 + e_a}$ is clearly $C_2$-invariant---but it is still indecomposable. That said, it turns out that under certain conditions, we \textit{do} have a converse.
+
+\begin{proposition}
+    \letfg\ and let $K$ be a field. All indecomposable representations of $G$ are irreducible if and only if $\pchar{K}$ does not divide $\abs{G}$.
+\end{proposition}
+\begin{proof}
+    \verb|sorry|
+\end{proof}
+
+Finally, just like everywhere else in mathematics where we encounter the word ``irreducible,'' in the context of representation theory, too, we have a notion of decomposition into irreducibles.
+
+\begin{boxdefinition}[Complete Reducibility] \label{Ch1:Def:Comp_Red}
+    A representation is said to be completely reducible if it is expressible as a direct sum of irreducible representations.
+\end{boxdefinition}
 
 \subsection{Complementary Subrepresentations}
 
