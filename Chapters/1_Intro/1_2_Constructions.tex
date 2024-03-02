@@ -211,7 +211,7 @@ We note that both hypotheses of Maschke's Theorem---namely, that $G$ is a finite
 
 It turns out that Maschke's Theorem also has a \textit{converse}.
 
-\begin{theorem}[Converse of Maschke's Theorem]
+\begin{theorem}[Converse of Maschke's Theorem] \label{Ch1:Thm:Maschke_Converse}
     \letfg\ such that every finite-dimensional representation of $G$ over some field $K$ is completely reducible. Then, $\pchar{K} \nmid \abs{G}$.
 \end{theorem}
 \begin{proof}
@@ -236,20 +236,42 @@ It turns out that Maschke's Theorem also has a \textit{converse}.
     \begin{align*}
         \sum_{g \in G} \beta_g e_{hg} &= \sum_{g \in G} \beta_g e_g
     \end{align*}
-    Comparing coefficients, we conclude that $\beta_{h\inv g} = \beta_g$ for all $h,g \in G$. Letting $h = g$, we get, in particular, that $\forall g \in G$, $\beta_g = \beta_1$. Therefore, $u = \beta_1 \sum_{g \in G} e_g$. This, in particular, implies that $u' := \sum_{g \in G} e_g \notin W$, because otherwise, $u = \beta_1 u'$ would also lie in $W$, which it does not. Therefore, the sum of the coordinates of $u'$ with respect to $\B$ cannot be zero. But, this sum is nothing but the cardinality of $G$ (or rather, its image in the canonical map $\Z \to K$). Since this is nonzero, it must be that $\pchar{K} &\nmid \abs{G}$, as required.
+    Comparing coefficients, we conclude that $\beta_{h\inv g} = \beta_g$ for all $h,g \in G$. Letting $h = g$, we get, in particular, that $\forall g \in G$, $\beta_g = \beta_1$. Therefore, $u = \beta_1 \sum_{g \in G} e_g$. This, in particular, implies that $u' := \sum_{g \in G} e_g \notin W$, because otherwise, $u = \beta_1 u'$ would also lie in $W$, which it does not. Therefore, the sum of the coordinates of $u'$ with respect to $\B$ cannot be zero. But, this sum is nothing but the cardinality of $G$ (or rather, its image in the canonical map $\Z \to K$). Since this is nonzero, it must be that $\pchar{K} \nmid \abs{G}$, as required.
 \end{proof}
+
+Combining Theorems \ref{SP:Thm:Maschke} and \ref{Ch1:Thm:Maschke_Converse}, we conclude that $\pchar{K} \mid \abs{G}$ if and only if every subrepresentation of $G$ over $K$ admits a complementary subrepresentation.
 
 \subsection{The $G$-Invariant Inner-Product}
 
 It turns out that we also have a notion of inner-products being compatible with representation strutures.
 
 \begin{boxdefinition}[$G$-Invariant Inner-Product]
-    \letgv\ such that $V$ admits an inner-product $\cycl{\cdot, \cdot}$.We say that $\cycl{\cdot, \cdot}$ is $G$-invariant if $\forall g \in G$ and $\forall x, y \in V$,
+    \letgv\ over $\C$ such that $V$ admits an inner-product $\cycl{\cdot, \cdot}$.We say that $\cycl{\cdot, \cdot}$ is $G$-invariant if $\forall g \in G$ and $\forall x, y \in V$,
     \begin{align*}
         \cycl{x,y} &= \cycl{\rho(g)(x), \rho(g)(y)}
     \end{align*}
+    Equivalently, $\cycl{\cdot, \cdot}$ is $G$-invariant if $\pim{\rho} \subseteq \U{V}$, ie, if, for every $g \in G$, $\rho(g)$ is a \textit{unitary} $\C$-linear map from $V$ to $V$.
 \end{boxdefinition}
 
-\begin{proposition}
-    \letgv\ over $\C$ such that $\pim{\rho} \leq \U{V}$ (equivalently, $\Vp$ admits a $G$-invariant inner-product). Then, $V$ is completely reducible. % PS 1, Qn 3
+Intrinsic to the notion of an inner-product is that of orthogonality. In the following proposition, we understand the significance of $G$-invariance in the context of subrepresentations.
+
+\begin{proposition} \label{Ch1:Prop:Orth_Compl_of_Inv_Inv}
+    \letgv\ over $\C$ of finite dimension. Let $\cycl{\cdot, \cdot}$ be a $G$-invariant inner-product on $V$. Then, the orthogonal complement of any $G$-invariant subspace of $V$ is also $G$-invariant.
 \end{proposition}
+\begin{proof}
+    Let $W \leq V$ be $G$-invariant, and denote by $W^\perp$ its orthogonal complement. Fix $g \in G$ and $w \in W^\perp$. To show that $\rhoff{g}{w} \in W^\perp$, we show it is orthogonal to every $v \in W$ with respect to $\cycl{\cdot, \cdot}$.
+
+    Fix $v \in W$. Then, since $\cycl{\cdot, \cdot}$ is $G$-invariant,
+    \begin{align*}
+        \cycl{v, \rhoff{g}{w}} &= \cycl{\rhoff{g\inv}{v}, \rhoff{g\inv g}{w}} \\
+        &= \cycl{\rhoff{g\inv}{v}, w}
+    \end{align*}
+    Since $W$ is $G$-invariant, $\rhoff{g\inv}{v} \in W$, making it orthogonal to $w$, which lies in the orthogonal complement of $W$. Therefore, $\cycl{v, \rhoff{g}{w}} = 0$, proving that $\rhoff{g}{w} \in W^\perp$ as required.
+\end{proof}
+
+\begin{corollary}
+    \letgv\ over $\C$. If $V$ is finite dimensional and admits a $G$-invariant inner-product, then $V$ is completely reducible.
+\end{corollary}
+\begin{proof}
+    If $V$ is finite dimensional and admits a $G$-invariant inner-product, then by Proposition \ref{Ch1:Prop:Orth_Compl_of_Inv_Inv}, for any $W \leq V$ $G$-invariant, $W^\perp$ is $G$-invariant as well. Since $W \+ W^\perp = V$ and both $W$ and $W^\perp$ are finite-dimensional, we can prove the result using similar reasoning to what we used to prove Corollary \ref{Ch1:Cor:Maschke}.
+\end{proof}

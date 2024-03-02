@@ -77,6 +77,18 @@ A natural way to define two representations to be equal, or `isomorphic,' is as 
     \letg\ and let $\parenth{V,\rho}$ and $\parenth{V',\rho'}$ be two representations of $G$. We say that $\parenth{V,\rho}$ and $\parenth{V',\rho'}$ are equivalent, denoted $\parenth{V,\rho} \sim \parenth{V',\rho'}$, if there exists a homomorphism $T : \parenth{V,\rho} \to \parenth{V',\rho'}$ that is invertible as a linear map---ie, that gives a linear isomorphism between $V$ and $V'$.
 \end{definition}
 
+Representations of the same group over the same vector space need not be equivalent.
+
+\begin{boxexample}[Non-Equivalent Representations of the Klein $4$-Group]
+    Let $G = C_2 \times C_2$ be the Klein $4$-group (where $C_2 = \cycl{x}$ is the cyclic group of order $2$). Let $\alpha = \parenth{x, 1}$ and $\beta = \parenth{1, x}$. Together, they generate $G$. \\
+
+    Now, let $K$ be a field. Consider a degree $1$ representation $\rho : G \to K^\times$. We know that $\rhoof{G}$ must be a subgroup of $K^\times$ such that $\abs{\rhoof{G}} \in \set{1, 2, 4}$. If $\pchar{K} = 2$, then $\rho$ must be the trivial representation, since $2 \nmid \abs{K^\times}$. Else, all four maps $\rho$ satisfying
+    \begin{align*}
+        \parenth{\rhoof{\alpha}, \rhoof{\beta}} = \parenth{\pm 1, \pm 1}
+    \end{align*}
+    give \textit{non-equivalent} representations of $G$ in $K^\times$. In particular, we see the non-equivalence because $K^\times$ is commutative.
+\end{boxexample}
+
 The point of morphisms of representations is to be able to move from one vector space to another without losing the structural information captured by the representation. This is precisely illustrated in \eqref{Ch1:eq:cd_rep_map}.
 
 \begin{boxexample}[Representations of Cyclic Groups over $\R^2$ and $\R^3$] \label{Ch1:Eg:Cyclic_Subrep}
