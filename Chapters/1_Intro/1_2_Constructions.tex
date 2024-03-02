@@ -236,13 +236,7 @@ It turns out that Maschke's Theorem also has a \textit{converse}.
     \begin{align*}
         \sum_{g \in G} \beta_g e_{hg} &= \sum_{g \in G} \beta_g e_g
     \end{align*}
-    Comparing coefficients, we conclude that $\beta_{h\inv g} = \beta_g$ for all $h,g \in G$. Letting $h = g$, we get, in particular, that $\forall g \in G$, $\beta_g = \beta_1$. Therefore, $u = \beta_1 \sum_{g \in G} e_g$. This, in particular, implies that $u' := \sum_{g \in G} e_g \notin W$, because otherwise, $u = \beta_1 u'$ would also lie in $W$, which it does not.
-    \begin{align*}
-        &\implies& \abs{G} &\neq 0 &&& \\
-        &\implies& \pchar{K} &\nmid \abs{G} &&&
-    \end{align*}
-    as required.
-    % Maybe explain a bit more clearly.
+    Comparing coefficients, we conclude that $\beta_{h\inv g} = \beta_g$ for all $h,g \in G$. Letting $h = g$, we get, in particular, that $\forall g \in G$, $\beta_g = \beta_1$. Therefore, $u = \beta_1 \sum_{g \in G} e_g$. This, in particular, implies that $u' := \sum_{g \in G} e_g \notin W$, because otherwise, $u = \beta_1 u'$ would also lie in $W$, which it does not. Therefore, the sum of the coordinates of $u'$ with respect to $\B$ cannot be zero. But, this sum is nothing but the cardinality of $G$ (or rather, its image in the canonical map $\Z \to K$). Since this is nonzero, it must be that $\pchar{K} &\nmid \abs{G}$, as required.
 \end{proof}
 
 \subsection{The $G$-Invariant Inner-Product}
