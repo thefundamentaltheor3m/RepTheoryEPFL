@@ -66,7 +66,10 @@ The $K = \F_2$ case in the above example demonstrates an important fact: \textit
     \letfg\ and let $K$ be a field. All indecomposable representations of $G$ are irreducible if and only if $\pchar{K}$ does not divide $\abs{G}$.
 \end{proposition}
 \begin{proof}
-    \verb|sorry|
+    If $\abs{G} = 1$, the result is trivial: we already know that $\pchar{K}$ cannot divide $\abs{G}$, and 
+    \begin{description}
+        \item[$\parenth{\implies}$] Assume that all indecomposable representations of $G$ are irreducible. 
+    \end{description}
 \end{proof}
 
 Finally, just like everywhere else in mathematics where we encounter the word ``irreducible,'' in the context of representation theory, too, we have a notion of decomposition into irreducibles.
@@ -75,11 +78,11 @@ Finally, just like everywhere else in mathematics where we encounter the word ``
     A representation is said to be completely reducible if it is expressible as a direct sum of irreducible representations.
 \end{boxdefinition}
 
+It turns out that complete reducibility can be better understood through complementary subrepresentations.
+
 \subsection{Complementary Subrepresentations}
 
-It is a well-known fact from Linear Algebra that for any finite-dimensional vector space $V$, for any subspace $W \leq V$, there exists a \textit{complementary} subspace $W' \leq V$ such that $W \+ W' = V$. Over Euclidean spaces, for example, we have the very important notion of \textit{orthogonal} complements.
-
-We can define a similar notion for representations, too.
+It is a well-known fact from Linear Algebra that for any finite-dimensional vector space $V$, for any subspace $W \leq V$, there exists a \textit{complementary} subspace $W' \leq V$ such that $W \+ W' = V$. As it turns out, we can define a notion of complementarity for representations, too.
 \begin{boxdefinition}[Complementary Subrepresentation]
     \letgv. Let $\parenth{W, \rho\vert_W}$ be a subrepresentation of $\parenth{V, \rho}$. A complementary subrepresentation of $\parenth{W, \rho\vert_W}$ is a subrepresentation $\parenth{U, \rho\vert_U}$ such that $V = U \+ W$.
 \end{boxdefinition}
@@ -149,6 +152,20 @@ One also has a converse criterion for $G$-linearity.
 \begin{boxexample}
     Consider the situation in Example \ref{Ch1:Eg:Cyclic_Subrep}. As we discussed briefly at the beginning of Subsection \ref{Ch1:Subsec:Subreps}, we can view $\Vp$ as a subrepresentation of $\parenth{V', \rho'}$. Now, consider the linear map $S : V' \to V' : \parenth{x,y,z} \mapsto \parenth{x,y,0}$, where $\parenth{x,y,z}$ are coordinates with respect to the standard basis. This is clearly a projection operator with image $V$, the $\parenth{x,y}$ plane, and kernel the $z$-axis. These are both clearly $G$-invariant, making $S$ a $G$-linear projection.
 \end{boxexample}
+
+Finally, we relate complementary subrepresentations and complete reducibility, which makes it clear why we are so interested in complementary subrepresentations.
+
+\begin{proposition}
+    A representation of a finite group is completely reducible if and only if each of its subrepresentations admits a complementary subrepresentation.
+\end{proposition}
+\begin{proof}
+    \letfgv.
+    \begin{description}
+        \item[$\parenth{\implies}$] Assume $\Vp$ is completely reducible, with decomposition $V = \bigoplus_{i \in \I} W_i$ into irreducible subrepresentations. Let $U \leq V$ be $G$-invariant.
+        
+        \item[$\parenth{\impliedby}$] Assume every subrepresentation of $\Vp$ admits a complementary subrepresentation. We know that $\Vp$ is either irreducible, in which case we'd be done, or reducible, in which case there exists a proper, nonzero, $G$-invariant subspace $W_1 \leq V$. 
+    \end{description}
+\end{proof}
 
 \subsection{Maschke's Theorem}
 
