@@ -138,18 +138,31 @@ In this subsection, we explore several versions of an important result by Schur.
     proving that $\hat{f}$ is, indeed, a homomorphism of $\C G$-modules.
 \end{proof}
 
-\subsection{Representation Theory of Finite Abelian Groups}
+It turns out that Schur's Lemmas are powerful tools in the study of certain classes of representations. We investigate one such class in the next subsection.
+
+\subsection{Representations of Finite Abelian Groups over $\C$}
+
+It is natural to wonder what the purpose was of studying group algebras and modules. It turns out that one of the reasons the correspondence between representations and group modules is so powerful is that it allows the application of Schur's Lemmas to representation theoretic problems. For instance, in the following Lemma, we classify all irreducible representations of finite abelian groups over $\C$.
 
 \begin{lemma} \label{Ch1:Lem:Fin_Ab_over_C}
     Let $G$ be a fininte abelian group. Then, all irreducible $\C G$-modules are of dimension $1$. Equivalently, all irreducible representations of $G$ over $\C$ are of degree $1$.
 \end{lemma}
 \begin{proof}
-    Let $V$ be an irreducible $\C G$-module. Since $G$ is abelian, for all $g,h \in G$ and $v \in V$, $\parenth{gh} \cdot v = \parenth{hg} \cdot v$. Therefore, for some fixed $h \in G$, we have a $\C G$-module endomorphism
-    \begin{align*}  % TODO: Explain (using comm of G) that this is an endomorphism
+    Let $V$ be an irreducible $\C G$-module. Since $G$ is abelian, for all $g,h \in G$ and $v \in V$, $\parenth{gh} \cdot v = \parenth{hg} \cdot v$. Therefore, for some fixed $h \in G$, the following map is $\C G$-linear:
+    \begin{align*}
         \phi_h : V \to V : v \mapsto h \cdot v
     \end{align*}
-    By Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we know that $\exists \lambda_h \in \C$ such that $\phi_h = \lambda_h \cdot \id_V$. Hence, any subspace of $V$ must be a $\C G$-submodule. But, since $V$ is irreducible, $V$ cannot admit any nonzero, proper $\C G$-submodules unless $V$ is of ($\C$-)dimension $1$.
+    By Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we know that $\exists \lambda_h \in \C$ such that $\widehat{\phi_h} = \phi_h = \lambda_h \cdot \id_V$. Hence, any subspace of $V$ must be a $\C G$-submodule. But, since $V$ is irreducible, $V$ cannot admit any nonzero, proper $\C G$-submodules unless $V$ is of ($\C$-)dimension $1$.
 \end{proof}
+
+\begin{boxexample}
+    Let $G = C_n = \cycl{a}$ be the cyclic group of order $n$. Then, there are precisely $n$ irreducible representations of $G$ over $\C$.
+    \begin{proof}
+        Let $\rho : \C \to \C^\times$ be an irreducible representation of $G$ over $\C$. Let $x := \rho(a)$. It must be that $x^n = 1$, making $x$ an $n$th root of unity. In other words, $\exists 1 \leq k \leq n$ such that $x = e^{\frac{2\pi i}{k}}$. Therefore, there are precisely $n$ possible choices of $x$. Each choice corresponds to a different possible representation of $G$ over $\C$.
+    \end{proof}
+\end{boxexample}
+
+We have below a very useful application of Lemma \ref{Ch1:Lem:Fin_Ab_over_C} to the study of representations over $\C$ of arbitrary finite groups.
 
 \begin{proposition}
     \letfgv\ over $\C$. For all $g \in G$, there is a basis of $V$ with respect to which $\rho(g)$ has matrix $\diag{\eps_1, \cdots, \eps_n}$, with $\eps_i^{\ord{g}} = 1$ for all $1 \leq i \leq n$.
@@ -160,9 +173,8 @@ In this subsection, we explore several versions of an important result by Schur.
     By Maschke's Theorem, $\rho' = \sigma_1 \+ \cdots \+ \sigma_k$ for irreducible subrepresentations $\sigma_1, \ldots, \sigma_m$ of $\cycl{g}$. By Lemma \ref{Ch1:Lem:Fin_Ab_over_C}, we know that $\pdeg{\sigma_i} = 1$ for each $i$, and hence, that $m = n$. Picking $\B$ to be the basis corresponding to this decomposition of $\rho'$, we get that the matrix of $\rho$ with respect to $\B$ is, indeed, of the desired form.
 \end{proof}
 
-\begin{boxexample}
-    Let $G = C_n = \cycl{a}$ be the cyclic group of order $n$. Then, there are precisely $n$ irreducible representations of $G$ over $\C$.
-    \begin{proof}
-        Let $\rho : \C \to \C^\times$ be an irreducible representation of $G$ over $\C$. Let $x := \rho(a)$. It must be that $x^n = 1$, making $x$ an $n$th root of unity. In other words, $\exists 1 \leq k \leq n$ such that $x = e^{\frac{2\pi i}{k}}$. Therefore, there are precisely $n$ possible choices of $x$. Each choice corresponds to a different possible representation of $G$ over $\C$.
-    \end{proof}
-\end{boxexample}
+As it turns out, we can combine the theory developed here with the Structure Theorem for Finite Abelian Groups to get an interesting result.
+
+\begin{lemma}
+    Let $G$ be a finite abelian group, expressed as a product $C_{n_1} \times \cdots \times C_{n_r}$ of cyclic groups $C_{n_i}$ of order $n_i$. Then, $G$ has a faithful representation of degree $r$.
+\end{lemma}
