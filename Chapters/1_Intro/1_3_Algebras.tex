@@ -76,7 +76,7 @@ We illustrate the above equivalence by stating Maschke's Theorem in the language
 
 \subsection{Schur's Lemmas}
 
-In this subsection, we explore several versions of an important result by Schur.
+In this subsection, we explore several versions of an important result by Schur. We begin by stating it in its most general form.
 
 \begin{theorem}[Schur's Lemmas for Rings]
     Let $A$ be a ring and let $S, T$ be simple $A$-modules.
@@ -92,6 +92,8 @@ In this subsection, we explore several versions of an important result by Schur.
         \item Let $\phi \in \Hom_A(S,T) \setminus \set{0}$. Then, $\pker{\phi} \neq S$, meaning that $\pker{\phi} = \set{0}$. Then, $\pim{\phi} = T$, making $\phi$ an isomorphism. In particular, this means that $\phi$ admits an inverse, making $\Hom_A(S,T)$ a division ring.
     \end{enumerate}
 \end{proof}
+
+It turns out we can do a bit better when dealing with a specific class of rings, namely, algebras over fields.
 
 \begin{theorem}[Schur's Lemmas for Algebras]
     Let $K$ be an algebraically closed field and $A$ a $K$-algebra. Let $S$ and $T$ be simple $A$-modules.
@@ -110,6 +112,15 @@ In this subsection, we explore several versions of an important result by Schur.
     \end{enumerate}
 \end{proof}
 
+We also have a converse when working with algebras.
+
+\begin{theorem}[Converse of Schur's Lemma for Algebras]
+    Let $K$ be a field, $A$ a $K$-algebra and $M$ a completely reducible $A$-module. If $\Hom_A(M,M) = K$, then $M$ is simple.
+\end{theorem}
+\begin{proof}
+    \verb|sorry|
+\end{proof}
+
 \begin{boxtheorem}[Schur's Lemmas for Finite Groups, over $\C$] \label{SP:Thm:Schur_fin_G_over_C}
     \letfg\ and let $S$ and $T$ be simple $\C G$ modules that are finite-dimensional (as vector spaces) over $K$, with associated representations $\rho_S : G \to \GL{S}$ and $\rho_T : G \to \GL{T}$.
     \begin{enumerate}[label = \normalfont \arabic*.]
@@ -126,7 +137,6 @@ In this subsection, we explore several versions of an important result by Schur.
         \end{align*}
     \end{enumerate}
 \end{boxtheorem}
-
 \begin{proof}
     Let $f : S \to T$ be $\C$-linear. We show that $\hat{f} \in \Hom_{\C G}(S, T)$: for all $h \in G$,
     \begin{align*}
@@ -176,5 +186,16 @@ We have below a very useful application of Lemma \ref{Ch1:Lem:Fin_Ab_over_C} to 
 As it turns out, we can combine the theory developed here with the Structure Theorem for Finite Abelian Groups to get an interesting result.
 
 \begin{lemma}
-    Let $G$ be a finite abelian group, expressed as a product $C_{n_1} \times \cdots \times C_{n_r}$ of cyclic groups $C_{n_i}$ of order $n_i$. Then, $G$ has a faithful representation of degree $r$.
+    Let $G$ be a finite abelian group, expressed as a product $C_{n_1} \times \cdots \times C_{n_r}$ of cyclic groups $C_{n_i}$ of order $n_i > 1$. Then, $G$ has a faithful representation of degree $r$ over $\C$.
 \end{lemma}
+\begin{proof}
+    Consider the space $V = \C^r = \C_1 \+ \cdots \+ \C_r$ (where each $\C_i$ is the one-dimensional subspace spanned by the $i$th element of some chosen $\C$-basis for $V$). Let $C_{n_i} = \cycl{g_i}$ and denote by $e_i$ the corresponding generators $\parenth{1, \ldots, 1, g_i, 1, \ldots, 1}$ of $G$. Define the map
+    \begin{align}
+        \rho : G \to \C : e_i \mapsto R_{i}
+    \end{align}
+    where $R_i$ is the rotation by $2\pi / n_i$ acting on the subspace $\C_i \cong \C$. In other words, with respect to the isomorphism $\GL{\C_i} \cong \C^{\times}$, the map $R_i$ corresponds to $\pexp{{2\pi}/{n_i}}$.\footnote{To be perfectly precise, $e_i$ is mapped not to $R_i$ but to the image of $R_i$ in the inclusion $\GL{\C_i} \to \GL{V}$ that extends $R_i$ by acting as the identity on components other than $i$ and as $R_i$ on component $i$. We use the word `component' to refer to a one-dimensional direct summand $\C_j$ of $V$.}
+
+    $\rho$ has the following effect on group elements: for two group elements acting on the same component of $V$, $\rho$ maps their product to the composition of their associated rotations, and for elements acting on different components, $\rho$ combines their componentwise actions into a single action across two components. Therefore, $\rho$ is a group homomorphism, and hence, $\Vp$ is a representation of $G$ over $\C$.
+
+    We now show that $\rho$ is injective. If $g \in G$ acts identically on all of $V$, it must, in particular, act identically on each component. But, the action of $g$ on each $\C_j$ is merely the action of the $j$th component of $g$ on $\C_j$. It is easy to see that the componentwise actions of $\rho$ on $V$ are all faithful, meaning that each component of $g$ is the identity in its respective cyclic group. Therefore, $g$ must be the identity in $G$, making $\rho$ a faithful representation.
+\end{proof}
