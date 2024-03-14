@@ -112,3 +112,192 @@ We have the following important corollary.
 \begin{corollary}
     Up to isomorphism, there are finitely many irreducible $\C G$-modules.
 \end{corollary}
+
+\subsection{Irreducible Characters}
+
+\begin{boxnotation}[Irreducilbe Characters]
+    Denote by $\Irr{G}$ the subset of $\Fcof{G, \C}$ consisting of irreducible characters of $G$.
+\end{boxnotation}
+
+The Orthogonality Theorem tells us the following facts about Irreducible Characters.
+
+\begin{proposition}[On the Behaviour of Irreducible Characters] \label{Ch2:Prop:Bhv_Irred_Char}
+    \hfill
+    \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
+        \item $\Irr{G}$ is a linearly independent set. In particular, $\abs{\Irr{G}} \leq \abs{G}$.
+        
+        \item Let $V = V_1 \+ \cdots \+ V_r$ be a $\C G$ module, with $V_i$ simple for $1 \leq i \leq r$. For any simple $\C G$ module $S$, the number of $V_i$s isomorphic to $S$ is given by $\cycl{\chi_V, \chi_S}$.
+        
+        \item Let $V, V'$ be $\C G$-modules. Then, $V \cong V' \iff \chi_V = \chi_{V'}$.
+        
+        \item A \CGM\ $V$ is simple iff $\cycl{\chi_V, \chi_V} = 1$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \hfill
+    \begin{enumerate}[label = \normalfont \arabic*.]
+        \item The linear independence follows immediately from the fact that $\Irr{G}$ form an orthonormal system. The inequality follows from the fact that all central functions are class functions: they agree for all conjugate elements of $G$. This means that $\pdim{\Fcof{G, \C}}$ is simply the number of conjugacy classes of $G$. Since $\pdim{\Fcof{G, \C}}$ must be at least $\abs{\Irr{G}}$ and the number of conjugacy classes of $G$ must be at most $\abs{G}$, we have the desired result.
+        
+        \item We know that $\chi_V = \chi_{V_1} + \cdots + \chi_{V_r}$. So,
+        \begin{align*}
+            \cycl{\chi_V, \chi_S} &= \cycl{\chi_{V_1} + \cdots + \chi_{V_r}, V_S} \\
+            &= \text{sorry}
+        \end{align*}
+
+        \item 
+        \begin{description}
+            \item[$\parenth{\implies}$] Already seen. % TODO: PUT REFERENCE!
+            \item[$\parenth{\impliedby}$] % Let $\Irr{G} = \set{\chi_1, \ldots, \chi_r}$.
+            The multiplicity\footnote{Ie, the number of times it appears in the direct sum decomposition of $V$ into simple $\C G$-modules} of a simple \CGM\ $S$ in $V$ is given by $\cycl{\chi_V, \chi_S} = \cycl{\chi_{V'}, \chi_S}$. Then, a simple \CGM\ must have the same multiplicity in both $V$ and $V'$. % TODO: REFINE!!
+        \end{description}
+
+        \item 
+        \begin{description}
+            \item[$\parenth{\implies}$] Already seen. % TODO: PUT REFERENCE!
+            \item[$\parenth{\impliedby}$] Let $\Irr{G} = \set{\chi_1, \ldots, \chi_r}$, with corresponding simple \CGM s $\set{V_1, \ldots, V_r}$. Denoting by $a_i$ the multiplicity of each $V_i$ in $V$, we have that
+            \begin{align*}
+                V &= V_1^{\+ a_1} \+ \cdots \+ V_r^{\+ a_r}
+            \end{align*}
+            where we use the notation $V_i^{\+ a_i}$ to mean $\underbrace{V_i \+ \cdots \+ V_i}_{a_i \text{ times}}$.
+
+            We then have
+            \begin{align*}
+                \chi_V &= \sum_{i=1}^{r} a_i \chi_i \\
+                \implies \cycl{\chi_V, \chi_V} &= \sum_{i=1}^{r} a_i^2
+            \end{align*}
+            This means only one of the $a_i$s is nonzero, and equal to $1$. % WHAT????
+        \end{description}
+    \end{enumerate}
+\end{proof}
+
+We now have everything we need to prove the following important theorem.
+
+\begin{theorem}
+    $\Irr{G}$ is a basis for $\Fcof{G, \C}$.
+\end{theorem}
+\begin{proof}
+    Let $W = \Span{\Irr{G}} \leq \Fcof{G, \C}$, with orthogonal complement $W^\perp$ with respect to the inner-product \verb|insert reference|. Since $V = W \+ W^\perp$, if we can show that $W^\perp = \set{0}$, we would have that $V = W$, proving the desired result.
+
+    Fix $f \in W^\perp$, and consider the element $\hat{f} \in \C G$ given by  % CHANGE NOTATION!
+    \begin{align*}
+        \hat{f} &= \sum_{g \in G} \overline{f(g)} \cdot g
+    \end{align*}
+
+    First, we show that $\hat{f} \in \Zof{\C G}$---ie, that $\hat{f}$ commutes (multiplicatively) with all elements of $\C G$. To show this, it suffices to show that $h\inv \hat{f} h = \hat{f}$ for all $h \in G$. So, fix $h \in G$. Then,
+    \begin{align*}
+        h\inv \hat{f} h &=
+        \sum_{g \in G} \overline{f(g)} \cdot h\inv g h \\
+        &= \sum_{g \in G} \overline{\fof{h\inv g h}} \cdot h\inv g h \\ % Can take h\inv g h inside f because f is central. Mention somewhere.
+        &= \hat{f}(g)
+    \end{align*}
+    where the last equality follows from a change of variables in the summation.
+
+    Now, let $S$ be any simple \CGM. One can show that the map  % DOMAIN AND CODOMAIN????
+    \begin{align*}
+        \phi : S \to S : v \mapsto \hat{f} \cdot v
+    \end{align*}
+    is a \CGM\ homomorphism. % Include more details
+    Then, by Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we have that
+    \begin{align*}
+        \hat{f} &= \frac{1}{\pdim{S}} \Tr{\hat{f}\vert_S} \cdot \id
+    \end{align*}
+    We then have that
+    \begin{align*}
+        \Tr{\hat{f}\vert_S} &= \Tr{\sum_{g \in G} \overline{f(g)} \cdot g\vert_{S}} \\
+        &= \sum_{g \in G} \overline{f(g)} \chi_S(g) \\
+        &= \abs{G} \cycl{\underbrace{\chi_S}_{\in W}, \underbrace{f}_{\in W^\perp}} = 0
+    \end{align*}
+    proving that in fact, $\hat{f}\vert_S = 0$.
+    
+    \verb|sorry| % Use photo on phone to complete proof.
+\end{proof}
+
+\subsection{More Character Tables}
+
+For the purposes of this subsection, let $C_1, \ldots, C_k$ be the conjugacy classes of $G$ with representatives $g_1, \ldots, g_k$ respectively. Recall that by the Orbit-Stabiliser Theorem,
+\begin{align*}
+    \abs{C_i} &= \frac{\abs{G}}{\abs{C_G(g_i)}}
+\end{align*}
+where $C_G(\cdot)$ refers to the centraliser\footnote{Recall that the centraliser of a group element is the set of all elements that commute with it.} of an element in $G$. Now, let $\Irr{G} = \set{\chi_1, \ldots, \chi_k}$.
+
+\begin{boxdefinition}[Character Table]
+    A character table is a $k \times k$ table whose columns are the conjugacy classes (or their representatives) and whose rows are the irreducible characters. In other words, it is a table whose $\parenth{i,j}$th entry is $\chi_i(g_j)$.
+    % Maybe draw this...
+\end{boxdefinition}
+
+We now have the following important result that lets us check orthogonality as we go across the columns.
+
+\begin{boxproposition}[First Orthogonality Relation]
+    Given $1 \leq r, s \leq k$, we have
+    \begin{align*}
+        \frac{1}{\abs{G}} \sum_{j=1}^{k} \abs{C_j} \chi_r\!\parenth{g_j} \chi_s\!\parenth{g_j\inv} &= \delta_{rs}
+    \end{align*}
+\end{boxproposition}
+\begin{proof}
+    Observe that
+    \begin{align*}
+        \delta_{rs} &=
+        \cycl{\chi_r, \chi_s} \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} \chi_r(g) \chi_s\!\parenth{g\inv} \\
+        &= \frac{1}{\abs{G}} \sum_{j=1}^{k} \parenth{\sum_{g \in C_i} \chi_r(g) \chi_s\!\parenth{g\inv}} \\
+        &= \frac{1}{\abs{G}} \sum_{j=1}^{k} \abs{C_j} \chi_r\!\parenth{g_j} \chi_s\!\parenth{g_j\inv}
+    \end{align*}
+    where the last inequality follows from the fact that characters are central (ie, they are equal for all elements of a conjugacy class).
+\end{proof}
+
+We can use this to prove an important result about the regular representation.
+
+\begin{theorem}
+    Let $\chi_{\reg}$ denote the character of the regular representation of $G$ over $\C$. Then,
+    \begin{align*}
+        \chi_{\reg} &= \sum_{j=1}^{k} \chiof{j}{1} \chi_j
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    \verb|sorry|  % From phone
+\end{proof}
+
+\begin{corollary}
+    $\sum_{i=1}^{k} \parenth{\chiof{i}{1}}^2 = \abs{G}$.
+\end{corollary}
+\begin{proof}
+    $\chiof{\reg}{1} = \sum_{i=1}^{k} \parenth{\chi_i(1)}^2 = \abs{G}$.
+\end{proof}
+
+We now have a similar result about going down the rows.
+
+\begin{boxproposition}[Second Orthogonality Relation]
+    Given $1 \leq r, s \leq k$, we have
+    \begin{align*}
+        \sum_{i=1}^{k} \chiof{i}{g_r} \chiof{i}{g_s\inv} =
+        \begin{cases}
+            0 &\text{ if } r \neq s \\
+            \abs{C_G(g_r)} &\text{ if } r = s
+        \end{cases}
+    \end{align*}
+\end{boxproposition}
+\begin{proof}
+    Let $A$ be the matrix $\parenth{A_{ij}}_{ij}$, where $A_{ij} := \chiof{i}{g_j}$. Similarly, let $B$ be the matrix $\parenth{B_{ij}}_{ij}$, where $B_{ij} := \frac{\abs{C_i}}{\abs{G}} \chiof{j}{g_i\inv}$. Then, writing $AB = \parenth{AB}_{pq}$, we have
+    \begin{align*}
+        \parenth{AB}_{pq} &=
+        \sum_{l=1}^{k} A_{pl} B_{lq} \\
+        &= \sum_{l=1}^{k} \chiof{p}{g_l} \frac{\abs{C_l}}{\abs{G}} \chiof{q}{g_l\inv} \\
+        &= \cycl{\chi_p, \chi_q} = \delta_{pq}
+    \end{align*}
+    This proves that in fact, $AB = I$, the identity matrix. This, in particular, means that $BA = I$ as well. It turns out that setting $\delta_{pq} = \parenth{BA}_{pq}$ gives us the desired result. % TODO: COMPLETE!!!!!!!!!
+\end{proof}
+
+\begin{boxexample}[The Character Table of $S_3$]
+    $S_3$ has precisely three conjugacy classes $C_1$, $C_2$ and $C_3$ with representatives $g_1 = 1$, $g_2 = \parenth{1 2}$ and $g_3 = \parenth{1 2 3}$. We then have the following character table for $S_3$:
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|ccc}
+            & $1$ & $\parenth{12}$ & $\parenth{123}$ \\
+            \hline
+            $\chi_1$ & $1$ & $1$ & $1$ \\
+            $\chi_2$ & $1$ & $-1$ & $1$ \\
+            $\chi_3$ & $2$ & $0$ & $-1$
+        \end{tabular}
+    \end{table}
+    Here, $\chi_1$ corresponds to the trivial representation (of degree $1$), $\chi_2$ to the sign representation (of degree $1$), and $\chi_3$ to the subrepresentation $W = \Span{e_1 - e_2, e_1 - e_3}$ (of degree $2$) of the permutation representation on $\C^3$. Note that all of these representations are irreducible, the first two because their degrees are $1$, and the third because we can show $\cycl{\chi_W, \chi_W}$ to be equal to $1$ (cf. the fourth point of Proposition \ref{Ch2:Prop:Bhv_Irred_Char}).
+\end{boxexample}
