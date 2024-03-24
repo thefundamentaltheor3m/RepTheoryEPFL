@@ -164,15 +164,15 @@ It is natural to wonder what the purpose was of studying group algebras and modu
     \end{align*}
     By Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we know that $\exists \lambda_h \in \C$ such that $\widehat{\phi_h} = \phi_h = \lambda_h \cdot \id_V$. Hence, any subspace of $V$ must be a $\C G$-submodule. But, since $V$ is irreducible, $V$ cannot admit any nonzero, proper $\C G$-submodules unless $V$ is of ($\C$-)dimension $1$.
 \end{proof}
-
-\begin{boxexample}
+We now have a complete classification of irreducible representations of cyclic groups over $\C$.
+\begin{corollary}
     Let $G = C_n = \cycl{a}$ be the cyclic group of order $n$. Then, there are precisely $n$ irreducible representations of $G$ over $\C$.
     \begin{proof}
-        Let $\rho : \C \to \C^\times$ be an irreducible representation of $G$ over $\C$. Let $x := \rho(a)$. It must be that $x^n = 1$, making $x$ an $n$th root of unity. In other words, $\exists 1 \leq k \leq n$ such that $x = e^{\frac{2\pi i}{k}}$. Therefore, there are precisely $n$ possible choices of $x$. Each choice corresponds to a different possible representation of $G$ over $\C$.
+        \letgv. We know, from Lemma \ref{Ch1:Lem:Fin_Ab_over_C}, that $V \cong \C$ and hence, $\GL{V} \cong \C^\times$. Now, let $x := \rho(a)$. It must be that $x^n = 1$, making $x$ an $n$th root of unity. In other words, $\exists 1 \leq k \leq n$ such that $x = e^{\frac{2\pi i}{k}}$. Therefore, there are precisely $n$ possible choices of $x$, each giving a different representation.
     \end{proof}
-\end{boxexample}
+\end{corollary}
 
-We have below a very useful application of Lemma \ref{Ch1:Lem:Fin_Ab_over_C} to the study of representations over $\C$ of arbitrary finite groups.
+Lemma \ref{Ch1:Lem:Fin_Ab_over_C} is also useful in the study of representations over $\C$ of arbitrary finite groups.
 
 \begin{proposition}
     \letfgv\ over $\C$. For all $g \in G$, there is a basis of $V$ with respect to which $\rho(g)$ has matrix $\diag{\eps_1, \cdots, \eps_n}$, with $\eps_i^{\ord{g}} = 1$ for all $1 \leq i \leq n$.
