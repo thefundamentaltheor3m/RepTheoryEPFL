@@ -29,37 +29,45 @@ We are already familiar with several examples of central functions.
     \end{enumerate}
 \end{boxexample}
 
-The last two examples are, in particular, compatible with representations of $G$ over $\C$. This will prove to be important when we define the character of a representation.
-
-Before doing so, however, we will need to outline the structure of the inner-product space of central functions on $G$.
+The last two examples are, in particular, compatible with representations of $G$ over $\C$. This will prove to be important when we define the character of a representation. Before doing so, however, we will need to outline the structure of the inner-product space of central functions on $G$. First, some notation.
 
 \begin{boxnotation}
     We define
     \begin{enumerate}
-        \item $\Fof{G, \C} := \set{f : G \to \C}$
-        \item $\Fcof{G, \C} := \set{f \in \Fof{G, \C} : f \text{ is central}}$
+        \item $\FGC := \set{f : G \to \C}$
+        \item $\FcGC := \set{f \in \FGC : f \text{ is central}}$
         \item $\delta_g(x)$ to be the indicator function (for $g, x \in G$).
     \end{enumerate}
 \end{boxnotation}
 
 We have the following natural result.
 
-\begin{proposition}[$\C$-Vector Space Structure of $\Fof{G, \C}$ and $\Fcof{G, \C}$] \hfill
+\begin{proposition}[$\C$-Vector Space Structure of $\FGC$ and $\FcGC$] \hfill
     \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
-        \item $\Fof{G, \C}$ is a $\C$-vector space of dimension $\abs{G}$, with basis $\set{\delta_g : g \in G}$.
-        \item $\Fcof{G, \C}$ is a subspace of $\Fof{G, \C}$ of dimension equal to the number of conjugacy classes of $G$, with basis $\set{\delta_g : g \text{ uniquely represents a conjugacy class of $G$}}$.
+        \item $\FGC$ is a $\C$-vector space of dimension $\abs{G}$, with basis $\set{\delta_g : g \in G}$.
+        \item $\FcGC$ is a subspace of $\FGC$ of dimension equal to the number of conjugacy classes of $G$, with basis $\set{\delta_g : g \text{ uniquely represents a conjugacy class of $G$}}$.
     \end{enumerate}
 \end{proposition}
+\begin{proof}
+    The model we choose for this proof is that of $k^n$ being isomorphic to the set of functions from $\set{1, \ldots, n}$ to $k$ (for any field $k$). Under this model, the indicator functions on $\set{1, \ldots, n}$ correspond to the standard basis of $k^n$. % We do not argue too rigorously here, as the proofs of both points are rather straightforward.
+    \begin{enumerate}
+        \item Since $G$ is finite, this is immediate from the model described above.
+        \item That $\FcGC$ is a subspace follows from the fact that the sum of two central functions is central, as is any scalar multiple of a central function. Furthermore, since central functions are uniquely determined by their values on each conjugacy class, $\pdim{\FcGC}$ is the number of conjugacy classes of $G$.
+        
+        I also offer a more formal argument here for the dimensionality, as I found it instructive to think about it this way. Let $C_1, \ldots, C_r$ be the conjugacy classes of $G$. Write $C_i = \set{g_{i_1}, g_{i_2}, \ldots, g_{i_{l_i}}}$. Let $w_i := \sum_{j=1}^{l_i} \delta_{g_{i_j}}$. It is easy to see that the $w_i$ are linearly independent: any linear combination of all the $w_i$ is, in particular, a linear combination of $\delta_{g}$ as $g$ ranges over $G$, with each $\delta_g$ appearing exactly once. Furthermore, the $w_i$ span $\FcGC$: their span is clearly contained in $\FcGC$, and every element of $\FcGC$ must be constant on any given conjugacy class, meaning that the coordinates of conjugate components must be the same.
+    \end{enumerate}
+\end{proof}
 
-We do not prove this proposition here, as it merely involves checking a few conditions that follow directly from the definitions.
+It turns out that there is also a natural inner-product on $\FGC$.
 
 \begin{definition}
     Define $\cycl{\cdot, \cdot} : \FGC \times \FGC \to \C$ By
     \begin{align}
         \cycl{f_1, f_2} = \frac{1}{\abs{G}} \sum_{g \in G} f_1(g) \overline{f_2(g)}
     \end{align}
-    One can show this to be an inner-product on $\FGC$.
 \end{definition}
+
+It is easy enough to show that the $\cycl{\cdot, \cdot}$ is, indeed, an inner-product on $\FGC$.
 
 \subsection{Introduction to Character Theory}
 
