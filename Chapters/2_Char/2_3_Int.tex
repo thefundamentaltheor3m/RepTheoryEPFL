@@ -124,3 +124,139 @@ This theorem has several important consequences.
         \item If $\ord{g} = p^k$ for some $k \in \N$, then $\chi(g) \equiv \chi(1) \pmod{p}$.
     \end{enumerate}
 \end{corollary}
+
+% Move the following to the end of the bit on orthogonality
+\begin{lemma}
+    Let $g, h \in G$. Then, $g$ is conjugate to $h$ iff for all characters $\chi$ of $G$, $\chi(g) = \chi(h)$.
+\end{lemma}
+\begin{proof}
+    \hfill
+    \begin{description}
+        \item[$\parenth{\implies}$] Seen Before
+        \item[$\parenth{\impliedby}$] As we know, $\Irr{G}$ is an orthonormal basis for $\FcGC$. Let $f$ be the indicator function on $g^G$. Then, $f(g) = 1 \implies f(h) = 1 \implies h \in g^G$.
+    \end{description}
+\end{proof}
+\begin{corollary}
+    Let $g \in G$. Then, $g$ is conjugate to $g^{-1}$ iff for all characters $\chi$ of $G$, $\chi(g) \in \R$.
+\end{corollary}
+
+\begin{boxexample}[Constructing the Character Table of $G = \PSL{2, 7}$]
+    First, note that $\abs{G} = 168$ and that $G$ has $6$ conjugacy classes. Denote them by $C_1, \ldots, C_6$ with representatives $g_1, \ldots, g_6$, with $g_1 = 1$. It turns out we have exactly $6$ irreducible characters of $G$. \\ % HOW DO WE KNOW THIS?
+
+    We begin filling the table as follows.
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|cccccc|}
+            $C_G(g_i)$ & $168$ & $8$ & $4$ & $3$ & $7$ & $7$ \\
+            $\ord{g_i}$ & $1$ & $2$ & $4$ & $3$ & $7$ & $7$ \\
+            $g_i$ & $g_1$ & $g_2$ & $g_3$ & $g_4$ & $g_5$ & $g_6$ \\
+            \hline
+            $\chi_1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+            $\chi_2$ & & & & & & \\
+            $\chi_3$ & & & & & & \\
+            $\chi_4$ & & & & & & \\
+            $\chi_5$ & & & & & & \\
+            $\chi_6$ & & & & & & \\
+        \end{tabular}
+    \end{table}
+    We can then fill in the first column by applying Theorem 2.2.3. % ADD REFERENCE!
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|cccccc|}
+            $C_G(g_i)$ & $168$ & $8$ & $4$ & $3$ & $7$ & $7$ \\
+            $\ord{g_i}$ & $1$ & $2$ & $4$ & $3$ & $7$ & $7$ \\
+            $g_i$ & $g_1$ & $g_2$ & $g_3$ & $g_4$ & $g_5$ & $g_6$ \\
+            \hline
+            $\chi_1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+            $\chi_2$ & $7$ & & & & & \\
+            $\chi_3$ & $8$ & & & & & \\
+            $\chi_4$ & $3$ & & & & & \\
+            $\chi_5$ & $3$ & & & & & \\
+            $\chi_6$ & $6$ & & & & & \\
+        \end{tabular}
+    \end{table}
+    Observe that since the orders are unique for the first four columns, they contain \underline{all} elements of their respective orders. We can then fill in the third column by applying the Column Orthogonality Relation and the first Lemma from today. % ADD REFERENCE! %% MOVE FILLED OUT COLUMN 1 TO THE RIGHT! IT SHOULD BE THE THIRD ONE BUT WE ACCIDENTALLY FILLED IT IN AS THE SECOND.
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|cccccc|}
+            $C_G(g_i)$ & $168$ & $8$ & $4$ & $3$ & $7$ & $7$ \\
+            $\ord{g_i}$ & $1$ & $2$ & $4$ & $3$ & $7$ & $7$ \\
+            $g_i$ & $g_1$ & $g_2$ & $g_3$ & $g_4$ & $g_5$ & $g_6$ \\
+            \hline
+            $\chi_1$ & $1$ & $1$ & & $1$ & $1$ & $1$ \\
+            $\chi_2$ & $7$ & $-1$ & & & & \\
+            $\chi_3$ & $8$ & $0$ & & & & \\
+            $\chi_4$ & $3$ & $1$ &  & & \\
+            $\chi_5$ & $3$ & $1$ & & & & \\
+            $\chi_6$ & $6$ & $0$ & & & & \\
+        \end{tabular}
+    \end{table}
+    We can then fill in the fourth column using the second point of Corollary 2.3.11. % ADD REFERENCE!
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|cccccc|}
+            $C_G(g_i)$ & $168$ & $8$ & $4$ & $3$ & $7$ & $7$ \\
+            $\ord{g_i}$ & $1$ & $2$ & $4$ & $3$ & $7$ & $7$ \\
+            $g_i$ & $g_1$ & $g_2$ & $g_3$ & $g_4$ & $g_5$ & $g_6$ \\
+            \hline
+            $\chi_1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+            $\chi_2$ & $7$ & $-1$ & $1$ & & & \\
+            $\chi_3$ & $8$ & $0$ & $-1$ & & & \\
+            $\chi_4$ & $3$ & $1$ & $0$ & & & \\
+            $\chi_5$ & $3$ & $1$ & $0$ & & & \\
+            $\chi_6$ & $6$ & $0$ & $0$ & & & \\
+        \end{tabular}
+    \end{table}
+    We now have four possibilities for the second column. % CHECK PHONE. SECOND COL WAS \pm EVERYWHERE, AND 2 AND 0 COULD HAVE BOTH BEEN SWAPPED.
+    \begin{table}[H]
+        \centering
+        \begin{subtable}{0.45\linewidth}
+            \begin{tabular}{|c|cccccc|}
+                $C_G(g_i)$ & $168$ & $8$ & $4$ & $3$ & $7$ & $7$ \\
+                $\ord{g_i}$ & $1$ & $2$ & $4$ & $3$ & $7$ & $7$ \\
+                $g_i$ & $g_1$ & $g_2$ & $g_3$ & $g_4$ & $g_5$ & $g_6$ \\
+                \hline
+                $\chi_1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+                $\chi_2$ & $7$ & $-1$ & $1$ & & & \\
+                $\chi_3$ & $8$ & $0$ & $-1$ & & & \\
+                $\chi_4$ & $3$ & $1$ & $0$ & & & \\
+                $\chi_5$ & $3$ & $1$ & $0$ & & & \\
+                $\chi_6$ & $6$ & $0$ & $0$ & & & \\
+            \end{tabular}
+        \end{subtable}
+        % Add some hspace
+        \begin{subtable}{0.45\linewidth}
+            \begin{tabular}{|c|cccccc|}
+                $C_G(g_i)$ & $168$ & $8$ & $4$ & $3$ & $7$ & $7$ \\
+                $\ord{g_i}$ & $1$ & $2$ & $4$ & $3$ & $7$ & $7$ \\
+                $g_i$ & $g_1$ & $g_2$ & $g_3$ & $g_4$ & $g_5$ & $g_6$ \\
+                \hline
+                $\chi_1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+                $\chi_2$ & $7$ & $-1$ & $1$ & & & \\
+                $\chi_3$ & $8$ & $0$ & $-1$ & & & \\
+                $\chi_4$ & $3$ & $1$ & $0$ & & & \\
+                $\chi_5$ & $3$ & $1$ & $0$ & & & \\
+                $\chi_6$ & $6$ & $0$ & $0$ & & & \\
+            \end{tabular}
+        \end{subtable}
+    \end{table}
+    For the last two columns of the table, we use row orthogonality, in combination with the fact that $g_5 = g_6\inv$.
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|cccccc|}
+            $C_G(g_i)$ & $168$ & $8$ & $4$ & $3$ & $7$ & $7$ \\
+            $\ord{g_i}$ & $1$ & $2$ & $4$ & $3$ & $7$ & $7$ \\
+            $g_i$ & $g_1$ & $g_2$ & $g_3$ & $g_4$ & $g_5$ & $g_6$ \\
+            \hline
+            $\chi_1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+            $\chi_2$ & $7$ & $-1$ & $1$ & & $0$ & $0$ \\
+            $\chi_3$ & $8$ & $0$ & $-1$ & & $1$ & $1$ \\
+            $\chi_4$ & $3$ & $1$ & $0$ & & $z$ & $\bar{z}$ \\
+            $\chi_5$ & $3$ & $1$ & $0$ & & $\bar{z}$ & $z$ \\
+            $\chi_6$ & $6$ & $0$ & $0$ & & $t$ & $\bar{t}$ \\
+        \end{tabular}
+    \end{table}
+    % CHECK PHONE FOR REST!
+
+    FINAL COMMENTS. Also use the results on $p$ groups, since $G$ is a $7$-group.
+\end{boxexample}
