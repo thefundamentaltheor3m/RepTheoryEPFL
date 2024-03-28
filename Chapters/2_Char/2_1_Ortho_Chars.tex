@@ -20,7 +20,7 @@ In this section, we will primarily be focusing on complex representations. There
 
 We are already familiar with several examples of central functions.
 
-\begin{boxexample}[Examples of Central Functions]
+\begin{boxexample}[Examples of Central Functions] \label{Ch2:Eg:Central_Funcs}
     The following are all central:
     \begin{enumerate}
         \item The order function $h \mapsto \ord{h} : H \to \N \subset \C$ for any group $H$
@@ -71,13 +71,13 @@ It is easy enough to show that the $\cycl{\cdot, \cdot}$ is, indeed, an inner-pr
 
 \subsection{Introduction to Character Theory}
 
+In this subsection, we introduce a central function that is compatible with the notion of a representation---namely, the \textit{character}. As we saw in Example \ref{Ch2:Eg:Central_Funcs}, both the trace and the determinant would be good options, but the convention is to define the character in terms of the trace. A heuristic reason is that this way, given characters associated to two representations, their sum will give the character of the direct sum, and their product that of the tensor product of the underlying representations. There are deeper reasons too, which will become clearer as we progress.
+
 \begin{boxdefinition}[Character]
-    Let $V$ be a $\C G$-module. The character $\chi_v$ is the function $\chi_V : G \to \C$ given by $\chi_v(g) = \Tr{\rho(g)}$, where $\rho$ is the representation associated to $V$.
+    Let $V$ be a $\C G$-module. The character of $V$ is the map $\chi_V : G \to \C$ given by $\chi_V(g) = \Tr{\rho(g)}$, where $\rho$ is the representation associated to $V$.
 \end{boxdefinition}
 
-\begin{remark}
-    Since the trace is independent of our choice of basis, the definition makes sense.
-\end{remark}
+Immediately, we are able to ``import'' the following definitions from Chapter \ref{Ch1:CH}.
 
 \begin{definition}[Irreducibility]
     We say a character $\chi_V$ is irreducible if the associated representation $\Vp$ is irreducible over $\C$.
@@ -89,29 +89,32 @@ It is easy enough to show that the $\cycl{\cdot, \cdot}$ is, indeed, an inner-pr
     We define the trivial character to be that associated with the trivial representation.
 \end{definition}
 
-\begin{proposition}[Behaviour of Characters]
-    Let $V$, $W$ be $\C G$-modules, and let $g \in G$ be arbitrary. Then,
+Characters have several important properties, which we list below. We will make extensive use of these properties for the remainder of this chapter.
+
+\begin{proposition}%[Behaviour of Characters]
+    Let $V$ be a $\C G$-modules, with associated representation $\rho$.
     \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
-        \item $\chi_{V \+ W} = \chi_V + \chi_W$
-        \item $V \cong W \implies \chi_V = \chi_W$
+        \item For all \CGM s $W$, $\chi_{V \+ W} = \chi_V + \chi_W$
+        \item  For all \CGM s $W$, $V \cong W \implies \chi_V = \chi_W$
         \item $\pdim{V} = \chi_V(1)$
-        \item $\chi_v(g)$ is a sum of $d$th roots of unity, where $d = \ord{g}$.
-        \item $\abs{\chi_V(g)} \leq \pdim{V}$, with equality iff $g \in \pker{\rho}$, where $\rho$ is the associated representation.
-        \item $\chi_V\!\parenth{g\inv} = \overline{\chi_V(g)}$
+        \item For all $g \in G$, $\chi_V(g)$ is a sum of $d$th roots of unity, where $d = \ord{g}$.
+        \item For all $g \in G$, $\abs{\chi_V(g)} \leq \pdim{V}$, with equality iff $g \in \pker{\rho}$.
+        \item For all $g \in G$, $\chi_V\!\parenth{g\inv} = \overline{\chi_V(g)}$
     \end{enumerate}
 \end{proposition}
 \begin{proof}
-    We do not give complete proofs here, just sketches.
-    \begin{enumerate}
+    We just give sketches here, not complete proofs.
+    \begin{enumerate}[noitemsep]
         \item This follows from the fact that the trace of a direct sum is the sum of the traces.
         \item This follows from the invariance of the trace under change of basis.
+        \item This follows from the fact that the trace of the identity is the dimension of the space.
+        \item For any $g \in G$ of order $d$, $\rho(g)$ is of order $d$. Hence, its minimal polynomial divides $X^d - 1 \in \C[X]$, which has distinct roots in $\C$. This means that the eigenvalues of $\rho(g)$ are $d$th roots of unity. Putting $\rho(g)$ in Jordan Normal Form, we see that its trace is a sum of $d$th roots of unity.\footnote{It is not necessarily a sum of \textit{all} $d$th roots of unity, or even \textit{distinct} $d$th roots of unity.}
+        \item \verb|sorry|
+        \item \verb|sorry|
     \end{enumerate}
-    \verb|sorry|
 \end{proof}
 
-\subsection{Character Tables}
-
-A character table is exactly what it sounds like: a table consisting of the elements of a group, their images in a representation, and their associated characters. In this subsection, we investigate character tables by going through specific examples.
+We now give a few examples of characters of representations.
 
 \begin{example}[The Dihedral Group of Order $8$]
     Let $G = D_8$, the dihedral group of order $8$. Consider the presentation
@@ -128,10 +131,10 @@ A character table is exactly what it sounds like: a table consisting of the elem
             1 & 0 \\ 0 & -1
         \end{bmatrix}
     \end{align*}
-    We then have the following character table for $\rho$:
+    The associated character $\chi_V$ then takes on the following values:
     \begin{table}[H]
         \centering
-        \begin{tabular}{|c|cccccccc|}
+        \begin{tabular}{|c|C{1.2cm} C{1.55cm} C{1.85cm} C{1.55cm} C{1.55cm} C{1.85cm} C{1.55cm} C{1.2cm}|}
             \hline
             $g$ & $1$ & $a$ & $a^2$ & $a^3$ & $b$ & $ab$ & $a^2 b$ & $a^3 b$ \\
             $\rho(g)$ &
