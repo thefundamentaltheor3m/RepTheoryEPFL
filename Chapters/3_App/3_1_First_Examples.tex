@@ -1,0 +1,29 @@
+\section{First Examples}
+
+\subsection{A Word on Simple Groups}
+
+First, we have an interesting result on $p$-groups.
+
+\begin{lemma} Assume that $\abs{G} = p^n$ for some $p$ prime and $n \in \N$. Then, $\forall \chi \in \Irr{G}$, $\chi(1)$ is a power of $p$.
+\end{lemma}
+\begin{proof}
+    Let $\Irr{G} = \set{\chi_1, \ldots, \chi_k}$, with $\chi_1$ being the trivial character.
+    \verb|sorry|
+\end{proof}
+\begin{corollary}
+    If $\abs{G} = p^2$ for some $p$ prime, then $\forall \chi \in \Irr{G}$, $\chi(1) = 1$. In particular, $G$ is abelian.
+\end{corollary}
+\begin{proof}
+    \verb|sorry|
+\end{proof}
+
+We now have an interesting result on the characters of simple groups.
+
+\begin{lemma}
+    If $G$ is simple, $G$ does not admit an irreducible character of degree $2$.
+\end{lemma}
+\begin{proof}
+    Suppose, for contradiction, that $G$ is simple but admits an irreducible representation $\rho : G \to \GL{2, \C}$. Since $G$ is simple, we must have that $\pker{\rho} = \set{1}$.
+
+    If $G$ is nonabelian, then $G' = G$. This tells us that there are no nontrivial characters of degree $1$. Since the map $\rho \mapsto \pdet{\rho(g)}$ a linear character (ie, has degree $1$), we can conclude that $\pdet{\rho(g)} = 1$ for all $g \in G$. By Theorem \ref{Ch2:Thm:Char_div_Ord_Grp}, we know that $2 \vert \abs{G}$. Then, by Cauchy's Theorem, $\exists g \in G$ such that $g \neq 1$ but $g^2 = 1$. This tells us that $\rho(g) = -\id \in \Zof{G}$, which is absurd, since $G$ is simple. 
+\end{proof}

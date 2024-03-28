@@ -1,0 +1,126 @@
+\section{Integrality}
+
+\subsection{The Algebraic Integers}
+
+First, we recall the notion of integrality over an integral domain.
+
+\begin{boxdefinition}[Integrality]
+    Let $R$ be an integral domain, and $S \supset R$ an extension. We say that $s \in S$ is integral over $R$ if one of the following equivalent conditions is satisfied:
+    \begin{itemize}
+        \item $s$ is a root of a monic polynomial in $R[X]$.
+        \item The minimal polynomial of $s$ over $\Frac{R}$ is actually in $R[X]$.
+    \end{itemize}
+\end{boxdefinition}
+We now define what it means for a complex number to be an algebraic integer.
+\begin{boxdefinition}[Algebraic Integer]
+    We say that a number $\alpha \in \C$ is an algebraic integer if it is integral over $\Z$.
+\end{boxdefinition}
+
+\begin{boxnotation}
+    Given a conjugacy class $C$ of $G$, we define
+    \begin{align}
+        \hat{C} := \sum_{g \in C} g
+    \end{align}
+    to be an element of $\C G$.
+\end{boxnotation}
+
+\begin{lemma}
+    Let $g \in G$ and let $C = g^G$ % Conjugacy class of g?
+    Let $S$ be a simple \CGM. Then, for all $s \in S$, we have an action by scalar multiplication
+    \begin{align*}
+        \hat{C} \cdot s = \lambda s
+    \end{align*}
+    where $\displaystyle \lambda = \frac{\abs{C}}{\abs{C_G(g)}} \frac{\chi(g)}{\chi_s(1)} = \abs{C} \frac{\chi_s(g)}{\chi_s(1)}$.
+\end{lemma}
+\begin{proof}
+    Define a function $\phi : S \to S : s \mapsto \hat{C} \cdot s$. Since $\hat{C} \in \Zof{\C G}$, % EXERCISE!
+    we have that $\forall x \in G$, $x \cdot \phi(s) = \phi(x \cdot s)$. This makes $\phi$ a \CGM\ homomorphism. Then, by Schur's Lemmas, we know that $\phi = \lambda \id$. This means that... % finish
+\end{proof}
+
+\begin{lemma}
+    Let $r = \sum_{g \in G} \alpha_g g$ for some $\alpha_g \in \Z$. Suppose that $\exists \lambda, v \in \C G \setminus \set{0}$ such that $rv = \lambda v$. Then, $\lambda$ is an algebraic integer.
+\end{lemma}
+\begin{proof}
+    Let $G = \set{g_1, \ldots, g_n}$. For all $1 \leq i \leq n$,
+    \begin{align*}
+        r g_i &= \sum_{j=1}^{n} \alpha_{ij} g_j
+    \end{align*}
+    The key observation here is that $\alpha_{ij} \in \Z$ for all $1 \leq i,j \leq n$. % WHY????
+    Then, if $rv = \lambda v$, we have that $\lambda$ is an eigenvalue of the matrix $A := \parenth{\alpha_{ij}}_{1 \leq i,j \leq n} \in \mat{n}{n}{\Z}$. This makes $\lambda$ a root of the characteristic polynomial of $A$ (over $\Z$), which is monic and of degree $n$.
+\end{proof}
+
+What we can gather from lemmas $1$ and $2$ is that for any $\chi \in \Irr{G}$ and $g \in G$, the quantity $\lambda = \frac{\abs{G}}{\abs{C_G(g)}} \frac{\chi(g)}{\chi(1)}$ is an algebraic integer. This leads us to the following important connection between algebraic integers and irreducible representations.
+
+\begin{theorem} \label{Ch2:Thm:Char_div_Ord_Grp}
+    For all $\chi \in \Irr{G}$, $\chi(1) \vert \abs{G}$.
+\end{theorem}
+\begin{proof}
+    \verb|Check phone|
+\end{proof}
+
+\subsection{The $n$th Roots of Unity}
+
+\begin{lemma} \label{Ch3:Lem:Int_Sum_Coprime_Roots_Unity}
+    Let $w$ be an $n$th root of unity in $\C$. Then,
+    \begin{align*}
+        \sum_{1 \leq i \leq m, \parenth{i,n} = 1} w^i \in \Z
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    EXERCISE. Hint: induction on $n$.
+\end{proof}
+
+\begin{proposition}
+    Let $g \in G$ be of order $n$. Suppose that $g^i$ is conjugate to $g$ for all $1 \leq i \leq n$ such that $\parenth{i,n} = 1$. Then, for all characters $\chi$ of $G$, $\chi(g)$ is an integer.
+\end{proposition}
+\begin{proof}
+    Let $\chi$ be a character of $G$, with associated representation $\Vp$ of degree $m$ over $\C$. We know that $\chi(g) = \sum_{i=1}^{m} w_i$, where each $w_i$ is an $n$th root of unity (cf. Proposition \ref{Ch2:Prop:Bhv_Char}). Indeed, the idempotent linear map $\rho(g)$ is diagonalisable, with matrix $\diag{w_1, \ldots, w_m}$ with respect to an appropriate basis. Hence, we have that $\rhoof{g^i} = \diag{w_1^i, \ldots, w_m^i}$, meaning that $\chi\!\parenth{g^i} = \sum_{j=1}^{m} w_j^i$. But this is nothing but $\sum_{1 \leq i \leq m, \parenth{i,n} = 1} w^i$, by assumption. Hence, $\chi(g)$ is an integer, by Lemma \ref{Ch3:Lem:Int_Sum_Coprime_Roots_Unity}.
+\end{proof}
+
+% \subsection{Congruence Conditions}
+
+\begin{lemma} \label{Ch2:Lem:p_and_p'_parts}
+    Fix $g \in G$, and let $p$ be a prime number. Then, $\exists! x, y \in G$ such that
+    \begin{enumerate}[label= \normalfont \arabic*., noitemsep]
+        \item $g = xy = yx$
+        \item $\ord{x} = p^k$ for some $k \in \N$
+        \item $\parenth{\ord{y}, p} = 1$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    Let $\ord{g} = u p^v$, where $\parenth{u,v = 1}$. By Bézout's Lemma, we know that $\exists a, b \in \Z$ such that $au + bp^v = 1$. % WHY?
+    Then, we can define $x = g^{au}$ and $y = g^{bp^v}$. This satisfies all the conditions:
+    \begin{enumerate}
+        \item $g = xy = g^{au} g^{bp^v} = g^{bp^v} g^{au} = yx$.
+        \item $x^{p^v} = 1$. % SO WHAT?
+        \item $y^v = 1$.    % WHY?
+    \end{enumerate}
+    One can also show $x$ and $y$ to be the only elements of $G$ satisfying these conditions. %% SHOW!!!! 
+\end{proof}
+
+\begin{boxdefinition}[The $p$- $p'$-parts of $g$]
+    For any $g \in G$, call $x$ and $y$ from Lemma \ref{Ch2:Lem:p_and_p'_parts} the $p$- and $p'$-parts of $g$ respectively.
+\end{boxdefinition}
+
+For the remainder of this subsection, let $n$ = $\abs{G}$, and let $\zeta = e^{\frac{2\pi i}{n}}$ be a primitive $n$th root of unity. Define $\Z[\zeta]$ to be the subring of $\C$ generated by $\Z$ and $\zeta$. Let $p$ be a prime number and $p\Z[\zeta]$ be the principal ideal of $\Z[\zeta]$ generated by $p$. By the Correspondence Theorem, the ideals of $\Z[\zeta]$ containing $p\Z[\zeta]$ are in bijection with the ideals of $\quotient{\Z[\zeta]}{p\Z[\zeta]}$. Since the latter quantity is finite, it contains finitely many ideals, meaning that only finitely many of the ideals of $\Z[\zeta]$ contain $p\Z[\zeta]$. We can then look at the maximal (proper) ideal amongst these, which is a maximal ideal of $\Z[\zeta]$. Denote it by $P$. Indeed, we can show that $P \cap \Z = p\Z$.
+
+\begin{theorem}
+    Let $g \in G$, and let $y$ be the $p'$-part of $g$ for some $p$ prime. For all characters $\chi$ of $G$, $\chi(g) - \chi(y)$ lies in the maximal ideal $P$.
+\end{theorem}
+\begin{proof}
+    Let $m = \ord{g} = u p^v$. Let $a,b \in \Z$ be such that $au + b p^v = 1$ (as in the proof of Lemma \ref{Ch2:Lem:p_and_p'_parts}). We have that $y = g^{bp^v}$. We know that $\chi(g), \chi(y) \in \Z[\zeta]$.
+
+    Now, let $w$ be an $m$th root of unity. Since $m \vert n$ (by Lagrange's Theorem), we know that $w \in \Z[\zeta]$. We have that $w = w^{au + bp^v}$. Raising both sides to the $p^v$th power, we get that $w^{p^v} = w^{aup^v} w^{bp^{2v}}$. Since $w^{up^v} = w^m = 1$, we have that $w^{p^v} = w^{bp^{2v}}$.
+
+    Now, consider the binomial expansion of $\parenth{w - w^{bp^v}}^{p^v}$. Some blah blah, use fact that $P$ is a prime ideal (since it is maximal). % FINISH
+\end{proof}
+
+This theorem has several important consequences.
+
+\begin{corollary}
+    Let $g \in G$ and $y$ be the $p'$-part of $g$ for some prime $p$. Let $\chi$ be a character of $G$.
+    \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
+        \item If $\chi(g), \chi(y) \in \Z$, then $\chi(g) \equiv \chi(y) \pmod{p}$.
+        \item If $\ord{g} = p^k$ for some $k \in \N$, then $\chi(g) \equiv \chi(1) \pmod{p}$.
+    \end{enumerate}
+\end{corollary}
