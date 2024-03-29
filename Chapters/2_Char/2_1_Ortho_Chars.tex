@@ -60,24 +60,25 @@ We have the following natural result.
 
 It turns out that there is also a natural inner-product on $\FGC$.
 
-\begin{definition}
-    Define $\cycl{\cdot, \cdot} : \FGC \times \FGC \to \C$ By
+\begin{boxdefinition}[Standard Inner-Product on $\FGC$]
+    Define the function $\cycl{\cdot, \cdot} : \FGC \times \FGC \to \C$ by
     \begin{align}
         \cycl{f_1, f_2} = \frac{1}{\abs{G}} \sum_{g \in G} f_1(g) \overline{f_2(g)}
     \end{align}
-\end{definition}
+    It is easy enough to show that the $\cycl{\cdot, \cdot}$ is, indeed, an inner-product on $\FGC$. We will also use it as an inner-product on $\FcGC$.
+\end{boxdefinition}
 
-It is easy enough to show that the $\cycl{\cdot, \cdot}$ is, indeed, an inner-product on $\FGC$.
+An obvious orthogonal basis for $\FcGC$ is that of the indicator functions of representatives of distinct conjugacy classes. However, in this paradigm, the set $S$ of conjugacy classes of $G$ merely acts as an \textit{index} set for the standard basis of $\C^{\abs{S}}$. Ie, we can infer nothing about $S$ beyond its size, a quantity that does not tell us about the actual \textit{group} structure of $G$ (for instance, for any prime $p$, the decidedly non-isomorphic abelian groups $\quotient{\Z}{p^2\Z}$ and $\quotient{\Z}{p\Z} \+ \quotient{\Z}{p\Z}$ both have exactly $p^2$ conjugacy classes). It turns out that we can find a much better orthogonal (indeed, ortho\textit{normal}) basis for $\FcGC$ in the world of \textit{characters}, a class of central functions closely related to the group structure of $G$.
 
 \subsection{Introduction to Character Theory}
 
-In this subsection, we introduce a central function that is compatible with the notion of a representation---namely, the \textit{character}. As we saw in Example \ref{Ch2:Eg:Central_Funcs}, both the trace and the determinant would be good options, but the convention is to define the character in terms of the trace. A heuristic reason is that this way, given characters associated to two representations, their sum will give the character of the direct sum, and their product that of the tensor product of the underlying representations. There are deeper reasons too, which will become clearer as we progress.
+In this subsection, we introduce a central function that is compatible with the notion of a representation, namely, the \textit{character}. As we saw in Example \ref{Ch2:Eg:Central_Funcs}, both the trace and the determinant would be good options, but the convention is to define the character in terms of the trace. A heuristic reason is that this way, given characters associated to two representations, their sum will give the character of the direct sum, and their product that of the tensor product of the underlying representations. There are deeper reasons too, which will become clearer as we progress.
 
 \begin{boxdefinition}[Character]
     Let $V$ be a $\C G$-module. The character of $V$ is the map $\chi_V : G \to \C$ given by $\chi_V(g) = \Tr{\rho(g)}$, where $\rho$ is the representation associated to $V$.
 \end{boxdefinition}
 
-Immediately, we are able to ``import'' the following definitions from Chapter \ref{Ch1:CH}.
+Immediately, we are able to ``import'' the following definitions from Chapter~\ref{Ch1:CH}.
 
 \begin{definition}[Irreducibility]
     We say a character $\chi_V$ is irreducible if the associated representation $\Vp$ is irreducible over $\C$.
@@ -91,8 +92,8 @@ Immediately, we are able to ``import'' the following definitions from Chapter \r
 
 Characters have several important properties, which we list below. We will make extensive use of these properties for the remainder of this chapter.
 
-\begin{proposition} \label{Ch2:Prop:Bhv_Char}
-    Let $V$ be a $\C G$-module, with associated representation $\rho$.
+\begin{boxproposition}[On the Behaviour of Characters]\label{Ch2:Prop:Bhv_Char}
+    Let $V$ be a \CGM, with associated representation $\rho$.
     \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
         \item For all \CGM s $W$, $\chi_{V \+ W} = \chi_V + \chi_W$
         \item  For all \CGM s $W$, $V \cong W \implies \chi_V = \chi_W$
@@ -101,7 +102,7 @@ Characters have several important properties, which we list below. We will make 
         \item For all $g \in G$, $\abs{\chi_V(g)} \leq \pdim{V}$, with equality iff $g \in \pker{\rho}$.
         \item For all $g \in G$, $\chi_V\!\parenth{g\inv} = \overline{\chi_V(g)}$
     \end{enumerate}
-\end{proposition}
+\end{boxproposition}
 \begin{proof}
     We just give sketches here, not complete proofs.
     \begin{enumerate}[noitemsep]
@@ -116,7 +117,7 @@ Characters have several important properties, which we list below. We will make 
 
 We now give a few examples of characters of representations.
 
-\begin{example}[The Dihedral Group of Order $8$]
+\begin{boxexample}[The Dihedral Group of Order $8$]
     Let $G = D_8$, the dihedral group of order $8$. Consider the presentation
     \begin{align*}
         G = \cycl{a, b \mid a^4 = b^2 = 1, b\inv a b = a\inv}
@@ -134,31 +135,31 @@ We now give a few examples of characters of representations.
     The associated character $\chi_V$ then takes on the following values:
     \begin{table}[H]
         \centering
-        \begin{tabular}{|c|C{1.2cm} C{1.55cm} C{1.85cm} C{1.55cm} C{1.55cm} C{1.85cm} C{1.55cm} C{1.2cm}|}
-            \hline
+        \hspace{-0.3cm}
+        \begin{tabular}{C{1.1cm}|C{1.1cm} C{1.38cm} C{1.67cm} C{1.38cm} C{1.38cm} C{1.67cm} C{1.38cm} C{1.1cm}}
             $g$ & $1$ & $a$ & $a^2$ & $a^3$ & $b$ & $ab$ & $a^2 b$ & $a^3 b$ \\
-            $\rho(g)$ &
+            $\rho(g)$ & \footnotesize
             $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$
-            &
+            & \footnotesize
             $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$
-            &
+            & \footnotesize
             $\begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}$
-            &
+            & \footnotesize
             $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$
-            &
+            & \footnotesize
             $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$
-            &
+            & \footnotesize
             $\begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$
-            &
+            & \footnotesize
             $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$
-            &
+            & \footnotesize
             $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$
             \\
-            $\chi_V(g)$ & $2$ & $0$ & $-2$ & $0$ & $0$ & $0$ & $0$ & $0$ \\
-            \hline
+            $\chi_V(g)$ & $2$ & $0$ & $-2$ & $0$ & $0$ & $0$ & $0$ & $0$
         \end{tabular}
     \end{table}
-\end{example}
+    One can show the conjugacy classes of $D_8$ to be precisely $\set{1}$, $\set{a, a^3}$, $\set{a^2}$, $\set{b, a^2 b}$, and $\set{ab, a^3 b}$. From the table above, it is clear that conjugate elements do, indeed, have the same character value. Therefore, for the sake of brevity, one typically only lists the values of a character corresponding to the representatives of its conjugacy classes.
+\end{boxexample}
 
 \begin{example}[The Cyclic Group of Order $3$]
     Let $G = C_3 = \cycl{a}$ be the cyclic group of order $3$. Let $\rho_1, \rho_2, \rho_3$ be irreducible representations of $G$, with corresponding (irreducible) characters $\chi_1, \chi_2, \chi_3$.
@@ -250,7 +251,7 @@ We have the following important corollary.
 
 The Orthogonality Theorem tells us the following facts about Irreducible Characters.
 
-\begin{proposition}[On the Behaviour of Irreducible Characters] \label{Ch2:Prop:Bhv_Irred_Char}
+\begin{boxproposition}[On the Behaviour of Irreducible Characters] \label{Ch2:Prop:Bhv_Irred_Char}
     \hfill
     \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
         \item $\Irr{G}$ is a linearly independent set. In particular, $\abs{\Irr{G}} \leq \abs{G}$.
@@ -261,7 +262,7 @@ The Orthogonality Theorem tells us the following facts about Irreducible Charact
         
         \item A \CGM\ $V$ is simple iff $\cycl{\chi_V, \chi_V} = 1$.
     \end{enumerate}
-\end{proposition}
+\end{boxproposition}
 \begin{proof}
     \hfill
     \begin{enumerate}[label = \normalfont \arabic*.]
