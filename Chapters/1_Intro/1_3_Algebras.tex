@@ -76,7 +76,7 @@ We illustrate the above equivalence by stating Maschke's Theorem in the language
 
 \subsection{Schur's Lemmas}
 
-In this subsection, we explore several versions of an important result by Schur. We begin by stating it in its most general form.
+In this subsection, we explore several versions of an important result by Schur. The main result consists of two cases, the first of which shall (by convention) deal with the non-isomorphic case and the second of which shall deal with the isomorphic case. We will refer to them as Schur's First and Second Lemmas respectively. We begin by stating them in their most general form.
 
 \begin{theorem}[Schur's Lemmas for Rings]
     Let $A$ be a ring and let $S, T$ be simple $A$-modules.
@@ -95,7 +95,7 @@ In this subsection, we explore several versions of an important result by Schur.
 
 It turns out we can do a bit better when dealing with a specific class of rings, namely, algebras over fields.
 
-\begin{theorem}[Schur's Lemmas for Algebras]
+\begin{theorem}[Schur's Lemmas for Algebras]\label{Ch1:Thm:Schur_Algebra}
     Let $K$ be an algebraically closed field and $A$ a $K$-algebra. Let $S$ and $T$ be simple $A$-modules.
     \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
         \item If $S \not\cong T$, then $\Hom_A(S, T) = \set{0}$.
@@ -114,7 +114,7 @@ It turns out we can do a bit better when dealing with a specific class of rings,
 
 We also have a converse when working with algebras.
 
-\begin{theorem}[Converse of Schur's Lemma for Algebras]
+\begin{theorem}[Converse of Schur's Lemma for Algebras]\label{Ch1:Thm:Schur_Algebra_Converse}
     Let $K$ be a field, $A$ a $K$-algebra and $M$ a completely reducible $A$-module. If $\Hom_A(M,M) = K$, then $M$ is simple.
 \end{theorem}
 \begin{proof}
@@ -122,33 +122,42 @@ We also have a converse when working with algebras.
 \end{proof}
 
 \begin{boxtheorem}[Schur's Lemmas for Finite Groups, over $\C$] \label{SP:Thm:Schur_fin_G_over_C}
-    \letfg\ and let $S$ and $T$ be simple $\C G$ modules that are finite-dimensional (as vector spaces) over $K$, with associated representations $\rho_S : G \to \GL{S}$ and $\rho_T : G \to \GL{T}$.
+    \letfg\ and let $S$ and $T$ be simple $\C G$ modules that are finite-dimensional (as vector spaces) over $K$, with associated representations $\rho_S : G \to \GL{S}$ and $\rho_T : G \to \GL{T}$. Let $f : S \to T$ be an arbitrary $\C$-linear map. Define the map
+    \begin{align}
+        \hat{f} := \frac{1}{\abs{G}} \sum_{g \in G} \rho_T(g) \circ f \circ \rho_S\!\parenth{g\inv}
+        \label{SP:eq:Def_Hat_Map}
+    \end{align}
+    Then, $\hat{f}$ is, in fact, a \CGM\ homomorphism. Furthermore, we have the following:
     \begin{enumerate}[label = \normalfont \arabic*.]
-        \item If $S \not\cong T$, then for all $\C$-linear maps $f : S \to T$, the map
+        \item If $S \not\cong T$, then $\hat{f}$ is identically zero.
+        \item If $S \cong T$, then
         \begin{align*}
-            \hat{f} := \frac{1}{\abs{G}} \sum_{g \in G} \rho_T(g) \circ f \circ \rho_S\!\parenth{g\inv}
-        \end{align*}
-        is identically zero.
-
-        \item If $S \cong T$, then for all $\C$-linear maps $f : S \to T$, we have
-        \begin{align*}
-            \hat{f} &:= \frac{1}{\abs{G}} \sum_{g \in G} \rho_T(g) \circ f \circ \rho_S\!\parenth{g\inv} \\
-            &= \frac{1}{\pdim{S}} \Tr{f} \cdot \id_S
+            \hat{f} &= \frac{1}{\pdim{S}} \Tr{f} \cdot \id_S
         \end{align*}
     \end{enumerate}
 \end{boxtheorem}
 \begin{proof}
-    Let $f : S \to T$ be $\C$-linear. We show that $\hat{f} \in \Hom_{\C G}(S, T)$: for all $h \in G$,
+    We only really need to show that $\hat{f} \in \Hom_{\C G}(S, T)$. The rest follows relatively naturally from Theorem \ref{Ch1:Thm:Schur_Algebra} (Schur's Lemmas for Algebras), as we shall see. So, fix $h \in G$. Observe that
     \begin{align*}
         \rho_T(h) \circ \hat{f} &= \rho_T(h)\!\parenth{\frac{1}{\abs{G}} \sum_{g \in G} \rho_T(g) \circ f \circ \rho_S\!\parenth{g\inv}} \\
         &= \frac{1}{\abs{G}} \sum_{g \in G} \rho_T(hg) \circ f \circ \rho_S\!\parenth{g\inv} \circ \rho_S\!\parenth{h\inv} \circ \rho_S(h) \\
         &= \frac{1}{\abs{G}} \sum_{g \in G} \parenth{\rho_T(hg) \circ f \circ \rho_S\!\parenth{g\inv h\inv}} \circ \circ \rho_S(h) \\
         &= \hat{f} \circ \rho_S(h)
     \end{align*}
-    proving that $\hat{f}$ is, indeed, a homomorphism of $\C G$-modules.
+    proving that $\hat{f}$ is, indeed, a homomorphism of $\C G$-modules. Then,
+    \begin{enumerate}
+        \item If $S \not\cong T$, then by Schur's First Lemma for Algebras, $\hat{f}$ is identically $0$.
+        \item If $S \not\cong T$, then by Schur's Second Lemma for Algebras, $\hat{f}$ is a scalar multiple of the identity. Write $\hat{f} = \lambda \cdot \id_S$. Clearly, we have that $\Tr{\hat{f}} = \lambda \pdim{S}$. But, by the definition of $\hat{f}$, we have that
+        \begin{align*}
+            \Tr{\hat{f}} &= \frac{1}{\abs{G}} \sum_{g \in G} \Tr{\rho_T(g) \circ f \circ \rho_S\!\parenth{g\inv}} \\
+            &= \frac{1}{\abs{G}} \sum_{g \in G} \Tr{f \circ \rho_T\!\parenth{g} \circ \rho_S\!\parenth{g\inv}} \\
+            &= \frac{1}{\abs{G}} \sum_{g \in G} \Tr{f} = \Tr{f}
+        \end{align*}
+        where we can apply the Trace Theorem to the composition $\rho_T(g) \circ f \circ \rho_S\!\parenth{g\inv}$ because $S \cong T$, meaning $\rho_S = \rho_T$ and $\pdim{S} = \pdim{T}$ (meaning that we can, indeed, change the order of composition and get a `sensible' linear map, as all dimensions agree). Since the trace of a linear map is unique, we must have that $\lambda \cdot \pdim{S} = \Tr{f} \iff \lambda = \frac{1}{\pdim{S}} \Tr{f}$ (we know $\pdim{S} \neq 0$ because $S$ is simple). This then tells us that $\hat{f}$ is of the desired form.
+    \end{enumerate}
 \end{proof}
 
-It turns out that Schur's Lemmas are powerful tools in the study of certain classes of representations. We investigate one such class in the next subsection.
+Schur's Lemmas (especially the version thereof pertaining to complex representations of finite groups) will prove to be incredibly useful. In the next subsection, we will give a direct application to the classification of representations of finite abelian groups; however, this is not the last that we will be seeing of them.
 
 \subsection{Representations of Finite Abelian Groups over $\C$}
 

@@ -199,50 +199,60 @@ First, we state and prove a useful lemma that helps us understand the \textit{ma
     \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
         \item If $\rho$ and $\rho'$ are \textit{not} equivalent, then
         \begin{align*}
-            \frac{1}{\abs{G}} \sum_{g \in G} {\rho(g)}_{ri} {\rho'\!\parenth{g\inv}}_{js} = 0
+            \frac{1}{\abs{G}} \sum_{g \in G} \brac{\rho(g)}_{ri} \brac{\rho'\!\parenth{g\inv}}_{js} = 0
         \end{align*}
 
         \item If $\rho$ and $\rho'$ \textit{are} equivalent, then
         \begin{align*}
-            \frac{1}{\abs{G}} \sum_{g \in G} {\rho(g)}_{ri} {\rho'\!\parenth{g\inv}}_{js} =
+            \frac{1}{\abs{G}} \sum_{g \in G} \brac{\rho(g)}_{ri} \brac{\rho'\!\parenth{g\inv}}_{js} =
             \begin{cases}
                 \frac{1}{n} & \text{if } i = j \text{ and } r = s \\
                 0 & \text{otherwise}
             \end{cases}
         \end{align*}
     \end{enumerate}
-    where we use the notation $T_{ij}$ to refer to the $ij$th entry of the matrix of any $T \in \GL{n, \C}$ with respect to the standard basis of $\C^n$.
+    where we use the notation $\brac{T}_{ij}$ to refer to the $ij$th entry of the matrix of any $T \in \GL{n, \C}$ with respect to the standard basis of $\C^n$.
 \end{lemma}
 \begin{proof}
-    Let $V = \C^n$ and $W = \C^m$ be the two simple $\C G$-modules corresponding to $\rho$ and $\rho'$ respectively. The idea is to define a linear map that will allow us to use Schur's Lemma.
+    Let $V = \C^n$ and $W = \C^m$ be the two simple $\C G$-modules corresponding to $\rho$ and $\rho'$ respectively. The idea is to define a linear map that will allow us to use Schur's Lemmas---specifically, those pertaining to finite groups over $\C$ (see Theorem \ref{SP:Thm:Schur_fin_G_over_C}).
 
-    For some chosen bases of $V$ and $W$, let $\phi_{ij} : W \to V$ be the $\C$-linear map given by the $n \times m$ matrix with $ij$th entry $1$ and all other entries $0$. Define
+    Let $\phi_{ij} : W \to V$ be the $\C$-linear map given by the $n \times m$ matrix (with respect to the standard bases of $V$ and $W$) with $ij$th entry $1$ and all other entries $0$. In other words, let $\phi_{ij}$ denote the $ij$th element of the standard basis of the space of linear maps from $V$ to $W$. Define
     \begin{align*}  % TODO: Make hat look nice
         \hat{\phi_{ij}} := \frac{1}{\abs{G}} \sum_{g \in G} \rho(g) \circ \phi_{ij} \circ \rho'\!\parenth{g\inv}
     \end{align*}
-    By Theorem \ref{SP:Thm:Schur_fin_G_over_C}, $\hat{\phi_{ij}}$ is a $\C G$-module homomorphism from $W$ to $V$.
+    By Theorem \ref{SP:Thm:Schur_fin_G_over_C}, $\hat{\phi_{ij}}$ is a $\C G$-module homomorphism from $W$ to $V$. Indeed, we have that
+    \begin{align*}
+        \brac{\hat{\phi_{ij}}}_{rs} &= \brac{
+            \frac{1}{\abs{G}} \sum_{g \in G} \rho(g) \circ \phi_{ij} \circ \rho'\!\parenth{g\inv}
+        }_{rs} \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} \brac{\rho(g) \circ \phi_{ij} \circ \rho'\!\parenth{g\inv}}_{rs} \\
+        &= \sum_{k=1}^{n} \sum_{l=1}^{m} \frac{1}{\abs{G}} \sum_{g \in G} \brac{\rho(g)}_{rk} \brac{\phi_{ij}}_{kl} \brac{\rho'\!\parenth{g\inv}}_{ls} \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} \brac{\rho(g)}_{ri} \brac{\rho'\!\parenth{g\inv}}_{js}
+    \end{align*}
     \begin{enumerate}
         \item If $W \not\cong V$, we have $\hat{\phi_{ij}} = 0$. In particular,
         \begin{align*}
-            0 &= \parenth{
-                \frac{1}{\abs{G}} \sum_{g \in G} \rho(g) \circ E_{ij} \circ \rho'\!\parenth{g\inv}
-            }_{rs} \\
-            &= \frac{1}{\abs{G}} \sum_{g \in G} \brac{\rho(g) \circ E_{ij} \circ \rho'\!\parenth{g\inv}}_{rs} \\
-            &= \sum_{k=1}^{n} \sum_{l=1}^{m} \frac{1}{\abs{G}} \sum_{g \in G} \brac{\rho(g)}_{rk} \brac{E_{ij}}_{kl} \brac{\rho'\!\parenth{g\inv}}_{ls} \\
-            &= \frac{1}{\abs{G}} \sum_{g \in G} \brac{\rho(g)}_{ri} \brac{\rho'\!\parenth{g\inv}}_{js}
+            \frac{1}{\abs{G}} \sum_{g \in G} \brac{\rho(g)}_{ri} \brac{\rho'\!\parenth{g\inv}}_{js} = \brac{\hat{\phi_{ij}}}_{rs} = 0
         \end{align*}
 
-        \item Similarly, if $W \cong V$, we can view $\phi_{ij}$ as being given by the $n \times n$ matrix $E_{ij}$. Now, by Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we know that
+        \item Similarly, if $W \cong V$, we have $m = n$. Now, by Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we know that
         \begin{align*}
-            \hat{\phi_{ij}} &= \frac{1}{n} \Tr{E_{ij}} \cdot \id_V \\
-            &= \frac{1}{n} \delta_{ij} \cdot \id_V
+            \hat{\phi_{ij}} = \frac{1}{n} \Tr{\phi_{ij}} \cdot \id_V = \frac{1}{n} \delta_{ij} \cdot \id_V
         \end{align*}
-        We can then show the desired result using a similar computation.
+        We then have that
+        \begin{align*}
+            \brac{\rho(g)}_{ri} \brac{\rho'\!\parenth{g\inv}}_{js} = \brac{\hat{\phi_{ij}}}_{rs} = \begin{cases}
+                \frac{1}{n} & \text{if } i = j \text{ and } r = s \\
+                0 & \text{otherwise}
+            \end{cases}
+        \end{align*}
     \end{enumerate}
 \end{proof}
 \begin{remark}
     As per Dr. Rizzoli, on the exam, it's more important to know the idea of such a proof than the specifics of \textit{which index goes where}.
 \end{remark}
+
+It turns out that by simply unfolding a few definitions and playing with the order of summations, we can use the above lemma to prove the Orthogonality Theorem.
 
 \begin{boxtheorem}[Orthogonality Theorem] \label{Ch2:Thm:Orth_Char}
     Let $S, T$ be irreducible $\C G$-modules.
