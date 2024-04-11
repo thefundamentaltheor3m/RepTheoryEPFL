@@ -343,21 +343,21 @@ We now have everything we need to prove the following important theorem.
     $\Irr{G}$ is a basis for $\Fcof{G, \C}$.
 \end{boxtheorem}
 \begin{proof}
-    Let $W = \Span{\Irr{G}} \leq \Fcof{G, \C}$, with orthogonal complement $W^\perp$ with respect to the inner-product \verb|insert reference|. Since $V = W \+ W^\perp$, if we can show that $W^\perp = \set{0}$, we would have that $V = W$, proving the desired result.
+    Let $W = \Span{\Irr{G}} \leq \Fcof{G, \C}$, with orthogonal complement $W^\perp$ with respect to the inner-product \ref{SP:eq:Char_Inner_Product}. Since $V = W \+ W^\perp$, if we can show that $W^\perp = \set{0}$, we would have that $V = W$, proving the desired result.
 
     Fix $f \in W^\perp$, and consider the element $\hat{f} \in \C G$ given by  % CHANGE NOTATION!
     \begin{align*}
         \hat{f} &= \sum_{g \in G} \overline{f(g)} \cdot g
     \end{align*}
 
-    First, we show that $\hat{f} \in \Zof{\C G}$---ie, that $\hat{f}$ commutes (multiplicatively) with all elements of $\C G$. To show this, it suffices to show that $h\inv \hat{f} h = \hat{f}$ for all $h \in G$. So, fix $h \in G$. Then,
+    First, we show that $\hat{f} \in \Zof{\C G}$---ie, that $\hat{f}$ commutes (multiplicatively) with all elements of $\C G$. To show this, it suffices to show that $h\inv \hat{f} h = \hat{f}$ for all $h \in G$ (ie, that $\hat{f}$ commutes with all elements of $G$). To that end, fix $h \in G$. Then,
     \begin{align*}
         h\inv \hat{f} h &=
         \sum_{g \in G} \overline{f(g)} \cdot h\inv g h \\
         &= \sum_{g \in G} \overline{\fof{h\inv g h}} \cdot h\inv g h \\ % Can take h\inv g h inside f because f is central. Mention somewhere.
-        &= \hat{f}(g)
+        &= \hat{f}
     \end{align*}
-    where the last equality follows from a change of variables in the summation.
+    where the first equality follows from the fact that $\bar{f(g)} \in \C$, thereby commuting with all elements of $g$ in $\C G$; the second equality from the fact that $f$ is central (recall that $W, W^{\perp} \leq \FcGC$); and last equality from a change of variables in the summation, replacing $g$ with $hgh\inv$.
 
     Now, let $S$ be any simple \CGM. One can show that the map  % DOMAIN AND CODOMAIN????
     \begin{align*}
