@@ -1,0 +1,115 @@
+\section{Burnside's Theorem}
+
+\subsection{The Algebraic Numbers}
+
+In this subsection, we investigate a generalisation of the algebraic integers, whose properties will be useful in the proof of Burnside's Theorem. We begin with the following definition.
+
+\begin{boxdefinition}[Algebraic Numbers]
+    An algebraic number is a complex number that is a root of a non-zero polynomial in $\Q[X]$.
+\end{boxdefinition}
+
+\begin{remark}[A few recollections on the notion of a minimal polynomial] For any algebraic number $x$,
+    \begin{itemize}
+        \item There exists a \textit{unique} monic polynomial of minimal degree over $\Q$ that annihilates $x$. This polynomial, denoted $m_x$, is called the \textit{minimal polynomial} of $x$.
+        \item $m_x$ is irreducible.
+        \item $m_x$ divides any polynomial over $\Q$ for which $x$ is a root.
+    \end{itemize}
+\end{remark}
+
+\begin{definition}[Conjugates of an Algebraic Number]
+    Let $x$ be an algebraic number. The conjugates of $x$ are the roots of its mimimal polynomial, $m_x$.
+\end{definition}
+
+\begin{boxexample}
+    Fix $n \in \N$, and let $\omega$ be an $n$th root of unity. The minimal polynomial of $\omega$ divides $X^n - 1$, meaning that all of its roots are also $n$th roots of unity, and therefore, have modulus $1$.
+\end{boxexample}
+
+Indeed, it turns out that if a number is an algebraic integer, then its minimal polynomial actually has integer coefficients.
+
+\begin{lemma}
+    Let $\alpha, \beta$ be algebraic numbers, and let $r \in \Q$. Then,
+    \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
+        \item The conjugates of $\alpha + \beta$\footnote{It is easy to see that $\alpha + \beta$ is algebraic.} are all of the form $\alpha' + \beta'$, where $\alpha'$ and $\beta'$ are conjugates of $\alpha$ and $\beta$ respectively.
+        \item The conjugates of $r\alpha$, where $r \in \Q$, are all of the form $r \alpha'$, where $\alpha'$ is a conjugate of $\alpha$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof sketch]
+    Let $L$ denote the splitting field over $\Q$ of $m_{\alpha}$, $m_{\beta}$ and $m_{\alpha + \beta}$. This is a normal extension of $\Q$ \verb|[JUSTIFY]|. Now, let $G = \Aut{L/\Q}$. One can show the action of $G$ on the conjugates of $\alpha$ to be transitive \verb|[JUSTIFY]|. For instance, one can show that $\Q(\alpha) \cong \Q\!\parenth{\alpha'}$ \verb|[relevance?]|. Then, for all $g \in G$, we have that $\gof{\alpha + \beta} = \gof{\alpha} + \gof{\beta}$, and $\gof{x}$ is a conjugate of $x$ for any $x \in L$ (by transitivity).
+    \begin{textit} I think the transitivity/normality comes from the fact that $L$ is the splitting field of irreducible polynomials. \end{textit}
+\end{proof}
+
+\begin{lemma}\label{Ch3:Lem:Abs_Char_Ratio_Alg_Int}
+    Let $G$ be a finite group, and let $\chi$ be a character of $G$. Then, $\abs{\frac{\chi(g)}{\chi(1)}} \leq 1$, and if $0 < \abs{\frac{\chi(g)}{\chi(1)}} < 1$, then $\chi(g) / \chi(1)$ is \textit{not} an algebraic integer.
+\end{lemma}
+\begin{proof}
+    Let $\gamma = \frac{\chi(g)}{\chi(1)}$ and $d = \chi(1)$. Then, $\chi(g) = w_1 + \cdots + w_d$, where $\abs{w_i} = 1$ for all $i$. This then gives us that $\abs{\gamma} \leq 1$. Now, suppose that $\gamma$ \textit{is} an algebraic integer and that $\abs{\gamma} < 1$. We show show that $\chi(g) = 0$.
+
+    Let $m_{\gamma}$ be the minimal polynomial of $\gamma$. Then, $m_{\gamma}(X) = X^d + a_{d-1}X^{d-1} + \cdots + a_0$. Since $\gamma$ is an algebraic integer, we have that $a_i \in \Z$ for all $i$.
+    % Now, consider the polynomial $f(X) = X^d - \chi(g)$. This polynomial has $\gamma$ as a root, and so $m_{\gamma} \vert f$. This gives us that $a_0 = -\chi(g)$. However, since $\abs{\gamma} < 1$, we have that $\abs{a_0} = \abs{\chi(g)} > 1$, which is a contradiction.
+    By the previous lemma, we know that the conjugates of $\gamma$ are of the form $\frac{w_1' + \cdots + w_d'}{d}$, where $w_i'$ are conjugates of $w_i$. Since $\abs{w_i} = 1$, we have that $\abs{w_i'} = 1$ for all $i$.
+    
+    Now, let $z$ be the product of all the conjugates of $\gamma$---ie, the product of all the roots of $m_{\gamma}$. Then, $\abs{z} < 1$. Indeed, $z = a_0$, and hence, in particular, $z \in \Z$. Therefore, it must be that $z = 0$. Hence, it must be that $m_\gamma(X) = X$, as it is irreducible. This gives us that $\gamma = 0$, and hence, $\chi(g) = 0$.
+\end{proof}
+
+\subsection{The Three Versions of Burnside's Theorem}
+
+\begin{boxtheorem}[Burnside's Theorem for Simple Groups]
+    Let $p$ be a prime number, and let $r \in \Z$ be greater than or equal to $1$. Let $G$ be a finite group which a conjugacy class of size $p^r$. Then, $G$ is not simple.
+\end{boxtheorem}
+\begin{proof}
+    Let $g \in G$ be such that $\abs{g^G} = p^r$. Note that since $G$ contains a conjugacy class of size greater than $1$, $G$ cannot be abelian. Now, let $\Irr{G} = \set{\chi_1, \ldots, \chi_k}$. The idea is to apply column orthogonality between the $g$-column and the $1$-column of $G$.
+
+    By Proposition \ref{SP:1st_Orth_Rel}, we have that
+    \begin{align*}
+        0 &= \frac{1}{\abs{G}} \sum_{i=1}^{k} \chi_i(g) \chi_i(1) \\
+        &= 1 + \frac{1}{\abs{G}} \sum_{i=2}^{k} \chi_i(g) \chi_i(1)
+    \end{align*}
+    Dividing both sides by $p$, we get that
+    \begin{align*}
+        \sum_{i=2}^{k} \chi_i(g) \frac{\chi_i(1)}{p} = -\frac{1}{p}
+    \end{align*}
+    Since $-1/p$ is not an algebraic integer, this implies that for some $2 \leq j \leq k$, $\chi_j(g) \frac{\chi_j(1)}{p}$ is not an algebraic integer. However, since $\chi_j(g)$ is necessarily an algebraic integer, it must be that $\chi_j(1)/p$ is not an algebraic integer. Since $\chi_j(1) \in \Z$ (as it is the degree of the associated representation) and $p$ is prime, this is equivalent to saying that $p \nmid \chi_j(1)$. Since $\abs{g^G} = p^r$, this means that $\chi_j(1)$ and $\abs{g^G}$ are coprime.
+    
+    We know, by Bézout's Lemma, that there exist integers $a, b$ such that $a\abs{g^G} + b\chi_j(1) = 1$. Multiplying by the character ratio $\gamma = \chi_j(g) / \chi_j(1)$, we have that
+    \begin{align*}
+        a \abs{g^G} \gamma + b\chi_j(g) = \gamma
+    \end{align*}
+    By Lemma \ref{Ch2:Lem:Scalar_Action_Alg_Int} \verb|(make reference more precise)|, we know that $a \abs{g^G} \gamma$ is an algebraic integer. This means that $\gamma$ must be an algebraic integer too, giving us that $\abs{\gamma} = 1$ (by Lemma \ref{Ch3:Lem:Abs_Char_Ratio_Alg_Int}).
+
+    Now, let $\rho$ be the representation wich character $\chi_j$. Then,
+    % $\rho(g)$ is a matrix with eigenvalues of modulus $1$. Since $\abs{g^G} = p^r$, we have that $\rho(g)$ is a $p^r$th root of the identity matrix. This means that $\rho(g)^{p^r} = I$, and hence, $\rho(g)$ is diagonalisable. However, since $\rho(g)$ has eigenvalues of modulus $1$, it must be that $\rho(g) = I$. This gives us that $\chi_j(g) = \chi_j(1)$, and hence, $\chi_j$ is the trivial character. This gives us that $G$ is not simple.
+    by Lemma \ref{Ch2:Lem:Scalar_Action_Alg_Int}, we have that $\rho(g) = \lambda I$, where $\lambda = \abs{g^G} \gamma$. \verb|Finish using picture on iPad.|
+\end{proof}
+
+\begin{boxtheorem}[Burnside's Theorem for Groups of Order $p^a q^b$] \label{SP:Thm:Burnside_paqb}
+    Let $G$ be a finite group of order $p^a q^b$, where $p, q$ are prime numbers and $a, b \in \N$. Then, $G$ is simple only if $\abs{G} \in \set{p, q}$.
+\end{boxtheorem}
+\begin{proof}
+    First, suppose that $b = 0$. Then, $G$ is a $p$-group, and hence, has a nontrivial centre.\footnote{Recall that the sizes of the conjugacy classes of a $p$-group are prime powers. One can then use the Class Equation to arrive at this result.} This means that $G$ is not simple unless $\abs{G} = p$. One can prove similarly that if $a = 0$ then $\abs{G} = q$.
+    
+    Now, suppose that $a, b > 0$. Then, $G$ has a normal Sylow $p$-subgroup $P$ of order $p^a$ for some $a \in \N$. Since $P$ is a $p$-group, its centre is nontrivial, and therefore, there exists some $g \in \Zof{P} \setminus \set{1}$. Indeed,
+    \begin{align*}
+        P &\leq C_G(g) \\
+        \implies \abs{P} &\mid \abs{C_G(g)} = \frac{\abs{G}}{\abs{g^G}} \\
+        \implies p^a \abs{g^G} &\mid p^a q^b \\
+        \implies \abs{g^G} &\mid q^b
+    \end{align*}
+    where we justify the first inclusion by writing it out \verb|[DO IT!]|.
+    
+    Since $G$ is simple, $\Zof{G} = \set{1}$, meaning that $\abs{g^G} = q^r$ for some $r \geq 1$. This contradicts the simplicity of $G$. \verb|[JUSTIFY!]|
+\end{proof}
+
+\verb|Insert definition of solvable|
+
+\begin{boxtheorem}[Burnside's Theorem for Solvable Groups]
+    Let $G$ be a finite group. If $G$ has order $p^a q^b$, where $p, q$ are prime and $a, b \geq 0$, then $G$ is solvable.
+\end{boxtheorem}
+\begin{proof}
+    We argue by induction on $\abs{G}$. If $\abs{G} = 1$, then $G$ is trivially solvable. Now, suppose that $\abs{G} = p^a q^b$, where $a, b \geq 0$. If $a = 0$ or $b = 0$, then $G$ is a $p$-group or a $q$-group, and hence, solvable.\footnote{Give/link a proof of this!} Else, if $a, b \geq 1$, then by Theorem \ref{SP:Thm:Burnside_paqb}, we know that $G$ is not simple. It then contains a nontrivial normal subgroup $N$. By the Induction Hypothesis, both $N$ and $\quotient{G}{N}$ are solvable, making $G$ solvable as well.
+\end{proof}
+
+\subsection{Applications of Burnside's Theorem}
+
+\begin{lemma}
+    There are no nonabelian simple groups of order less than $30$.
+\end{lemma}
