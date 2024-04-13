@@ -42,7 +42,7 @@ The last two examples are, in particular, compatible with representations of $G$
 
 We have the following natural result.
 
-\begin{proposition}[$\C$-Vector Space Structure of $\FGC$ and $\FcGC$] \hfill
+\begin{proposition}[$\C$-Vector Space Structure of $\FGC$ and $\FcGC$]\label{Ch2:Prop:FGC_FcGC_Fin_Dim} \hfill
     \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
         \item $\FGC$ is a $\C$-vector space of dimension $\abs{G}$, with basis $\set{\delta_g : g \in G}$.
         \item $\FcGC$ is a subspace of $\FGC$ of dimension equal to the number of conjugacy classes of $G$, with basis $\set{\delta_g : g \text{ uniquely represents a conjugacy class of $G$}}$.
@@ -194,7 +194,7 @@ In this subsection, we dive into the heart of Character Theory, proving one of t
 
 First, we state and prove a useful lemma that helps us understand the \textit{matrices} of irreducible representations (taken, as per convention, with respect to the standard basis of $\C^n$). The point of this is that matrices are more computation-friendly.
 
-\begin{lemma}
+\begin{lemma}\label{Ch2:Lem:Pre_Ortho_Thm_Sums}
     Let $\rho : G \to \GL{n, \C}$ and $\rho' : G \to \GL{m, \C}$ be irreducible representations of $G$ over $\C$. Fix $j, s \in \set{1, \ldots, m}$ and $r, i \in \set{1, \ldots, n}$.
     \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
         \item If $\rho$ and $\rho'$ are \textit{not} equivalent, then
@@ -269,9 +269,32 @@ It turns out that by simply unfolding a few definitions and playing with the ord
         \frac{1}{\abs{G}} \sum_{G \in G} \chi_S(g) \chi_T\!\parenth{g\inv} \\
         &= \frac{1}{\abs{G}} \sum_{g \in G} \Tr{P(g)} \Tr{Q\!\parenth{g\inv}} \\
         &= \frac{1}{\abs{G}} \sum_{g \in G} \parenth{\sum_{i = 1}^{n} \brac{P(g)}_{ii}}\parenth{\sum_{j=1}^{n} \brac{Q\!\parenth{g\inv}}_{jj}} \\
-        &= \sum_{i=1}^{n} \sum_{j=1}^{m} \frac{1}{\abs{G}} \sum_{g \in G} \brac{P(g)}_{ii} \brac{Q\!\parenth{g\inv}_{jj}}
+        &= \sum_{i=1}^{n} \sum_{j=1}^{m} \frac{1}{\abs{G}} \sum_{g \in G} \brac{P(g)}_{ii} \brac{Q\!\parenth{g\inv}}_{jj}
     \end{align*}
-    We can then use the previous lemma to evaluate these sums.
+    We can now use Lemma \ref{Ch2:Lem:Pre_Ortho_Thm_Sums} to evaluate this sum.
+    \begin{enumerate}
+        \item If $S \not\cong T$, then
+        \begin{align*}
+            \frac{1}{\abs{G}} \sum_{g \in G} \brac{P(g)}_{ii} \brac{Q\!\parenth{g\inv}}_{jj} = 0
+        \end{align*}
+        for all $1 \leq i \leq n$ and $1 \leq j \leq m$. Hence,
+        \begin{align*}
+            \cycl{\chi_S, \chi_T} = \sum_{i=1}^{n} \sum_{j=1}^{m} 0 = 0
+        \end{align*}
+
+        \item If $S \cong T$, then first of all, $n = m$. Indeed,
+        \begin{align*}
+            \frac{1}{\abs{G}} \sum_{g \in G} \brac{P(g)}_{ii} \brac{Q\!\parenth{g\inv}}_{jj} =
+            \begin{cases}
+                \frac{1}{n} & \text{ if } i = j \\
+                0 & \text{ otherwise}
+            \end{cases}
+        \end{align*}
+        for all $1 \leq i, j \leq n$. Hence,
+        \begin{align*}
+            \cycl{\chi_S, \chi_T} = \sum_{i=1}^{n} \sum_{j=1}^{n} \frac{1}{n} \delta_{ij} = \sum_{i=1}^{n} \frac{1}{n} = 1
+        \end{align*}
+    \end{enumerate}
 \end{proof}
 
 We have the following important corollary.
@@ -279,8 +302,11 @@ We have the following important corollary.
 \begin{corollary}
     Up to isomorphism, there are finitely many irreducible $\C G$-modules.
 \end{corollary}
+\begin{proof}
+    Suppose there exist infinitely many, pairwise nonisomorphic \CGM s. Then, the (infinite) subset of $\FGC$ consisting of all of their characters would be pairwise orthogonal (by Theorem \ref{Ch2:Thm:Orth_Char}). Since orthogonality implies linear independence, this set would need to be contained in a basis of $\FGC$. However, by Proposition \ref{Ch2:Prop:FGC_FcGC_Fin_Dim}, such a basis would need to be finite, leading to a clear contradiction. Hence, there can only exist finitely many \CGM s (up to isomorphism).
+\end{proof}
 
-\subsection{Irreducible Characters}
+\subsection{Understanding Irreducible Characters}
 
 \begin{boxnotation}[Irreducible Characters]
     Denote by $\Irr{G}$ the subset of $\Fcof{G, \C}$ consisting of irreducible characters of $G$.
