@@ -308,6 +308,8 @@ We have the following important corollary.
 
 \subsection{Understanding Irreducible Characters}
 
+In this subsection, we will explore the properties of irreducible characters in more detail. In particular, we will see that they form a basis for the space of class functions on $G$. This is a very important result, which illustrates the power of character theory in understanding the properties of a group. We will begin by introducing some notation and stating a few basic properties of irreducible characters that will be useful in the proof of the main result.
+
 \begin{boxnotation}[Irreducible Characters]
     Denote by $\Irr{G}$ the subset of $\Fcof{G, \C}$ consisting of irreducible characters of $G$.
 \end{boxnotation}
@@ -319,9 +321,9 @@ The Orthogonality Theorem tells us the following facts about Irreducible Charact
     \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
         \item $\Irr{G}$ is a linearly independent set. In particular, $\abs{\Irr{G}} \leq \abs{G}$.
         
-        \item Let $V = V_1 \+ \cdots \+ V_r$ be a $\C G$ module, with $V_i$ simple for $1 \leq i \leq r$. For any simple $\C G$ module $S$, the number of $V_i$s isomorphic to $S$ is given by $\cycl{\chi_V, \chi_S}$.
+        \item Let $V = V_1 \+ \cdots \+ V_r$ be a $\C G$ module, with $V_i$ simple for $1 \leq i \leq r$. For any simple $\C G$ module $S$, the number of $V_i$s isomorphic to $S$, known as the \emph{multiplicity} of $S$, is given by $\cycl{\chi_V, \chi_S}$.
         
-        \item Let $V, V'$ be $\C G$-modules. Then, $V \cong V' \iff \chi_V = \chi_{V'}$.
+        \item Let $V, V'$ be simple $\C G$-modules. Then, $V \cong V' \iff \chi_V = \chi_{V'}$.
         
         \item A \CGM\ $V$ is simple iff $\cycl{\chi_V, \chi_V} = 1$.
     \end{enumerate}
@@ -331,34 +333,38 @@ The Orthogonality Theorem tells us the following facts about Irreducible Charact
     \begin{enumerate}[label = \normalfont \arabic*.]
         \item The linear independence follows immediately from the fact that $\Irr{G}$ form an orthonormal system. The inequality follows from the fact that all central functions are class functions: they agree for all conjugate elements of $G$. This means that $\pdim{\Fcof{G, \C}}$ is simply the number of conjugacy classes of $G$. Since $\pdim{\Fcof{G, \C}}$ must be at least $\abs{\Irr{G}}$ and the number of conjugacy classes of $G$ must be at most $\abs{G}$, we have the desired result.
         
-        \item We know that $\chi_V = \chi_{V_1} + \cdots + \chi_{V_r}$. So,
+        \item We know, from Proposition \ref{Ch2:Prop:Bhv_Char}, that $\chi_V = \chi_{V_1} + \cdots + \chi_{V_r}$. So,
         \begin{align*}
-            \cycl{\chi_V, \chi_S} &= \cycl{\chi_{V_1} + \cdots + \chi_{V_r}, V_S} \\
-            &= \text{sorry}
+            \cycl{\chi_V, \chi_S} &= \cycl{\chi_{V_1} + \cdots + \chi_{V_r}, \chi_S} \\
+            &= \sum_{i=1}^{r} \cycl{\chi_{V_i}, \chi_S}
         \end{align*}
+        Observe that for $1 \leq i \leq r$, $\cycl{\chi_{V_i}, \chi_S} = 1$ if $V_i \cong S$ and $0$ otherwise. Hence, the only nonzero terms in the summation are given by those $i$ for which $V_i \cong S$. Since all of those terms are $1$, the sum must evaluate to the multiplicity of $S$.
 
         \item 
         \begin{description}
-            \item[$\parenth{\implies}$] Already seen. % TODO: PUT REFERENCE!
-            \item[$\parenth{\impliedby}$] % Let $\Irr{G} = \set{\chi_1, \ldots, \chi_r}$.
-            The multiplicity\footnote{Ie, the number of times it appears in the direct sum decomposition of $V$ into simple $\C G$-modules} of a simple \CGM\ $S$ in $V$ is given by $\cycl{\chi_V, \chi_S} = \cycl{\chi_{V'}, \chi_S}$. Then, a simple \CGM\ must have the same multiplicity in both $V$ and $V'$. % TODO: REFINE!!
+            \item[$\parenth{\implies}$] This is true regardless of the simplicity of $V$ and $V'$ (cf. Proposition \ref{Ch2:Prop:Bhv_Char}).
+            \item[$\parenth{\impliedby}$] This turns out to be a straightforward application of the previous part. Let $W = V \+ V'$. Then, the multiplicity of $V$ is given by
+            \begin{align*}
+                \cycl{\chi_W, \chi_V} = \cycl{\chi_V + \chi_{V'}, \chi_V} = \cycl{\chi_V, \chi_V} + \cycl{\chi_{V'}, \chi_V} = 2\cycl{\chi_V, \chi_V} = 2 
+            \end{align*}
+            This means that there are two terms in the decomposition $W = V \+ V'$ that are isomorphic to $V$, which is only possible if $V \cong V'$.
         \end{description}
 
         \item 
         \begin{description}
-            \item[$\parenth{\implies}$] Already seen. % TODO: PUT REFERENCE!
+            \item[$\parenth{\implies}$] This follows immediately from the Orthogonality Theorem.
             \item[$\parenth{\impliedby}$] Let $\Irr{G} = \set{\chi_1, \ldots, \chi_r}$, with corresponding simple \CGM s $\set{V_1, \ldots, V_r}$. Denoting by $a_i$ the multiplicity of each $V_i$ in $V$, we have that
             \begin{align*}
                 V &= V_1^{\+ a_1} \+ \cdots \+ V_r^{\+ a_r}
             \end{align*}
-            where we use the notation $V_i^{\+ a_i}$ to mean $\underbrace{V_i \+ \cdots \+ V_i}_{a_i \text{ times}}$.
+            where we use the notation $V_i^{\+ a_i}$ to mean $\underbrace{V_i \+ \cdots \+ V_i}_{a_i \text{ times}}$, allowing $a_i = 0$.
 
             We then have
             \begin{align*}
                 \chi_V &= \sum_{i=1}^{r} a_i \chi_i \\
                 \implies \cycl{\chi_V, \chi_V} &= \sum_{i=1}^{r} a_i^2
             \end{align*}
-            This means only one of the $a_i$s is nonzero, and equal to $1$. % WHAT????
+            by the Orthogonality Theorem. Since $\cycl{\chi_V, \chi_V} = 1$, it must be that only one of the $a_i$s is nonzero, and equal to $1$. Hence, $V = V_i$ for this $i$, making $V$ simple.
         \end{description}
     \end{enumerate}
 \end{proof}
@@ -369,7 +375,7 @@ We now have everything we need to prove the following important theorem.
     $\Irr{G}$ is a basis for $\Fcof{G, \C}$.
 \end{boxtheorem}
 \begin{proof}
-    Let $W = \Span{\Irr{G}} \leq \Fcof{G, \C}$, with orthogonal complement $W^\perp$ with respect to the inner-product \ref{SP:eq:Char_Inner_Product}. Since $V = W \+ W^\perp$, if we can show that $W^\perp = \set{0}$, we would have that $V = W$, proving the desired result.
+    As $\Irr{G}$ is linearly independent, we only need to show that it spans $\FcGC$. To that end, let $W = \Span{\Irr{G}} \leq \Fcof{G, \C}$, with orthogonal complement $W^\perp$ with respect to the inner-product \eqref{SP:eq:Char_Inner_Product}. Since $V = W \+ W^\perp$, if we can show that $W^\perp = \set{0}$, we would have that $V = W$, proving the desired result.
 
     Fix $f \in W^\perp$, and consider the element $\hat{f} \in \C G$ given by  % CHANGE NOTATION!
     \begin{align*}
@@ -385,12 +391,12 @@ We now have everything we need to prove the following important theorem.
     \end{align*}
     where the first equality follows from the fact that $\bar{f(g)} \in \C$, thereby commuting with all elements of $g$ in $\C G$; the second equality from the fact that $f$ is central (recall that $W, W^{\perp} \leq \FcGC$); and last equality from a change of variables in the summation, replacing $g$ with $hgh\inv$.
 
-    Now, let $S$ be any simple \CGM. One can show that the map  % DOMAIN AND CODOMAIN????
+    Now, let $S$ be any simple \CGM. One can show that the map
     \begin{align*}
         \phi : S \to S : v \mapsto \hat{f} \cdot v
     \end{align*}
     is a \CGM\ homomorphism. % Include more details
-    Then, by Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we have that
+    Then, by Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we have that % USE FACT THAT \hat{f} IS CENTRAL TO SHOW THAT \hat{\phi} = \phi (OR SOMETHING LIKE THAT).
     \begin{align*}
         \hat{f} &= \frac{1}{\pdim{S}} \Tr{\hat{f}\vert_S} \cdot \id
     \end{align*}
