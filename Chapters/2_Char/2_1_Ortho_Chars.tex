@@ -396,17 +396,24 @@ We now have everything we need to prove the following important theorem.
         \phi : S \to S : v \mapsto \hat{f} \cdot v
     \end{align*}
     is a \CGM\ homomorphism. % Include more details
-    Then, by Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we have that % USE FACT THAT \hat{f} IS CENTRAL TO SHOW THAT \hat{\phi} = \phi (OR SOMETHING LIKE THAT).
+    Now, in the notation of \eqref{SP:eq:Def_Hat_Map}, consider the map $\hat{\phi} : S \to S$. Since $\hat{f} \in \Zof{\C G}$, we have that for all $v \in V$,
     \begin{align*}
-        \hat{f} &= \frac{1}{\pdim{S}} \Tr{\hat{f}\vert_S} \cdot \id
+        \hat{\phi}(v) &= \frac{1}{\abs{G}} \sum_{g \in G} g \cdot \phiof{g\inv \cdot v} \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} g\hat{f}g\inv \cdot v \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} \hat{f} \cdot v \\
+        &= \hat{f} \cdot v = \phi(v)
     \end{align*}
-    We then have that
+    proving that $\hat{\phi} = \phi$. Then, by Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we have that % USE FACT THAT \hat{f} IS CENTRAL TO SHOW THAT \hat{\phi} = \phi (OR SOMETHING LIKE THAT).
     \begin{align*}
-        \Tr{\hat{f}\vert_S} &= \Tr{\sum_{g \in G} \overline{f(g)} \cdot g\vert_{S}} \\
+        \phi = \hat{\phi} = \frac{\Tr{\phi}}{\pdim{S}} \cdot \id
+    \end{align*}
+    Indeed,
+    \begin{align*}
+        \Tr{\phi} &= \pdim{S} \cdot \Tr{\sum_{g \in G} \overline{f(g)} \cdot g\vert_{S}} \\
         &= \sum_{g \in G} \overline{f(g)} \chi_S(g) \\
         &= \abs{G} \cycl{\underbrace{\chi_S}_{\in W}, \underbrace{f}_{\in W^\perp}} = 0
     \end{align*}
     proving that in fact, $\hat{f}\vert_S = 0$.
     
-    \verb|sorry| % Use photo on phone to complete proof.
+    \verb|sorry| % What an absolute mess this proof is. Terrible notation. TODO: FIX IT!!!!
 \end{proof}

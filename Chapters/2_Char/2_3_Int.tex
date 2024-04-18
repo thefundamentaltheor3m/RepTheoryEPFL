@@ -49,7 +49,11 @@ We now define what it means for a complex number to be an algebraic integer.
     Then, if $rv = \lambda v$, we have that $\lambda$ is an eigenvalue of the matrix $A := \parenth{\alpha_{ij}}_{1 \leq i,j \leq n} \in \mat{n}{n}{\Z}$. This makes $\lambda$ a root of the characteristic polynomial of $A$ (over $\Z$), which is monic and of degree $n$.
 \end{proof}
 
-What we can gather from lemmas $1$ and $2$ is that for any $\chi \in \Irr{G}$ and $g \in G$, the quantity $\lambda = \frac{\abs{G}}{\abs{C_G(g)}} \frac{\chi(g)}{\chi(1)}$ is an algebraic integer. This leads us to the following important connection between algebraic integers and irreducible representations.
+The point of lemmas $1$ and $2$ is the following Corollary, the proof of which is trivial:
+\begin{corollary}\label{Ch2:Cor:lambda_Alg_Int}
+    For any $\chi \in \Irr{G}$ and $g \in G$, the quantity $\lambda = \frac{\abs{G}}{\abs{C_G(g)}} \frac{\chi(g)}{\chi(1)}$ is an algebraic integer.
+\end{corollary}
+This leads us to the following important connection between algebraic integers and irreducible representations.
 
 \begin{theorem} \label{Ch2:Thm:Char_div_Ord_Grp}
     For all $\chi \in \Irr{G}$, $\chi(1) \vert \abs{G}$.
