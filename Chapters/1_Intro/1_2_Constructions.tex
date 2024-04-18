@@ -6,14 +6,14 @@ In this section, we briefly examine how ordinary linear algebraic constructions 
 
 The most elementary operation we can think about when we have two objects is \textit{putting them together}. One of the most meaningful ways of doing so in the context of linear algebra is the direct sum of two vector spaces. It turns out that this extends rather naturally to representations.
 
-\begin{boxdefinition}[The Direct Sum of Two Representations]
+\begin{boxdefinition}[The Direct Sum of Two Representations] \label{Ch1:Def:Dir_Sum_Reps}
     \letgvv. We define the direct sum of $\parenth{V,\rho}$ and $\parenth{V', \rho'}$ to be the pair $\parenth{V \+ V', \rho \+ \rho'}$, where $V \+ V'$ is the direct sum of $V$ and $V'$ as vector spaces and $\rho \+ \rho' : G \to \GL{V \+ V'}$ maps every $g \in G$ to the map
     \begin{align*}
         \parenth{\rho \+ \rho'}\!\parenth{g}\!\parenth{v \+ v'} &= \rho(g)(v) \+ \rho'(g)(v') \in \GL{V}
     \end{align*}
 \end{boxdefinition}
 \begin{remark}
-    In similar fashion, we can also define the tensor product of two representations, though we will not do so here.
+    In similar fashion, we can also define the tensor product of two representations: % though we will not do so here.
 \end{remark}
 \begin{proposition}
     \letgvv.
@@ -288,7 +288,7 @@ It turns out that Maschke's Theorem also has a \textit{converse}.
 
 Combining Theorems \ref{SP:Thm:Maschke} and \ref{Ch1:Thm:Maschke_Converse}, we conclude that $\pchar{K} \mid \abs{G}$ if and only if every subrepresentation of $G$ over $K$ admits a complementary subrepresentation.
 
-\subsection{The $G$-Invariant Inner-Product}
+\subsection{$G$-Invariant Inner-Products}
 
 It turns out that we also have a notion of inner-products being compatible with representation strutures.
 
@@ -322,3 +322,32 @@ Intrinsic to the notion of an inner-product is that of orthogonality. In the fol
 \begin{proof}
     If $V$ is finite dimensional and admits a $G$-invariant inner-product, then by Proposition \ref{Ch1:Prop:Orth_Compl_of_Inv_Inv}, for any $W \leq V$ $G$-invariant, $W^\perp$ is $G$-invariant as well. Since $W \+ W^\perp = V$ and both $W$ and $W^\perp$ are finite-dimensional, we can prove the result using similar reasoning to what we used to prove Corollary \ref{Ch1:Cor:Maschke}.
 \end{proof}
+
+\subsection{Tensor Products of Representations}
+
+We begin by recalling the notion of a tensor product of two finite-dimensional vector spaces.
+
+\begin{definition}[Tensor Product of Vector Spaces]
+    Let $K$ be a field and let $V, W$ be finite-dimensional vector spaces over $K$ with bases $\set{v_i}$ and $\set{w_i}$ respectively. The tensor product of $V$ and $W$, denoted $V \otimes_K W$, is a vector space of dimension $\pdim{V} \pdim{W}$ with basis
+    \begin{align}
+        \set{v_i \otimes w_j : 1 \leq i \leq \pdim{V}, 1 \leq j \leq \pdim{W}}
+    \end{align}
+    such that the map
+    \begin{align*}
+        \otimes_K : V \times W \to V \otimes_K W :
+        (v,w) \mapsto v \otimes_K w
+    \end{align*}
+    is bilinear.
+\end{definition}
+\begin{remark}
+    Sometimes, when the base field (or ring) is clear from the context, we omit the subscript in the notation for the tensor product.
+\end{remark}
+
+In similar fashion to Definition \ref{Ch1:Def:Dir_Sum_Reps}, we can extend this definition to representations.
+
+\begin{boxdefinition}[Tensor Product of Representations]
+    Let $G$ be a finite group and let $\Vp$ and $\parenth{W, \rho'}$ be representations of $G$ over $K$. The tensor product of $\Vp$ and $\parenth{V', \rho'}$, denoted $\Vp \otimes \parenth{V', \rho'}$, is a representation of $G$ over $K$ with underlying set $V \times_K V'$ and action
+    \begin{align*}
+        \parenth{\rho \otimes_K \rho'}\!\parenth{g}\!\parenth{v \otimes_K v'} &= \rho(g)(v) \otimes_K \rho'(g)(v') \in \GL{V}
+    \end{align*}
+\end{boxdefinition}

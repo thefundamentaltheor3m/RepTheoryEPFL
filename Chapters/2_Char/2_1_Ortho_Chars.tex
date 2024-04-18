@@ -104,6 +104,7 @@ Characters have several important properties, which we list below. We will make 
         \item For all $g \in G$, $\chi_V(g)$ is a sum of $d$th roots of unity, where $d = \ord{g}$.
         \item For all $g \in G$, $\abs{\chi_V(g)} \leq \pdim{V}$, with equality iff $g \in \pker{\rho}$.
         \item For all $g \in G$, $\chi_V\!\parenth{g\inv} = \overline{\chi_V(g)}$
+        \item For all \CGM s $W$, $\chi_{V \otimes W} = \chi_V \cdot \chi_W$
     \end{enumerate}
 \end{boxproposition}
 \begin{proof}
@@ -115,6 +116,14 @@ Characters have several important properties, which we list below. We will make 
         \item For any $g \in G$ of order $d$, $\rho(g)$ is of order $d$. Hence, its minimal polynomial divides $X^d - 1 \in \C[X]$, which has distinct roots in $\C$. This means that the eigenvalues of $\rho(g)$ are $d$th roots of unity. Putting $\rho(g)$ in Jordan Normal Form, we see that its trace is a sum of $d$th roots of unity.\footnote{It is not necessarily a sum of \textit{all} $d$th roots of unity, or even \textit{distinct} $d$th roots of unity.}
         \item \verb|sorry|
         \item \verb|sorry|
+        \item Let $B = \set{v_1, \ldots, v_n}$ and $B' = \set{w_1, \ldots, w_m}$ be bases of $V$ and $W$ respectively. Denote by $\rho'$ the representation associated to $W$, and fix an arbitrary $g \in G$. Let $\parenth{a_{ij}}_{1 \leq i, j \leq n}$ be the matrix of $\rho(g)$ with respect to $B$, and let $\parenth{b_{k, l}}_{1 \leq k, l \leq m}$ be that of $\rho'(g)$ with respect to $B'$. % As with most results on tensor products, we begin by proving it for the basis of $V \otimes W$ consisting of simple tensors.
+        For all $1 \leq i \leq n$ and $1 \leq l \leq m$, we have that
+        \begin{align*}
+            \parenth{\rho \otimes \rho'}(g)(v_i \otimes w_l) &= \rho(g)(v_i) \otimes \rho'(g)(w_l) \\
+            &= \parenth{\sum_{j=1}^{n} a_{ij} v_j} \otimes \parenth{\sum_{k=1}^{m} b_{kl} w_k} \\
+            &= \sum_{j=1}^{n} \sum_{k=1}^{m} a_{ij} b_{kl} v_j \otimes w_k
+        \end{align*}
+        Indeed, the coefficient of $v_i \otimes w_l$ in the above expression is $a_{ii}b_{ll}$, telling us that \verb|rest is easy|.
     \end{enumerate}
 \end{proof}
 
@@ -371,7 +380,7 @@ The Orthogonality Theorem tells us the following facts about Irreducible Charact
 
 We now have everything we need to prove the following important theorem.
 
-\begin{boxtheorem}
+\begin{boxtheorem} \label{SP:Thm:Irred_Char_Basis}
     $\Irr{G}$ is a basis for $\Fcof{G, \C}$.
 \end{boxtheorem}
 \begin{proof}
@@ -416,4 +425,35 @@ We now have everything we need to prove the following important theorem.
     proving that in fact, $\hat{f}\vert_S = 0$.
     
     \verb|sorry| % What an absolute mess this proof is. Terrible notation. TODO: FIX IT!!!!
+\end{proof}
+
+% FIND A GOOD PLACE FOR THE FOLLOWING.
+
+\begin{lemma}
+    The set $R(G) := \Z \Irr{G} \subseteq \FcGC$ is a subring of $\FcGC$.
+\end{lemma}
+\begin{proof}
+    Observe that $R(G)$ is certainly a group under addition. We claim that it is closed under multiplication, with multiplicative identity given by the trivial character.
+    
+    Let $\chi_V, \chi_W \in \Irr{G}$, with associated (simple) \CGM s $V$ and $W$. From Proposition \ref{Ch2:Prop:Bhv_Char}, we know that their product $\chi_V \chi_W$ is the character associated to the \CGM\ $V \otimes W$. %% WRITE AS SUM_k m_k chi_k for natural numbers m_k. % Since $V \otimes W$ is simple \verb|[JUSTIFY!]|, we have that $\chi_V \chi_W \in \Irr{G}$, proving closure under multiplication.
+\end{proof}
+
+\begin{corollary}
+    The set $L(G) := \set{\chi \in \Irr{G} : \chi(1) = 1}$ of degree $1$ characters is a multiplicative subgroup of $R(G)$.
+\end{corollary}
+\begin{proof}
+    Obviously, the trivial character is linear, making $L(G)$ nonempty. Further, for all $\chi_V, \chi_W \in L(G)$ (with associated \CGM s $V$ and $W$), clearly, $\chi_V \chi_W$ is a character (namely, that of $V \otimes W$), and $\parenth{\chi_V\chi_W}\!(1) = 1$, proving closure under multiplication. Finally, the inverse of any character $\chi_V$ (with associated \CGM\ $V$) is given by the character $\chi_{V^*}$ of its dual \CGM\ $V^*$, which is also linear, proving the desired result.
+\end{proof}
+
+\begin{lemma}
+    Let $\chi_V, \chi_W \in \Irr{G}$, with $\chi_V(1) = 1$. Then, $\chi_V \chi_W \in \Irr{G}$.
+\end{lemma}
+\begin{proof}
+    Recall, from Proposition \ref{Ch2:Prop:Bhv_Irred_Char}, that $\chi_V \chi_W$ is irreducible iff $\cycl{\chi_V \chi_W, \chi_V \chi_W} = 1$. Indeed, we have that
+    \begin{align*}
+        \cycl{\chi_V \chi_W, \chi_V \chi_W} &= \frac{1}{\abs{G}} \sum_{g \in G} \chi_V(g) \cdot \chi_W(g) \cdot \overline{\chi_V(g) \cdot \chi_W(g)} \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} \cancel{\chi_V(g)} \cdot \chi_W(g) \cdot \cancel{\overline{\chi_V(g)}} \cdot \overline{\chi_W(g)} \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} \chi_W(g) \cdot \overline{\chi_W(g)} = 1
+    \end{align*}
+    We justify the second equality by seeing that $\chi_V(g) \cdot \overline{\chi_V(g)} = 1$ because $\overline{\chi_V(g)} = \chi_V\!\parenth{g\inv}$. Indeed, since $\chi_V$ is of degree $1$, it is, in fact, \textit{equal} to its underlying representation, making it multiplicative (ie, $\chiof{V}{g} \cdot \chiof{V}{g\inv} = \chiof{V}{g g\inv} = 1$). The last equality follows from the fact that $\chi_W \in \Irr{G}$.
 \end{proof}
