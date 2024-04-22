@@ -417,16 +417,38 @@ We now have everything we need to prove the following important theorem.
         \phi = \hat{\phi} = \frac{\Tr{\phi}}{\pdim{S}} \cdot \id
     \end{align*}
     
-    Our next step will be to show that $\phi$ is identically zero. We will do this by computing its trace and showing it to be zero.\footnote{Indeed, a trace zero map is not, in general, the zero map; this is where the computation involving Schur's Lemmas plays a crucial role. As we have shown $\phi$ to be given by the action of scalar multiplication by its trace (divided by some nonzero factor, which is irrelevant for our purposes), if we can show its trace to be zero, we will have shown that $\phi$ itself is identically zero.} Denote by $\rho_S$ the (irreducible) representation corresponding to $S$ and by $\chi_S$ its corresponding character.
+    Our next step will be to show that $\phi$ is identically zero. We will do this by computing its trace and showing it to be zero.\footnote{Indeed, a trace zero map is not, in general, the zero map; this is where the computation involving Schur's Lemmas plays a crucial role. As we have shown $\phi$ to be given by the action of scalar multiplication by its trace (divided by some nonzero factor, which is irrelevant for our purposes), if we can show its trace to be zero, we will have shown that $\phi$ itself is identically zero.} Denote by $\rho_S$ the (irreducible) representation corresponding to $S$ and by $\chi_S$ its corresponding character. Then, as per the definition of $\phi$, we have that
     \begin{align*}
-        \Tr{\phi} &= \pdim{S} \cdot \Tr{\sum_{g \in G} \overline{f(g)} \cdot g\vert_{S}} \\
-        &= \sum_{g \in G} \overline{f(g)} \chi_S(g) \\
-        &= \abs{G} \cycl{\underbrace{\chi_S}_{\in W}, \underbrace{f}_{\in W^\perp}} = 0
+        \Tr{\phi} &=\Tr{\sum_{g \in G} \overline{f(g)} \cdot \rho_S(g)} \\
+        &= \sum_{g \in G} \overline{f(g)} \cdot \Tr{\rho_S(g)} \\
+        &= \sum_{g \in G} \overline{f(g)} \cdot \chi_S(g)
     \end{align*}
-    proving that in fact, $\hat{f}\vert_S = 0$.
+    Observe that the above expression is merely $\abs{G}$ times the inner-product of $f$ and and $\chi_S$ (cf. \eqref{SP:eq:Char_Inner_Product}). Since $f \in W^{\perp}$ and $\chi_S \in W$, we must have that
+    \begin{align*}
+        \Tr{\phi} = \abs{G} \cycl{{\chi_S}, {f}} = 0
+    \end{align*}
+    proving that in fact, $\phi = 0$.
     
-    \verb|sorry| % What an absolute mess this proof is. Terrible notation. TODO: FIX IT!!!!
+    It remains to show that $f = 0$. To that end, consider $V = \C G$ as a \CGM\footnote{Recall that this corresponds to the regular representation.}. Let
+    \begin{align*}
+        \C G = S_1 \+ \cdots \+ S_r
+    \end{align*}
+    be its decomposition into simple \CGM s. By the above computations, we know that the maps $\phi_i : S_i \to S_i$ given by $\phi_i(v) = \hat{f} \cdot v$ are all zero. In particular, for $i$ such that $1 \in S_i$ (with $1$ being the multiplicative identity of $\C G$), we have that
+    \begin{align*}
+        0 = \phi_i(1) = \hat{f} \cdot 1 &= \hat{f} \\
+        &= \sum_{g \in G} \overline{f(g)} \cdot g
+    \end{align*}
+    Since $G \subset \C G$ is a $\C$-basis of $\C G$, in particular, the elements of $G$ are linearly independent over $\C$. This means that the only way the above sum can be zero is if $\bar{f(g)} = 0$ for all $g \in G$. Since $f$ was arbitrary, we have that $W^\perp = \set{0}$, proving the desired result.
 \end{proof}
+
+\begin{remark}
+    The above proof illustrates the power of several concepts we have learnt so far.
+    \begin{enumerate}
+        \item \underline{The \CGM-formulation of a representation} allowed us to simplify notation by constructing $\hat{f}$ as a (central) element of $\C G$, making it correspond effectively to a (central) element of $\GL{V}$ for \textit{any} representation $V$ of $G$.
+        \item \underline{The semi-simplicity of $\C G$ as a \CGM} (ie, the complete reducibility of the regular representation) allowed us to apply a result on simple \CGM s to study the properties of $G$ itself. In particular, by reducing to the case of simple \CGM s, we were able to apply Schur's Lemmas.
+        \item \underline{Schur's Lemmas} allowed us to express $\phi$ in a more convenient form, whereby we could simplify the problem of showing $\phi$ to be zero to that of showing its trace to be zero.
+    \end{enumerate}
+\end{remark}
 
 % FIND A GOOD PLACE FOR THE FOLLOWING.
 
