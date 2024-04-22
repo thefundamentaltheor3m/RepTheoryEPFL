@@ -390,6 +390,7 @@ We now have everything we need to prove the following important theorem.
     \begin{align*}
         \hat{f} &= \sum_{g \in G} \overline{f(g)} \cdot g
     \end{align*}
+    Our approach will be to consider the action of $\hat{f}$ by scalar multiplication on simple \CGM s. We will show this to be a \CGM\ homomorphism, compute its trace, and apply the Orthogonality Theorem to show that $f$ must be identically zero.
 
     First, we show that $\hat{f} \in \Zof{\C G}$---ie, that $\hat{f}$ commutes (multiplicatively) with all elements of $\C G$. To show this, it suffices to show that $h\inv \hat{f} h = \hat{f}$ for all $h \in G$ (ie, that $\hat{f}$ commutes with all elements of $G$). To that end, fix $h \in G$. Then,
     \begin{align*}
@@ -398,25 +399,25 @@ We now have everything we need to prove the following important theorem.
         &= \sum_{g \in G} \overline{\fof{h\inv g h}} \cdot h\inv g h \\ % Can take h\inv g h inside f because f is central. Mention somewhere.
         &= \hat{f}
     \end{align*}
-    where the first equality follows from the fact that $\bar{f(g)} \in \C$, thereby commuting with all elements of $g$ in $\C G$; the second equality from the fact that $f$ is central (recall that $W, W^{\perp} \leq \FcGC$); and last equality from a change of variables in the summation, replacing $g$ with $hgh\inv$.
+    where the first equality follows from the fact that $\bar{f(g)} \in \C$, thereby commuting with all elements of $g$ in $\C G$; the second equality from the fact that $f$ is central (recall that $W, W^{\perp} \leq \FcGC$); and last equality from a change of variables in the summation, replacing $g$ with $hgh\inv$. The fact that $\hat{f} \in \Zof{\C G}$ will prove useful in the next step of the proof.
 
-    Now, let $S$ be any simple \CGM. One can show that the map
+    Now, let $S$ be any simple \CGM. Consider the $\C$-linear map $\phi : S \to S$ given by
     \begin{align*}
-        \phi : S \to S : v \mapsto \hat{f} \cdot v
+        \phi(v) = \hat{f} \cdot v = \sum_{g \in G} \overline{f(g)} \cdot \parenth{g \cdot v}
     \end{align*}
-    is a \CGM\ homomorphism. % Include more details
-    Now, in the notation of \eqref{SP:eq:Def_Hat_Map}, consider the map $\hat{\phi} : S \to S$. Since $\hat{f} \in \Zof{\C G}$, we have that for all $v \in V$,
+    where $g \cdot v$ refers to the action of $g$ on $S$ given by its \CGM\ structure\footnote{ie, if $\rho_S$ is the representation corresponding to $S$, then $g \cdot v$ corresponds to $\rho_S(g)(v)$}. In the notation of \eqref{SP:eq:Def_Hat_Map}, consider the map $\hat{\phi} : S \to S$. Since $\hat{f} \in \Zof{\C G}$, we have that for all $v \in V$,
     \begin{align*}
         \hat{\phi}(v) &= \frac{1}{\abs{G}} \sum_{g \in G} g \cdot \phiof{g\inv \cdot v} \\
         &= \frac{1}{\abs{G}} \sum_{g \in G} g\hat{f}g\inv \cdot v \\
         &= \frac{1}{\abs{G}} \sum_{g \in G} \hat{f} \cdot v \\
         &= \hat{f} \cdot v = \phi(v)
     \end{align*}
-    proving that $\hat{\phi} = \phi$. Then, by Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we have that % USE FACT THAT \hat{f} IS CENTRAL TO SHOW THAT \hat{\phi} = \phi (OR SOMETHING LIKE THAT).
+    It follows from Theorem \ref{SP:Thm:Schur_fin_G_over_C} that
     \begin{align*}
         \phi = \hat{\phi} = \frac{\Tr{\phi}}{\pdim{S}} \cdot \id
     \end{align*}
-    Indeed,
+    
+    Our next step will be to show that $\phi$ is identically zero. We will do this by computing its trace and showing it to be zero.\footnote{Indeed, a trace zero map is not, in general, the zero map; this is where the computation involving Schur's Lemmas plays a crucial role. As we have shown $\phi$ to be given by the action of scalar multiplication by its trace (divided by some nonzero factor, which is irrelevant for our purposes), if we can show its trace to be zero, we will have shown that $\phi$ itself is identically zero.} Denote by $\rho_S$ the (irreducible) representation corresponding to $S$ and by $\chi_S$ its corresponding character.
     \begin{align*}
         \Tr{\phi} &= \pdim{S} \cdot \Tr{\sum_{g \in G} \overline{f(g)} \cdot g\vert_{S}} \\
         &= \sum_{g \in G} \overline{f(g)} \chi_S(g) \\
