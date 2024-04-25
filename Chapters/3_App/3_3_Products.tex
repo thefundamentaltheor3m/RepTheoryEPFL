@@ -8,6 +8,35 @@ We begin by inviting the reader to refresh their memory on what we have seen so 
 
 % TODO: Add all that stuff from after Theorem 2.1.17.
 
+\begin{lemma}
+    The set $R(G) := \Z \Irr{G} \subseteq \FcGC$ is a subring of $\FcGC$.
+\end{lemma}
+\begin{proof}
+    Observe that $R(G)$ is certainly a group under addition. We claim that it is closed under multiplication, with multiplicative identity given by the trivial character.
+    
+    Let $\chi_V, \chi_W \in \Irr{G}$, with associated (simple) \CGM s $V$ and $W$. From Proposition \ref{Ch2:Prop:Bhv_Char}, we know that their product $\chi_V \chi_W$ is the character associated to the \CGM\ $V \otimes W$. %% WRITE AS SUM_k m_k chi_k for natural numbers m_k. % Since $V \otimes W$ is simple \verb|[JUSTIFY!]|, we have that $\chi_V \chi_W \in \Irr{G}$, proving closure under multiplication.
+\end{proof}
+
+\begin{corollary}
+    The set $L(G) := \set{\chi \in \Irr{G} : \chi(1) = 1}$ of degree $1$ characters is a multiplicative subgroup of $R(G)$.
+\end{corollary}
+\begin{proof}
+    Obviously, the trivial character is linear, making $L(G)$ nonempty. Further, for all $\chi_V, \chi_W \in L(G)$ (with associated \CGM s $V$ and $W$), clearly, $\chi_V \chi_W$ is a character (namely, that of $V \otimes W$), and $\parenth{\chi_V\chi_W}\!(1) = 1$, proving closure under multiplication. Finally, the inverse of any character $\chi_V$ (with associated \CGM\ $V$) is given by the character $\chi_{V^*}$ of its dual \CGM\ $V^*$, which is also linear, proving the desired result.
+\end{proof}
+
+\begin{lemma}
+    Let $\chi_V, \chi_W \in \Irr{G}$, with $\chi_V(1) = 1$. Then, $\chi_V \chi_W \in \Irr{G}$.
+\end{lemma}
+\begin{proof}
+    Recall, from Proposition \ref{Ch2:Prop:Bhv_Irred_Char}, that $\chi_V \chi_W$ is irreducible iff $\cycl{\chi_V \chi_W, \chi_V \chi_W} = 1$. Indeed, we have that
+    \begin{align*}
+        \cycl{\chi_V \chi_W, \chi_V \chi_W} &= \frac{1}{\abs{G}} \sum_{g \in G} \chi_V(g) \cdot \chi_W(g) \cdot \overline{\chi_V(g) \cdot \chi_W(g)} \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} \cancel{\chi_V(g)} \cdot \chi_W(g) \cdot \cancel{\overline{\chi_V(g)}} \cdot \overline{\chi_W(g)} \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} \chi_W(g) \cdot \overline{\chi_W(g)} = 1
+    \end{align*}
+    We justify the second equality by seeing that $\chi_V(g) \cdot \overline{\chi_V(g)} = 1$ because $\overline{\chi_V(g)} = \chi_V\!\parenth{g\inv}$. Indeed, since $\chi_V$ is of degree $1$, it is, in fact, \textit{equal} to its underlying representation, making it multiplicative (ie, $\chiof{V}{g} \cdot \chiof{V}{g\inv} = \chiof{V}{g g\inv} = 1$). The last equality follows from the fact that $\chi_W \in \Irr{G}$.
+\end{proof}
+
 \subsection{Tensor Products and Direct Products}
 
 \begin{boxdefinition}[Tensor Products of Modules of Different Groups]
@@ -60,7 +89,7 @@ We begin by inviting the reader to refresh their memory on what we have seen so 
     with respect to the standard basis. 
 \end{boxexample}
 
-\subsection{Powers of Characters}
+It is useful to think about powers of characters.
 
 \begin{boxnotation}
     Let $G$ be a finite group and let $\chi$ be a character of $G$. Then, for all $n \in \N$, the $n$th power of $\chi$ is the character $\chi^n$ of $G$ given by
@@ -73,5 +102,5 @@ We begin by inviting the reader to refresh their memory on what we have seen so 
     Let $G$ be a finite group and let $\chi$ be a faithful character of $G$. Suppose that $\abs{\set{\chi(g) : g \in G} = r}$. For all $\psi \in \Irr{G}$, $\exists 0 \leq i \leq r - 1$ such that $\cycl{\psi, \chi^i} \neq 0$.
 \end{theorem}
 \begin{proof}
-    Let $G = \set{g_1 = 1, g_2, \ldots, g_r}$
+    Let $G = \set{g_1 = 1, g_2, \ldots, g_r}$. \verb|FINISH!|
 \end{proof}

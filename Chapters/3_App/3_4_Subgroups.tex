@@ -1,0 +1,162 @@
+\section{Characters and Subgroups}
+
+In this section, we will explore how we can understand the characters of a group using those of its subgroups and vice-versa. We will begin by discussing the latter, which we will study from the perspective of Restriction. We will then discuss the former, which we will study from the perspective of Induction.
+
+\subsection{Restriction}
+
+For the entirety of this subsection, let $G$ be a finite group and let $H \leq G$. % We are interested in the restriction of this representation to $H$.
+
+\begin{boxdefinition}[Restriction of a Representation]
+    Let $\Vp$ be a complex representation of $G$ with associated character $\chi$. The restriction of $\Vp$ to $H$, denoted $V \downarrow H$ or $V_H$, is the set representation $\parenth{V, \rho\vert_H}$. We will denote its associated character $\chi \downarrow H$ or $\chi_H$.
+\end{boxdefinition}
+
+\begin{boxnotation}
+    To distinguish between inner-products of central functions considered over $H$ and those over $G$, we will denote the former by $\cycl{\cdot, \cdot}_H$. In similar fashion to \eqref{SP:eq:Char_Inner_Product}, we have, for all $\psi_1, \psi_2 \in \Fcof{H, \C}$,
+    \begin{align}
+        \cycl{\psi_1, \psi_2}_H := \frac{1}{\abs{H}} \sum_{h \in H} \psi_1(h) \overline{\psi_2(h)}
+    \end{align}
+\end{boxnotation}
+
+\begin{proposition}
+    Fix $\psi \in \Irr{H}$. Then, there exists an irreducible character $\chi$ of $G$ such that the inner-product $\cycl{\chi \downarrow H, \psi}_H$ is nonzero. 
+\end{proposition}
+\begin{proof}
+    Let $\Irr{G} = \set{\chi_1, \ldots, \chi_k}$. Consider the regular character $\chi_{\reg}$ of $G$. We then have \verb|(insert reference)| that for all $g \in G$,
+    \begin{align*}
+        \chi_{\reg} = \sum_{i = 1}^k \chi_i(1) \chi_i
+        = \begin{cases}
+            \abs{G} & \text{ if } g = 1 \\
+            0 & \text{ otherwise}
+        \end{cases}
+    \end{align*}
+    We now show that $\cycl{\chi_{\reg} \downarrow H, \psi}_H$ is nonzero:
+    \begin{align*}
+        \cycl{\chi_{\reg} \downarrow H, \psi}_H &= \frac{1}{\abs{H}} \sum_{h \in H} \chi_{\reg}(h) \overline{\psi(h)} \\
+        &= \frac{1}{\abs{H}} \abs{G} \overline{\psi(1)} \neq 0
+    \end{align*}
+    Considering the decomposition of $\chi_{\reg}$ as a sum of irreducible characters, we see that one of the summands must have a nonzero inner-product with $\psi$.
+\end{proof}
+
+\begin{remark}
+    In general, we can compute $\Irr{H}$ from $\Irr{G}$ quite easily if $\brac{G : H}$ is small. However, if $\brac{G : H}$ is large, then this can get difficult.
+\end{remark}
+
+\begin{proposition} \label{Ch3:Prop:Char_Rest_Bound_Degree}
+    Fix $\chi \in \Irr{G}$, and write $\Irr{H} = \set{\psi_1, \ldots, \psi_r}$. Then, $\exists d_1, \ldots, d_r \in \N$ such that
+    \begin{align*}
+        \chi \downarrow H = \sum_{i=1}^{r} d_i \psi_i
+        \quad\quad
+        \text{ and }
+        \quad\quad
+        \sum_{i=1}^{r} d_i^2 \leq \brac{G : H}
+    \end{align*}
+    Moreover, the above inequality is an \emph{eq}uality if and only if $\forall g \in G \setminus H$, we have $\chi(g) = 0$.
+\end{proposition}
+\begin{proof}
+    It is clear that $\exists d_1, \ldots, d_r$ such that $\chi \downarrow H = \sum_{i=1}^{r} d_i \psi_i$. To arrive at the inequality, we consider the inner-product of $\chi \downarrow H$ with itself:
+    \begin{align*}
+        \cycl{\chi \downarrow H, \chi \downarrow H}_H &= \frac{1}{\abs{H}} \sum_{h \in H} \chi(h) \overline{\chi(h)} \\
+        &= \frac{\brac{G:H}}{\abs{G}} \sum_{h \in H} \chi(h) \overline{\chi(h)}
+    \end{align*}
+    Now, since $\chi$ is irreducible (over $G$), we have that
+    \begin{align*}
+        1 = \cycl{\chi, \chi} &= \frac{1}{\abs{G}} \sum_{g \in G} \chi(g) \overline{\chi(g)} \\
+        &= \frac{1}{\abs{H}} \sum_{g \in H} \chi(g) \bar{\chi(g)} + \underbrace{\frac{1}{\abs{G}} \sum_{g \in G \setminus H} \chi(g) \bar{\chi(g)}}_{=: K}
+    \end{align*}
+    We then have that
+    \begin{align*}
+        \brac{G : H} = \sum_{i=1}^{r} d_i^2 + \brac{G : H} K
+    \end{align*}
+    Clearly, this quantity is greater than or equal to $\sum_{i=1}^{r} d_i^2$. Furthermore, $\brac{G : H} K = 0$ iff $K = 0$, which is true iff $\chi(g) = 0$ for all $g \in G \setminus H$.
+\end{proof}
+
+\begin{proposition}
+    Assume $H$ is a normal subgroup of $G$. Let $V$ be a simple \CGM. Then, all simple constituents\footnote{ie, summands in its direct sum decomposition into simple modules} of its restriction to $H$ have the same dimension.
+\end{proposition}
+\begin{proof}
+    Let $U \leq V$ be a simple $\C H$-submodule of $V$. Since $H$ is normal, for all $g \in G$, the set $gU$ is also a $\C H$-submodule of $V$: indeed, for all $h \in H$, $hg U = g h' U = g U$ where $h' = g\inv h g$.
+
+    Now, let $W := \sum_{g \in G} gU$. Since $W$ is a nonzero $\C G$-submodule of $V$, and since $V$ is simple, we have that $W = V$. Indeed, since $U$ is simple, so is $gU$ for every $g \in G$. This tells us that for all $g_1, g_2 \in G$,
+    \begin{align*}
+        g_1 U \cap g_2 U = \begin{cases}
+            0 & \text{ in some cases} \\
+            g_1 U & \text{ otherwise}
+        \end{cases}
+    \end{align*}
+    as $g_1 U \cap g_2 U$ is a submodule of the (simple) module $g_1 U$.\footnote{According to Dr. Rizzoli, "there is no naïve answer" to the question of when the intersection is zero and when it is not.}
+
+    Hence, the sum in the definition of $W$, considered only over indices $i$ such that distinct summands have zero intersection, is direct. Therefore, all \verb|FINISH!|
+\end{proof}
+
+\begin{corollary}\label{Ch3:Cor:NSGp_Irred_Constit_Char}
+    Assume $H$ is a normal subgroup of $G$. Fix $\chi \in \Irr{G}$. Then, all irreducible constituents of $\chi \downarrow H$ have the same degree.
+\end{corollary}
+
+\begin{proposition}
+    Let $H$ be normal in $G$, of degree $2$. Fix $\chi \in \Irr{G}$. Then, $\chi \downarrow H$ is either irreducible or the sum of two irreducible characters of equal degree.
+\end{proposition}
+\begin{proof}
+    Let $\Irr{H} = \set{\phi_1, \ldots, \phi_r}$. By Proposition \ref{Ch3:Prop:Char_Rest_Bound_Degree}, we have that $\chi \downarrow H = \sum_{i=1}^{r} d_i \phi_i$ for some $d_1, \ldots, d_r \in \N$. Since $\brac{G : H} = 2$, we have that $\sum_{i=1}^{r} d_i^2 \leq 2$. This implies that either $r = 1$ or $r = 2$ and $d_1 = d_2 = 1$. \verb|Refine a bit|
+\end{proof}
+
+\begin{remark}
+    Consider the situation described in the above proposition. We have that $\quotient{G}{H} \cong C_2$, the cyclic group of order $2$. By the Representation Theory of Cyclic Groups (cf. \verb|add reference|), we have that there is a linear character $\lambda$ of $\quotient{G}{H}$ such that for all $gH \in \quotient{G}{H}$,
+    \begin{align*}
+        \lambda(gH) =
+        \begin{cases}
+            -1 & \text{ if } g \notin H \\
+            1 & \text{ if } g \in H
+        \end{cases}
+    \end{align*}
+    This lifts to a character $\bar{\lambda}$ of $G$ given by $\bar{\lambda}(g) = \lambda(gH)$. We then have that for all $\chi \in \Irr{G}$, $\bar{\lambda} \chi$ is irreducible, agreeing with $\chi$ upon restriction to $H$.
+\end{remark}
+\begin{lemma}
+    \verb|either \chi or \bar{\lambda}\chi|
+\end{lemma}
+\begin{proof}
+    We have that for all $g \in G$,
+    \begin{align*}
+        \parenth{\chi + \bar{\lambda}\chi}\!(g) =
+        \begin{cases}
+            0 \text{ if } g \notin H \\
+            2\chi(g) \text{ if } g \in H
+        \end{cases}
+    \end{align*}
+    Now, let $\chi_2$ be an irreducible character of $G$ such that $\chi_2 \downarrow H = \chi \downarrow H$. We show that $\chi_2$ is either $\chi$ or $\bar{\lambda} \chi$. To that end, we compute the inner-product of $\chi + \bar{\lambda}\chi$ with $\chi_2$:
+    \begin{align*}
+        \cycl{\chi + \bar{\lambda}\chi, \chi_2} &= \frac{1}{\abs{G}} \sum_{g \in G} \parenth{\chi(g) + \bar{\lambda}\chi(g)} \overline{\chi_2(g)} \\
+        &= \frac{1}{\abs{G}} \sum_{g \in H} 2\chi(g) \overline{\chi_2(g)} \\
+        %&= \frac{2}{\abs{G}} \sum_{h \in H} \chi(h) \overline{\chi_2(h)} \\
+        &= \frac{1}{\abs{H}} \sum_{g \in H} \chi(g) \bar{\chi_2(g)} \\
+        &= \cycl{\chi \downarrow H, \chi \downarrow H}_H = 1
+    \end{align*}
+\end{proof}
+
+\begin{proposition}
+    Let $H$ have index $2$ in $G$. Let $\chi \in \Irr{G}$ be expressible as $\psi_1 + \psi_2$, for $\psi_1, \psi_2 \in \Irr{H}$. Let $\phi \in \Irr{G}$ be such that $\cycl{\phi \downarrow H, \psi_i}_H \neq 0$ for $i=1$ or $i=2$. Then, $\phi = \chi$.
+\end{proposition}
+\begin{proof}
+    Since $\brac{G : H} = 1 + 1$, by Proposition \ref{Ch3:Prop:Char_Rest_Bound_Degree}, we have that $\chi(g) = 0$ for all $g \in G \setminus H$. Computing the inner-product, we get that
+    \begin{align*}
+        \cycl{\phi, \chi} &= \frac{1}{\abs{G}} \sum_{g \in G} \phi(g) \overline{\chi(g)} \\
+        &= \frac{1}{\abs{H}} \sum_{h \in H} \phi(h) \overline{\chi(h)} \\
+        &= \frac{1}{2} \cycl{\phi \downarrow H, \chi}_H \neq 0
+    \end{align*}
+    proving that $\phi = \chi$. \verb|Need more details!|
+\end{proof}
+
+\subsection{Induction}
+
+In this subsection, we will describe a process whereby we can use the representation theory of the subgroups of $G$ to understand that of $G$.
+
+The situation we will attempt to understand is the following. Given a subgroup $H \leq G$, with $U$ a $\C H$-submodule of $\C H$ (which in turn is a submodule of $\C G$), we will attempt to understand the $\C G$-submodule of $G U$, which we will refer to as the \emph{induced module} of $U$. We will define this more formally very soon.
+
+First, observe that for $H \leq G$, the \CGM\ $\C G$ is naturally a right \CHM\ with action $h(g) = gh$. Hence, taking the tensor product of $\C G$ with a \CHM\ \textit{over $\C H$} is a sensible thing to do.
+
+\begin{boxdefinition}
+    Let $H \leq G$ and let $V$ be a \CHM. The induced module of $V$ from $H$ to $G$, denoted $\Ind_H^G(V)$, $V^G$ or $V \uparrow G$, is the \CGM\ $\C G \otimes_{\C H} V$ equipped with scalar multiplication
+    \begin{align}
+        g \cdot \parenth{x \otimes v} = gh \otimes v
+    \end{align}
+    for all $g \in G$, $x \in \C G$ and $v \in V$.
+\end{boxdefinition}
