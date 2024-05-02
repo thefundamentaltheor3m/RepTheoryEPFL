@@ -318,17 +318,18 @@ This gives us the following important relationship between induction and restric
     \end{align*}
     Let $H = \cycl{A} \cong C_4$, the cyclic group of order $4$. For $\chi \in \Irr{H}$, we determine $\Ind_H^G(\chi)$.
 
-    Consider the following character table for $H$:
-    % \begin{table}[h]
-    %     \begin{tabular}{c|ccccc}
-    %         & $1$ & $-1$ & $a$ & $b$ & $ab$ \\
-    %         \hline
-    %         $\chi_1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
-    %         $\chi_2$ & $1$ & $1$ & $1$ & $-1$ & $-1$ \\
-    %         $\chi_3$ & $1$ & $1$ & $1$ & $1$ & $-1$ \\
-    %         $\chi_4$ & $1$ & $1$ & $1$ & $-1$ & $1$ \\
-    %         $\chi_5$ & $2$ & $-2$ & $-2$ & $0$ & $0$
-    %     \end{tabular}
-    % \end{table}
+    Consider the following character table for $G$:
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|ccccc}
+            & $1$ & $-1$ & $a$ & $b$ & $ab$ \\
+            \hline
+            $\chi_1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+            $\chi_2$ & $1$ & $1$ & $1$ & $-1$ & $-1$ \\
+            $\chi_3$ & $1$ & $1$ & $1$ & $1$ & $-1$ \\
+            $\chi_4$ & $1$ & $1$ & $1$ & $-1$ & $1$ \\
+            $\chi_5$ & $2$ & $-2$ & $-2$ & $0$ & $0$
+        \end{tabular}
+    \end{table}
     The group $H$ has $4$ irreducible characters, which we denote $\eta_1, \eta_2, \eta_3, \eta_4$. Indeed, $\eta_1 = \chi_1 \downarrow H$ and $\eta_2 = \chi_3 \downarrow H = \chi_4 \downarrow H$. Furthermore, Frobenius Reciprocity tells us that $\chi_1$ and $\chi_2$ are both constituents of $\Ind_H^G(\eta_1)$---indeed, they are the only ones. Similarly, $\chi_3$ and $\chi_4$ are both constituents of $\Ind_H^G(\eta_2)$. Finally, no linear character is a constituent of $\Ind_H^G(\eta_3)$ or $\Ind_H^G(\eta_4)$.
 \end{boxexample}
