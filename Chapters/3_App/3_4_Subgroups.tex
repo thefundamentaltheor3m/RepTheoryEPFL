@@ -1,4 +1,4 @@
-\section{Characters and Subgroups}
+\section{The Character Theory of Subgroups}
 
 In this section, we will explore how we can understand the characters of a group using those of its subgroups and vice-versa. We will begin by discussing the latter, which we will study from the perspective of Restriction. We will then discuss the former, which we will study from the perspective of Induction.
 
@@ -7,7 +7,7 @@ In this section, we will explore how we can understand the characters of a group
 For the entirety of this subsection, let $G$ be a finite group and let $H \leq G$. % We are interested in the restriction of this representation to $H$.
 
 \begin{boxdefinition}[Restriction of a Representation]
-    Let $\Vp$ be a complex representation of $G$ with associated character $\chi$. The restriction of $\Vp$ to $H$, denoted $V \downarrow H$ or $V_H$, is the set representation $\parenth{V, \rho\vert_H}$. We will denote its associated character $\chi \downarrow H$ or $\chi_H$.
+    Let $\Vp$ be a complex representation of $G$ with associated character $\chi$. The restriction of $\Vp$ to $H$, denoted $V \downarrow H$, $\Res_H^G(V)$ or $V_H$, is the set representation $\parenth{V, \rho\vert_H}$. We will denote its associated character $\chi \downarrow H$ or $\chi_H$.
 \end{boxdefinition}
 
 \begin{boxnotation}
@@ -147,16 +147,188 @@ For the entirety of this subsection, let $G$ be a finite group and let $H \leq G
 
 \subsection{Induction}
 
-In this subsection, we will describe a process whereby we can use the representation theory of the subgroups of $G$ to understand that of $G$.
+In this subsection, we will describe a process whereby we can use the representation theory of the subgroups of $G$ to understand that of $G$. For the remainder of this section, let $H$ be a subgroup of $G$.
 
-The situation we will attempt to understand is the following. Given a subgroup $H \leq G$, with $U$ a $\C H$-submodule of $\C H$ (which in turn is a submodule of $\C G$), we will attempt to understand the $\C G$-submodule of $G U$, which we will refer to as the \emph{induced module} of $U$. We will define this more formally very soon.
+The situation we will attempt to understand is the following. Given $U$ a $\C H$-submodule of $\C H$ (which in turn is a submodule of $\C G$), we will attempt to understand the $\C G$-submodule of $G U$, which we will refer to as the \emph{induced module} of $U$. We will define this more formally very soon.
 
-First, observe that for $H \leq G$, the \CGM\ $\C G$ is naturally a right \CHM\ with action $h(g) = gh$. Hence, taking the tensor product of $\C G$ with a \CHM\ \textit{over $\C H$} is a sensible thing to do.
+First, observe that the \CGM\ $\C G$ is naturally a right \CHM\ with action $h(g) = gh$. Hence, taking the tensor product of $\C G$ with a \CHM\ \textit{over $\C H$} is a sensible thing to do.
 
-\begin{boxdefinition}
-    Let $H \leq G$ and let $V$ be a \CHM. The induced module of $V$ from $H$ to $G$, denoted $\Ind_H^G(V)$, $V^G$ or $V \uparrow G$, is the \CGM\ $\C G \otimes_{\C H} V$ equipped with scalar multiplication
+\begin{boxdefinition}[Induced Module]
+    Let $V$ be a \CHM. The induced module of $V$ from $H$ to $G$, denoted $\Ind_H^G(V)$, $V^G$ or $V \uparrow G$, is the \CGM\ $\C G \otimes_{\C H} V$ equipped with scalar multiplication
     \begin{align}
-        g \cdot \parenth{x \otimes v} = gh \otimes v
+        g \cdot \parenth{x \otimes v} = gx \otimes v
     \end{align}
     for all $g \in G$, $x \in \C G$ and $v \in V$.
 \end{boxdefinition}
+
+We can give a more concrete description of the induced module.
+
+\begin{proposition}
+    Let $k = \brac{G : H}$ and let $g_1, \ldots, g_k$ be a complete set of coset representatives (so that $G = \bigsqcup_{i=1}^{k} g_i H$). As a vector space, we have that
+    \begin{align}
+        \Ind_H^G(V) = \bigoplus_{i=1}^{k} g_i \otimes V
+        \label{Ch3:eq:Induced_Module_DSum}
+    \end{align}
+    where we denote by $g_i \otimes V$ the set of elements of the form $g_i \otimes v$ for $v \in V$.\footnote{Such a vector space is naturally isomorphic to $V$.} Furthermore, $\C G$ transitively permutes the summands $g_i \otimes V$ in \eqref{Ch3:eq:Induced_Module_DSum} via the action
+    \begin{align*}
+        g \cdot \parenth{g_i \otimes v} = g_j \otimes v
+    \end{align*}
+    where $g \in G$ is arbitrary and $j$ is such that $g g_i \in g_j H$.
+\end{proposition}
+\begin{proof}
+    As a right \CHM, we have that
+    \begin{align*}
+        \C G &= \C \parenth{\bigsqcup_{i=1}^{k} g_i H} \\
+        &= \bigoplus_{i=1}^{k} \C \parenth{g_i H} \\
+        &= \bigoplus_{i=1}^{k} g_i \otimes \C H
+    \end{align*}
+    Since $\Ind_H^G(V) = \C G \otimes_{\C H} V$, replacing $\C G$ with the above sum, we get that
+    \begin{align*}
+        \Ind_H^G(V) &= \parenth{\bigoplus_{i=1}^{k} g_i \otimes \C H} \otimes_{\C H} V \\
+        &= \bigoplus_{i=1}^{k} g_i \otimes \parenth{\C H \otimes_{\C H} V} \\
+        &\cong \bigoplus_{i=1}^{k} g_i \otimes V
+    \end{align*}
+    as in \eqref{Ch3:eq:Induced_Module_DSum}, proving the first part of the proposition.
+
+    For the second part, fix $g \in G$ and $1 \leq i \leq k$. Let $1 \leq j \leq k$ and $h \in H$ be such that $g g_i = g_j h$. We then have that
+    \begin{align*}
+        g\parenth{g_i \otimes V} = g g_i \otimes V = g_j h \otimes V = g_j \otimes h V = g_j \otimes V
+    \end{align*}
+    demonstrating that we have the desired permutations of the summands in \eqref{Ch3:eq:Induced_Module_DSum}. The only thing left to show is that this action is transitive. \verb|ASK PROF TO CLARIFY TRANSITIVITY|
+\end{proof}
+
+\begin{corollary}
+    As a $\C$-vector space, we have that $\displaystyle \pdim{\Ind_H^G(V)} = \brac{G : H} \cdot \pdim{V}$.
+\end{corollary}
+
+\begin{boxexample}
+    The induced module of the trivial module $\C$ from $H$ to $G$ is the permutation module of $G$ acting on $\quotient{G}{H}$ by $g \cdot g_i H = g_j H$.
+\end{boxexample}
+
+We now turn our attention to the characters of the induced module. We will begin by characterising the character of the induced module.
+
+\begin{proposition}
+    If $V$ is a \CHM\ with character $\chi$, the character of the induced module, denoted $\Ind_H^G(\chi)$, is given by
+    \begin{align*}
+        \Ind_H^G(\chi)(g) = \frac{1}{\abs{H}} \sum_{x\inv g x \in H} \chi(x\inv g x)
+    \end{align*}
+    for all $g \in G$.
+\end{proposition}
+\begin{proof}
+    Fix $g \in G$. We determine the trace of the action of $g$ on $\Ind_H^G(V)$ as follows.
+
+    Consider the decomposition $\Ind_H^G(V) = \bigoplus_{i=1}^{k} g_i \otimes V$ (as given by \eqref{Ch3:eq:Induced_Module_DSum}, with $\set{g_i}_{i=1}^k$ being a set of representatives for the elements of $\quotient{G}{H}$). Consider the action of $g$ with respect to a basis given by the various bases of $g_i \otimes V$.
+
+    \verb|DRAW MATRIX FROM iPAD|
+
+    If $g$ does not fix $g_i \otimes V$, then the contribution $g_i \otimes V$ to $\Tr{g}$ is zero. If $g$ does fix $g_i \otimes V$ (or, equivalently, if $g_i\inv g g_i \in H$), then the contribution is given by
+    \begin{align*}
+        \chi(g_i\inv g g_i) = g \parenth{g_i \otimes v} = g_i \parenth{g_i g g\inv} \otimes v = g_i \otimes \parenth{g_i g g\inv}v
+    \end{align*}
+    for all $v \in V$. We can then conclude that
+    \begin{align*}
+        \Ind_H^G(\chi)(g) = \sum_{g_i\inv g g_i \in H} \chi(g_i\inv g g_i)
+    \end{align*}
+    Indeed, this sum can be extended to a sum over \textit{all} $x \in G$ such that $x\inv g x \in H$ (except we need to divide by $H$ when we do so), giving us the desired result. \verb|Eh???|
+\end{proof}
+
+\begin{boxexample}
+    Let $G = S_3$ and $H = \set{1, \parenth{123}, \parenth{132}}$. Choose $1$ and $\parenth{12}$ as a set of coset representatives for $\quotient{G}{H}$. Let $\chi$ be the character of the trivial module of $H$. Then,
+\end{boxexample}
+
+\subsection{The Relationship between Induction and Restriction}
+
+It is no coincidence that we investigated these phenomena in succession. As we shall see, they share an interesting relationship. This turns out to be a consequence of the following important \textbf{universal property}.
+
+\begin{boxproposition}[The Universal Property of the Induced Module]
+    Let $V$ be a \CHM. For all \CGM s $W$ and all \CHM\ homomorphisms $f : V \to W \downarrow H$, there exists a unique \CGM\ homomorphism $\tilde{f} : \Ind_H^G(V) \to W$ such that the following diagram commutes:
+    \begin{cd}  % Mostly generated by Copilot
+        V \arrow{r}{f} \arrow[d, "\iota"'] & W \downarrow H \arrow{d}{\iota'} \\
+        \Ind_H^G(V) \arrow[r, dashed, "\exists! \tilde{f}"] & W
+    \end{cd}
+    where $\iota : V \to \Ind_H^G(V)$ is the map $v \mapsto 1 \otimes v$ and $\iota' : W \downarrow H \to W$ is the map \verb|sorry|.
+\end{boxproposition}
+
+\begin{proof}
+    Since $f$ is a morphism of \CHM s, the map $\bar{f} : \C G \times V \to W : \parenth{x, v} \mapsto x f(v)$ is $\C H$-stable: for all $x, x' \in \C G$, $v, v' \in V$ and $y \in \C H$,
+    \begin{align*} % Thank you Copilot!
+        \bar{f}(x + x', v) &= (x + x') f(v) = x f(v) + x' f(v) = \bar{f}(x, v) + \bar{f}(x', v) \\
+        \bar{f}(x, v + v') &= x f(v + v') = x f(v) + x f(v') = \bar{f}(x, v) + \bar{f}(x, v') \\
+        \bar{f}(xy, v) &= (xy) f(v) = x y f(v) = x f(y v) = x f(y v) = \bar{f}(x, y v)
+    \end{align*}
+    By the Universal Property of the Tensor Product, $\exists! \tilde{f} : \C G \otimes_{\C H} V \to W : x \otimes V \mapsto x f(v)$. It is clear that $\tilde{f}$ is a morphism of \CGM s \verb|(is it?)|. Finally, one can check that the diagram commutes.
+\end{proof}
+
+This gives us the following important relationship between induction and restriction.
+
+\begin{corollary}
+    Let $V$ be a \CHM\ and $W$ a \CHM, as above. Then, there is an isomorphism of $\C$-vector spaces between $\Hom_{\C H}\!\parenth{V, W \downarrow H}$ and $\Hom_{\C G}\!\parenth{\Ind_H^G(V), W}$.
+\end{corollary}
+
+\begin{proof}
+    Fix $\varphi \in \Hom_{\C G}(\Ind_H^G(V), W)$. Then, $\varphi \circ \iota$ is a morphism of \CHM s from $V$ to $W \downarrow H$. One can use the Universal Property to show that $\phi \mapsto \phi \circ \iota$ is $\C$-linear, injective and surjective.
+    % [COPILOT EXPLICIT INVERSE:] Conversely, fix $\psi \in \Hom_{\C H}(V, W \downarrow H)$. Then, $\tilde{\psi} \circ \iota$ is a morphism of \CGM s from $\Ind_H^G(V)$ to $W$. \verb|Finish!|
+\end{proof}
+
+\begin{lemma}
+    Let $W_1$ and $W_2$ be \CGM s and with respective characters $\chi_1$ and $\chi_2$. Then,
+    \begin{align*}
+        \pdim{\Hom_{\C G}\!\parenth{W_1, w_2}} = \cycl{\chi_1, \chi_2}
+    \end{align*}
+    where we consider the dimension to be that of a $\C$-vector space.
+\end{lemma}
+\begin{proof}
+    \verb|Exercise in PS 10. TODO: place elsewhere!|
+\end{proof}
+
+\begin{boxtheorem}[Frobenius Reciprocity]
+    Let $V$ be a \CHM\ and $W$ a \CGM, with characters $\chi_V$ and $\chi_W$ respectively. Then,
+    \begin{align*}
+        \cycl{\Ind_H^G(\chi_V), \chi_W}_{G} = \cycl{V, \Res_H^G(W)}_{H}
+    \end{align*}
+\end{boxtheorem}
+\begin{proof}
+    This is a direct consequence of the previous lemma and the corollary \verb|(reference)|:
+    \begin{align*}
+        \cycl{\Ind_H^G(\chi_V), \chi_W}_{G} &= \pdim{\Hom_{\C G}\!\parenth{\Ind_H^G(V), W}} \\
+        &= \pdim{\Hom_{\C H}\!\parenth{V, W \downarrow H}} \\
+        &= \cycl{V, W \downarrow H}_{H} = \cycl{V, \Res_H^G(W)}_{H}
+    \end{align*}
+\end{proof}
+
+% \begin{boxexample}  % Copilot -- VERIFY!
+%     Let $G = S_3$ and $H = \set{1, \parenth{123}, \parenth{132}}$. Let $V$ be the trivial module of $H$ and $W$ the sign module of $G$. Then, we have that
+%     \begin{align*}
+%         \Ind_H^G(\chi_V) = \chi_W
+%     \end{align*}
+% \end{boxexample}
+
+\begin{boxexample}[The Quaternion Group]
+    Let $G = Q_8$, the quaternion group of order $8$, viewed as a subgroup of $\GL{2, \C}$. We know it is generated by
+    \begin{align*}
+        a = \begin{bmatrix}
+            i & 0 \\ 0 & -i
+        \end{bmatrix}
+        \quad\quad
+        \text{and}
+        \quad\quad
+        b = \begin{bmatrix}
+            0 & 1 \\ -1 & 0
+        \end{bmatrix}
+    \end{align*}
+    Let $H = \cycl{A} \cong C_4$, the cyclic group of order $4$. For $\chi \in \Irr{H}$, we determine $\Ind_H^G(\chi)$.
+
+    Consider the following character table for $H$:
+    % \begin{table}[h]
+    %     \begin{tabular}{c|ccccc}
+    %         & $1$ & $-1$ & $a$ & $b$ & $ab$ \\
+    %         \hline
+    %         $\chi_1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+    %         $\chi_2$ & $1$ & $1$ & $1$ & $-1$ & $-1$ \\
+    %         $\chi_3$ & $1$ & $1$ & $1$ & $1$ & $-1$ \\
+    %         $\chi_4$ & $1$ & $1$ & $1$ & $-1$ & $1$ \\
+    %         $\chi_5$ & $2$ & $-2$ & $-2$ & $0$ & $0$
+    %     \end{tabular}
+    % \end{table}
+    The group $H$ has $4$ irreducible characters, which we denote $\eta_1, \eta_2, \eta_3, \eta_4$. Indeed, $\eta_1 = \chi_1 \downarrow H$ and $\eta_2 = \chi_3 \downarrow H = \chi_4 \downarrow H$. Furthermore, Frobenius Reciprocity tells us that $\chi_1$ and $\chi_2$ are both constituents of $\Ind_H^G(\eta_1)$---indeed, they are the only ones. Similarly, $\chi_3$ and $\chi_4$ are both constituents of $\Ind_H^G(\eta_2)$. Finally, no linear character is a constituent of $\Ind_H^G(\eta_3)$ or $\Ind_H^G(\eta_4)$.
+\end{boxexample}
