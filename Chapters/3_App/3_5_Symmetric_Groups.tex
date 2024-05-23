@@ -1,0 +1,35 @@
+\section{Characters of Symmetric Groups}
+%% NON-EXAMINABLE!!!!!!!!
+
+\subsection{Conjugacy Classes of Symmetric Groups}
+
+It turns out that the conjugacy class structure of the symmetric group $S_n$ is determined by its disjoint cycle structure.
+
+Before proceeding, we will recall two important definitions.
+
+\begin{definition}[Cycle Type]
+    Fix $\sigma \in S_n$. Recall that $\sigma$ can be written as a product of disjoint cycles $c_1, \ldots, c_s$ of lengths $k_1 \geq \cdots \geq k_s$ respectively. We call the tuple $\parenth{k_1, \ldots, k_s}$ the cycle type of $\sigma$.
+\end{definition}
+
+\begin{definition}[Partition]
+    For any $n \in \N$, a partition of $n$ is a tuple $\lambda = \parenth{\lambda_1, \ldots, \lambda_s} \in \N^s$ such that $\lambda_1 \geq \cdots \geq \lambda_s$ and $\sum_{i=1}^s \lambda_i = n$.
+\end{definition}
+\begin{boxnotation}
+    The following will prove useful in dealing with partitions.
+    \begin{enumerate}[label = (\roman*), noitemsep]
+        \item We use the notation $\lambda \vdash n$ to denote that $\lambda$ is a partition of $n$.
+        \item We write $\abs{\lambda} = \sum_{i=1}^{s} \lambda_i$, and can therefore restate the defining condition as $\abs{\lambda} = n$.
+    \end{enumerate}
+\end{boxnotation}
+
+It turns out that these two seemingly unrelated concepts are in fact quite closely related.
+
+\begin{proposition}[Conjugacy Classes of $S_n$ and Partitions of $n$]
+    \hfill
+    \begin{enumerate}[noitemsep, label = \normalfont \arabic*.]
+        \item The cycle type of any $\sigma \in S_n$ is a partition of $n$.
+        \item There is a bijection between the set of partitions of $n$ and the set of conjugacy classes of $S_n$.
+    \end{enumerate}
+\end{proposition}
+We will not prove this proposition here, but we will apply it going forward.
+
