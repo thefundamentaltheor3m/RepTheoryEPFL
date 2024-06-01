@@ -1,20 +1,17 @@
 \section{Invariant Constructions}
 
-In this section, we briefly examine how ordinary linear algebraic constructions can interact with representations. We are particularly interested in the notion of \textit{invariance}, wherein a construction respects the structure of the representation(s) involved.
+In this section, we briefly examine how ordinary linear algebraic constructions can interact with representations. We are particularly interested in the notion of \textit{invariance}, wherein a linear algebraic construction respects the structure of any representations involved.
 
 \subsection{Direct Sums of Representations}
 
 The most elementary operation we can think about when we have two objects is \textit{putting them together}. One of the most meaningful ways of doing so in the context of linear algebra is the direct sum of two vector spaces. It turns out that this extends rather naturally to representations.
 
-\begin{boxdefinition}[The Direct Sum of Two Representations] \label{Ch1:Def:Dir_Sum_Reps}
+\begin{boxdefinition}[The Direct Sum of Two Representations]\label{Ch1:Def:Dir_Sum_Reps}
     \letgvv. We define the direct sum of $\parenth{V,\rho}$ and $\parenth{V', \rho'}$ to be the pair $\parenth{V \+ V', \rho \+ \rho'}$, where $V \+ V'$ is the direct sum of $V$ and $V'$ as vector spaces and $\rho \+ \rho' : G \to \GL{V \+ V'}$ maps every $g \in G$ to the map
     \begin{align*}
         \parenth{\rho \+ \rho'}\!\parenth{g}\!\parenth{v \+ v'} &= \rho(g)(v) \+ \rho'(g)(v') \in \GL{V}
     \end{align*}
 \end{boxdefinition}
-\begin{remark}
-    In similar fashion, we can also define the tensor product of two representations: % though we will not do so here.
-\end{remark}
 \begin{proposition}
     \letgvv.
     \begin{enumerate}[label = \normalfont \arabic*., noitemsep]
@@ -57,29 +54,34 @@ We have a natural relationship between irreducibility and indecomposability.
 \end{proof}
 
 \begin{boxexample}
-    Let $C_2 = \cycl{a}$ be the cyclic group of order $2$, and let $\Vp$ be the regular representation of $C_2$ over a field $K$.
+    Let $C_2 = \set{1, a}$ be the cyclic group of order $2$, and let $\Vp$ be the regular representation of $C_2$ over a field $K$.
     \begin{enumerate}
-        \item \underline{Let $K = \C$.} Then, let $W_1 := \Span{e_1 + e_a}$ and $W_2 := \Span{e_1 - e_a}$. It is obvious that $W_1 \+ W_2 = V$. Furthermore, $W_1$ and $W_2$ are both $C_2$-invariant. Hence, the regular representation of $C_2$ over $\C$ is decomposable.
-        \item \underline{Let $K = \F_2$.} Then, $V = \set{0, e_1, e_a, e_1 + e_a}$. If $\Vp$ were reducible, it would need to be expressible as the direct sum of two subrepresentations of degree $1$. But, the only $G$-invariant subspace of $V$ of dimension $1$ is $\set{0, e_1 + e_a}$. Hence, $\Vp$ cannot be indecomposable.
+        \item \underline{Let $K = \C$.} Then, let $W_1 := \Span{e_1 + e_a}$ and $W_2 := \Span{e_1 - e_a}$. It is obvious that $W_1 \+ W_2 = V$, as vector spaces. Furthermore, $W_1$ and $W_2$ are both $C_2$-invariant. Hence, $W_1 \+ W_2 = V$ as representations, too. One would say that the regular representation of $C_2$ over $\C$ is decomposable.
+        \item \underline{Let $K = \F_2$.} Then, $V = \set{0, e_1, e_a, e_1 + e_a}$. Observe that $W := \set{0, e_1 + e_a}$ is a proper, $C_2$-invariant subspace of $V$. Hence, $\Vp$ is reducible. However, $W$ is the \textit{only} such subspace, meaning $\Vp$ cannot be expressed as a direct sum of \textit{two} proper, nonzero subrepresentations. Therefore, $\Vp$ is indecomposable. % In particular, \textit{the converse of Proposition \ref{Ch1:Prop:Irred_implies_Indecomp} is false}.
     \end{enumerate}
 \end{boxexample}
-The $K = \F_2$ case in the above example demonstrates an important fact: \textit{the converse of Proposition \ref{Ch1:Prop:Irred_implies_Indecomp} is not true.} The regular representation of $C_2$ over $\F_2$ is clearly reducible---the subspace $\set{0, e_1 + e_a}$ is clearly $C_2$-invariant---but it is still indecomposable. That said, it turns out that under certain conditions, we \textit{do} have a converse.
+The $K = \F_2$ case in the above example demonstrates an important fact: \textit{the converse of Proposition \ref{Ch1:Prop:Irred_implies_Indecomp} is not, in general, true.} It is natural to wonder if we can, at least, prove a \textit{partial} converse. It turns out that we can: the converse is true under (indeed, equivalent to) a very specific condition. While we do not yet have the tools we need to prove this result, it will be worth the wait, as it will turn out to be a direct consequence of a more powerful theorem proved by Heinrich Maschke (and the converse thereof).
 
-\begin{proposition}
-    \letfg\ and let $K$ be a field. All indecomposable representations of $G$ are irreducible if and only if $\pchar{K}$ does not divide $\abs{G}$.
-\end{proposition}
-\begin{proof}
-    If $\abs{G} = 1$, the result is trivial: we already know that $\pchar{K}$ cannot divide $\abs{G}$, and 
-    \begin{description}
-        \item[$\parenth{\implies}$] Assume that all indecomposable representations of $G$ are irreducible. 
-    \end{description}
-\end{proof}
+Finally, just like in other areas of mathematics where we encounter the word ``irreducible,'' in the context of representation theory, too, we have a notion of decomposition into irreducibles.
 
-Finally, just like everywhere else in mathematics where we encounter the word ``irreducible,'' in the context of representation theory, too, we have a notion of decomposition into irreducibles.
-
-\begin{boxdefinition}[Complete Reducibility] \label{Ch1:Def:Comp_Red}
+\begin{boxdefinition}[Complete Reducibility]\label{Ch1:Def:Comp_Red}
     A representation is said to be completely reducible if it is expressible as a direct sum of irreducible representations.
 \end{boxdefinition}
+Note that by this definition, any irreducible representation is completely reducible---it is a direct sum of only one irreducible representation, namely, itself.
+
+Indecomposability and complete reducibility are intrinsically connected. The following proposition will eventually be part of a chain of equivalences that will establish a converse of Proposition \ref{Ch1:Prop:Irred_implies_Indecomp} using Maschke's Theorem and its converse.
+
+\begin{proposition}\label{Ch1:Prop:Indecomp_implies_Irred_iff_Comp_Red}
+    \letgv. Let $K$ be a field. All indecomposable, finite-dimensional representations of $G$ over $K$ are irreducible if and only if every finite-dimensional representation of $G$ over $K$ is completely reducible.
+\end{proposition}
+\begin{proof}
+    \hfill
+    \begin{description}
+        \item[$\parenth{\implies}$] Let $\Vp$ be a finite-dimensional representation of $G$ over $K$. If $\Vp$ is indecomposable, it is irreducible, making it completely reducible. Else, $\Vp$ is decomposable, making it a direct sum of two proper, nonzero subrepresentations. We can construct an inductive argument (on $\pdim{V}$) to show that each of these subrepresentations is completely reducible. We can then conclude that $\Vp$ is completely reducible.
+
+        \item[$\parenth{\impliedby}$] Let $\Vp$ be a finite-dimensional, indecomposable representation of $G$ over $K$. By assumption, $\Vp$ is expressible as a direct sum of irreducible representations. Since $\Vp$ is indecomposable, none of the summands can be proper or nonzero. Therefore, $\Vp$ must be a direct sum of \textit{one} irreducible representation---namely, itself.
+    \end{description}
+\end{proof}
 
 It turns out that complete reducibility can be better understood through complementary subrepresentations.
 
@@ -139,7 +141,7 @@ It turns out that this gives us an important criterion for decomposability.
 
 One also has a converse criterion for $G$-linearity.
 
-\begin{proposition} \label{Ch1:Prop:Proj_Inv_Lin}
+\begin{proposition}\label{Ch1:Prop:Proj_Inv_Lin}
     \letgv, and let $T : V \to V$ be a projection. If $\pker{T}$ and $\pim{T}$ are both $G$-invariant, then $T$ is $G$-linear.
 \end{proposition}
 \begin{proof}
@@ -158,15 +160,15 @@ One also has a converse criterion for $G$-linearity.
 
 Finally, we relate complementary subrepresentations and complete reducibility, which makes it clear why we are so interested in complementary subrepresentations.
 
-\begin{proposition}
-    A representation of a finite group is completely reducible if and only if each of its subrepresentations admits a complementary subrepresentation.
+\begin{proposition}\label{Ch1:Prop:Comp_Red_iff_Compl_Subreps}
+    A finite-dimensional representation of a finite group is completely reducible if and only if each of its subrepresentations admits a complementary subrepresentation.
 \end{proposition}
 \begin{proof}
-    \letfgv.
+    \letfgfv.
     \begin{description}
         \item[$\parenth{\implies}$] Assume $\Vp$ is completely reducible, with decomposition $V = \bigoplus_{i \in \I} W_i$ into irreducible subrepresentations. Let $U \leq V$ be $G$-invariant.
         
-        \item[$\parenth{\impliedby}$] Assume every subrepresentation of $\Vp$ admits a complementary subrepresentation. We know that $\Vp$ is either irreducible, in which case we'd be done, or reducible, in which case there exists a proper, nonzero, $G$-invariant subspace $W_1 \leq V$. 
+        \item[$\parenth{\impliedby}$] Assume every subrepresentation of $\Vp$ admits a complementary subrepresentation. We know that $\Vp$ is either irreducible, in which case we'd be done, or reducible, in which case there exists a proper, nonzero, $G$-invariant subspace $W \leq V$. We know that $W$ admits a complementary subrepresentation $U \leq V$, which must also be proper and nonzero. We can argue by induction on the dimension to completely reduce both $W$ and $U$ (ie, express them as direct sums of irreducibles). We can then conclude that $\Vp$ is completely reducible.
     \end{description}
 \end{proof}
 
@@ -286,7 +288,13 @@ It turns out that Maschke's Theorem also has a \textit{converse}.
     Comparing coefficients, we conclude that $\beta_{h\inv g} = \beta_g$ for all $h,g \in G$. Letting $h = g$, we get, in particular, that $\forall g \in G$, $\beta_g = \beta_1$. Therefore, $u = \beta_1 \sum_{g \in G} e_g$. This, in particular, implies that $u' := \sum_{g \in G} e_g \notin W$, because otherwise, $u = \beta_1 u'$ would also lie in $W$, which it does not. Therefore, the sum of the coordinates of $u'$ with respect to $\B$ cannot be zero. But, this sum is nothing but the cardinality of $G$ (or rather, its image in the canonical map $\Z \to K$). Since this is nonzero, it must be that $\pchar{K} \nmid \abs{G}$, as required.
 \end{proof}
 
-Combining Theorems \ref{SP:Thm:Maschke} and \ref{Ch1:Thm:Maschke_Converse}, we conclude that $\pchar{K} \mid \abs{G}$ if and only if every subrepresentation of $G$ over $K$ admits a complementary subrepresentation.
+Combining Theorems~\ref{SP:Thm:Maschke} and \ref{Ch1:Thm:Maschke_Converse} gives us the promised partial converse of Proposition \ref{Ch1:Prop:Irred_implies_Indecomp}:
+\begin{corollary}
+    \letfg\ and let $K$ be a field. All indecomposable representations of $G$ are irreducible if and only if $\pchar{K}$ does not divide $\abs{G}$.
+\end{corollary}
+\begin{proof}
+    
+\end{proof}
 
 \subsection{$G$-Invariant Inner-Products}
 
