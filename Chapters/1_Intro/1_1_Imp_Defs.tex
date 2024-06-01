@@ -25,7 +25,7 @@ There exist innumerable examples of representations throughout mathematics. Belo
         
         \item \underline{The zero representation.} \letg\ and let $V = \set{0}$ be the zero vector space over an arbitrary field $K$. The trivial representation over $V$ is known as the zero representation.
         
-        \item \underline{The sign representation.} Let $G = S_n$, the symmetric group on $n$ elements, and let $V = K$, a field. Then, $\GL{V} = K^{\times}$, the multiplicative group of $K$. Denoting by $\xi$ the canonical map from $\Z$ to $K$, the map
+        \item \underline{The sign representation.} Let $G = S_n$, the symmetric group on $n$ elements, and let $V = K$, a field. Then, $\GL{V} = K^{\times}$, the multiplicative group of $K$. Denoting by $\xi$ the canonical morphism from $\Z$ to $K$, the map
         \begin{align*}
             \rho : G \to \GL{V} : \sigma \mapsto \xiof{\sgn{\sigma}}
         \end{align*}
@@ -187,6 +187,9 @@ Given that MATH-314 focuses on \textit{finite} groups, the following result is q
     \hfill
     \begin{enumerate}
         \item Any representation of degree $1$ is irreducible.
+        \begin{proof}
+            A vector space of dimension $1$ has no proper, nonzero subspaces---$G$-invariant or otherwise. Hence, a representation of degree $1$ \textit{must} be irreducible
+        \end{proof}
         \item Let $K$ be a field. The trivial embedding $\SL{n,K} \inj \GL{n,K}$ gives an irreducible representation of $\SL{n,K}$ over $K^n$.
         \begin{proof}
             Assume $n > 1$ (else, the result follows from the previous point). For the sake of contradiction, suppose there exists a nonzero, $\SL{n,K}$-invariant subspace $W$ of $K^n$ having dimension $m < n$. Let $\B = \set{e_1, \ldots, e_m}$ be a basis of $W$, extending to a basis $\bar{\B} = \set{e_1, \ldots, e_m, e_{m+1}, \ldots, e_n}$ of $V$. Consider the linear map $T \in \SL{n,K}$ having matrix
@@ -210,9 +213,9 @@ Given that MATH-314 focuses on \textit{finite} groups, the following result is q
 We also have the following interesting criterion for irreducibility of representations of finite groups over $\C$.
 
 \begin{lemma}
-    \letfg\ and let $\parenth{\C^2, \rho}$ be a representation of $G$ over $\C$. If there exist $g, h \in G$ such that $g$ and $h$ do not commute, then $\parenth{\C^2, \rho}$ is irreducible.
+    \letfg\ and let $\parenth{\C^2, \rho}$ be a representation of $G$ over $\C$. If there exist $g, h \in G$ such that $\rho(g)$ and $\rho(h)$ do not commute, then $\parenth{\C^2, \rho}$ is irreducible.
 \end{lemma}
 \begin{proof}
-    \verb|sorry|
-    %% TODO!!!! (PS 1, Qn 9)
+    %% (PS 1, Qn 9)
+    We argue by contraposition. Suppose that $\parenth{\C^2, \rho}$ is reducible. Let $W \leq \C^2$ denote a proper, nonzero, $G$-invariant subspace. Clearly, $\pdim{W} = 1$. This means that as a $\C$-vector space, $W \cong \C$. Indeed, $\GL{W} \cong \C^{\times}$. Seeing as $\C^{\times}$ is abelian, there cannot possibly exist such a $g$ and $h$. So, if they do exist, then $\parenth{\C^2, \rho}$ must be irreducible.
 \end{proof}
