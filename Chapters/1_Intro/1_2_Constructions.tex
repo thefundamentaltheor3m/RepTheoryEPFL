@@ -46,7 +46,7 @@ Nonzero representations that are not indecomposable are said to be decomposable.
 
 We have a natural relationship between irreducibility and indecomposability.
 
-\begin{proposition} \label{Ch1:Prop:Irred_implies_Indecomp}
+\begin{proposition}\label{Ch1:Prop:Irred_implies_Indecomp}
     \letgv. If $\Vp$ is irreducible, then it is indecomposable.
 \end{proposition}
 \begin{proof}
@@ -60,19 +60,17 @@ We have a natural relationship between irreducibility and indecomposability.
         \item \underline{Let $K = \F_2$.} Then, $V = \set{0, e_1, e_a, e_1 + e_a}$. Observe that $W := \set{0, e_1 + e_a}$ is a proper, $C_2$-invariant subspace of $V$. Hence, $\Vp$ is reducible. However, $W$ is the \textit{only} such subspace, meaning $\Vp$ cannot be expressed as a direct sum of \textit{two} proper, nonzero subrepresentations. Therefore, $\Vp$ is indecomposable. % In particular, \textit{the converse of Proposition \ref{Ch1:Prop:Irred_implies_Indecomp} is false}.
     \end{enumerate}
 \end{boxexample}
-The $K = \F_2$ case in the above example demonstrates an important fact: \textit{the converse of Proposition \ref{Ch1:Prop:Irred_implies_Indecomp} is not, in general, true.} It is natural to wonder if we can, at least, prove a \textit{partial} converse. It turns out that we can: the converse is true under (indeed, equivalent to) a very specific condition. While we do not yet have the tools we need to prove this result, it will be worth the wait, as it will turn out to be a direct consequence of a more powerful theorem proved by Heinrich Maschke (and the converse thereof).
+The $K = \F_2$ case in the above example demonstrates an important fact: \textit{the converse of Proposition \ref{Ch1:Prop:Irred_implies_Indecomp} is not, in general, true.} It is natural to wonder if we can, at least, prove a \textit{partial} converse. It turns out that we can: the converse is true under a specific condition that is far from obvious. We do not yet have the tools we need to prove this result, but we will build a chain of implications, culminating in a famous theorem proved by Heinrich Maschke.
 
 Finally, just like in other areas of mathematics where we encounter the word ``irreducible,'' in the context of representation theory, too, we have a notion of decomposition into irreducibles.
 
 \begin{boxdefinition}[Complete Reducibility]\label{Ch1:Def:Comp_Red}
-    A representation is said to be completely reducible if it is expressible as a direct sum of irreducible representations.
+    A representation is said to be completely reducible if it is expressible as a direct sum of irreducible (sub)representations.
 \end{boxdefinition}
-Note that by this definition, any irreducible representation is completely reducible---it is a direct sum of only one irreducible representation, namely, itself.
-
-Indecomposability and complete reducibility are intrinsically connected. The following proposition will eventually be part of a chain of equivalences that will establish a converse of Proposition \ref{Ch1:Prop:Irred_implies_Indecomp} using Maschke's Theorem and its converse.
+It is clear that complete reducibility is related to irreducibility: any irreducible representation is trivially a direct sum of one irreducible representation. It turns out that complete reducibility is also related to indecomposability.
 
 \begin{proposition}\label{Ch1:Prop:Indecomp_implies_Irred_iff_Comp_Red}
-    \letgv. Let $K$ be a field. All indecomposable, finite-dimensional representations of $G$ over $K$ are irreducible if and only if every finite-dimensional representation of $G$ over $K$ is completely reducible.
+    \letfgfv. Let $K$ be a field. All indecomposable, finite-dimensional representations of $G$ over $K$ are irreducible if and only if every finite-dimensional representation of $G$ over $K$ is completely reducible.
 \end{proposition}
 \begin{proof}
     \hfill
@@ -82,8 +80,7 @@ Indecomposability and complete reducibility are intrinsically connected. The fol
         \item[$\parenth{\impliedby}$] Let $\Vp$ be a finite-dimensional, indecomposable representation of $G$ over $K$. By assumption, $\Vp$ is expressible as a direct sum of irreducible representations. Since $\Vp$ is indecomposable, none of the summands can be proper or nonzero. Therefore, $\Vp$ must be a direct sum of \textit{one} irreducible representation---namely, itself.
     \end{description}
 \end{proof}
-
-It turns out that complete reducibility can be better understood through complementary subrepresentations.
+It will turn out that we can use complete reducibility to fill in an important gap in the converse of Proposition~\ref{Ch1:Prop:Irred_implies_Indecomp}. To do so, we will need to better understand the theory of complete reducibility. We will do so by examining the notion of complementary subrepresentations.
 
 \subsection{Complementary Subrepresentations}
 
@@ -160,17 +157,26 @@ One also has a converse criterion for $G$-linearity.
 
 Finally, we relate complementary subrepresentations and complete reducibility, which makes it clear why we are so interested in complementary subrepresentations.
 
+\begin{proposition}\label{Ch1:Prop:Compl_Subreps_implies_Comp_Red}
+    \letfgfnzv. Assume that every subrepresentation of $\Vp$ admits a complementary subrepresentation. Then, $\Vp$ is completely reducible.
+\end{proposition}
+\begin{proof}
+    We argue by induction on $\pdim{V}$. If $\pdim{V} = 1$, then $\Vp$ is irreducible, making it completely reducible. Now, assume that the statement holds for all representations of degree less than $\pdim{V}$. If $V$ is irreducible, we are done. Else, there exists a proper, nonzero, $G$-invariant subspace $W \leq V$. By assumption, $W$ admits a complementary subrepresentation $U \leq V$. By induction, $W$ and $U$ are completely reducible. Hence, $V = W \+ U$ is completely reducible.
+\end{proof}
+
+\begin{comment}
 \begin{proposition}\label{Ch1:Prop:Comp_Red_iff_Compl_Subreps}
     A finite-dimensional representation of a finite group is completely reducible if and only if each of its subrepresentations admits a complementary subrepresentation.
 \end{proposition}
 \begin{proof}
     \letfgfv.
     \begin{description}
-        \item[$\parenth{\implies}$] Assume $\Vp$ is completely reducible, with decomposition $V = \bigoplus_{i \in \I} W_i$ into irreducible subrepresentations. Let $U \leq V$ be $G$-invariant.
+        \item[$\parenth{\implies}$] Assume $\Vp$ is completely reducible, with decomposition $V = \bigoplus_{i \in \I} W_i$ into irreducible subrepresentations. Let $U \leq V$ be $G$-invariant. Define $U_i := U \cap W_i$ for all $i \in \I$. Each $U_i$ is $G$-invariant, making it a subrepresentation of $W_i$. As the $W_i$s are irreducible, each $U_i$ is either $\set{0}$ or $W_i$. Now, let $\J := \set{i \in \I : U_i = W_i}$. 
         
         \item[$\parenth{\impliedby}$] Assume every subrepresentation of $\Vp$ admits a complementary subrepresentation. We know that $\Vp$ is either irreducible, in which case we'd be done, or reducible, in which case there exists a proper, nonzero, $G$-invariant subspace $W \leq V$. We know that $W$ admits a complementary subrepresentation $U \leq V$, which must also be proper and nonzero. We can argue by induction on the dimension to completely reduce both $W$ and $U$ (ie, express them as direct sums of irreducibles). We can then conclude that $\Vp$ is completely reducible.
     \end{description}
 \end{proof}
+\end{comment}
 
 \subsection{Maschke's Theorem}
 
@@ -228,41 +234,95 @@ Given the theme of this section---namely, understanding the compatibility of ord
     Therefore, by Corollary \ref{Ch1:Cor:G_lin_proj_ker_im}, $\pker{S}$ is a complementary subrepresentation of $W$.
 \end{proof}
 
-We also have the following important corollary.
+We can relate the Maschke condition to complete reducibility.
 
 \begin{corollary} \label{Ch1:Cor:Maschke}
-    \letfg, $K$ a field such that $\pchar{K} \nmid \abs{G}$. Then, every representation of $G$ over $K$ is completely reducible.
+    \letfg, $K$ a field such that $\pchar{K} \nmid \abs{G}$. Then, every finite-dimensional representation of $G$ over $K$ is completely reducible.
 \end{corollary}
 \begin{proof}
-    Let $\Vp$ be a representation of $G$ over $K$. If $\Vp$ is irreducible, we are done; else, it admits a nonzero, proper subrepresentation, which, by Maschke's Theorem, admits a complementary subrepresentation that is also proper and nonzero. If both of these are irreducible, then we are done; else, repeat this process.
+    The result follows immediately from Proposition~\ref{Ch1:Prop:Compl_Subreps_implies_Comp_Red} and Theorem~\ref{SP:Thm:Maschke}.
 \end{proof}
 
-\begin{remark}
-    Nowhere in Definition \ref{Ch1:Def:Comp_Red} do we specify that the decomposition must be finite.
-\end{remark}
+We can now prove the promised partial converse of Proposition~\ref{Ch1:Prop:Irred_implies_Indecomp}.
+\begin{corollary}\label{Ch1:Cor:Indecomp_implies_Irred_of_Maschke}
+    \letfg. Let $K$ be a field such that $\pchar{K}$ does not divide $\abs{G}$. Then, all indecomposable, finite-dimensional representations of $G$ over $K$ are irreducible.
+\end{corollary}
+\begin{proof}
+    Let $\Vp$ be a finite-dimensional representation of $G$ over $K$. Corollary~\ref{Ch1:Cor:Maschke} tells us that $\Vp$ is completely reducible. We can then apply Proposition~\ref{Ch1:Prop:Indecomp_implies_Irred_iff_Comp_Red} to conclude that if $\Vp$ is indecomposable, it is irreducible.
+\end{proof}
 
-We note that both hypotheses of Maschke's Theorem---namely, that $G$ is a finite group and that $\pchar{K} \nmid \abs{G}$---are essential for Theorem \ref{SP:Thm:Maschke} (and hence Corollary \ref{Ch1:Cor:Maschke}) to hold.
+We note that both hypotheses of Maschke's Theorem---namely, that $G$ is a finite group and that $\pchar{K} \nmid \abs{G}$---are essential.
 
-\begin{boxnexample}[Failure of Maschke's Theorem when $\pchar{K} \mid \abs{G}$]
-    Let $G = \cycl{a}$ be a cyclic group of prime order $p$. Let $V = \F_p^2$, and define $\rho : G \to \GL{2,\F_p}$ by
+\begin{boxnexample}[When $\pchar{K} \mid \abs{G}$]
+    Let $G = \cycl{a}$ be a cyclic group of prime order $p$. Let $K = \F_p$ and$V = K^2$. Define $\rho : G \to \GL{2,\F_p}$ by
     \begin{align*}
         \rhoof{a^r} &= \begin{bmatrix}
             1 & r \\ 0 & 1
         \end{bmatrix}
-        \quad \text{for $0 \leq r \leq p - 1$.}
+        \quad \text{for $r \in \F_p$.} 
     \end{align*}
     \begin{enumerate}
         \item $\Vp$ is a representation of $G$ over $\F_p$.
-        \item $\Vp$ is not irreducible.
-        \item $\Vp$ is not completely reducible.
+        \begin{proof}
+            We merely need to verify that $\rho$ is, indeed, a homomorphism of groups. Fix $r,s \in \F_p$. Then,
+            \begin{align*}
+                \rhoof{a^r} \circ \rhoof{a^s} &= \begin{bmatrix}
+                    1 & r \\ 0 & 1
+                \end{bmatrix} \begin{bmatrix}
+                    1 & s \\ 0 & 1
+                \end{bmatrix} = \begin{bmatrix}
+                    1 & s + r \\ 0 & 1
+                \end{bmatrix} = \begin{bmatrix}
+                    1 & r + s \\ 0 & 1
+                \end{bmatrix} = \rhoof{a^{r + s}}
+            \end{align*}
+        \end{proof}
+        \item $\Vp$ is reducible.
+        \begin{proof}
+            Clearly, the subspace $W := \F_p \+ \set{0}$ is proper and nonzero. Further, for all $a^r \in G$ and $x \in \F_p$, we have
+            \begin{align*}
+                \rhoff{a^r}{x \+ 0} =
+                \begin{bmatrix}
+                    1 & r \\ 0 & 1
+                \end{bmatrix}
+                \begin{bmatrix}
+                    x \\ 0
+                \end{bmatrix}
+                = \begin{bmatrix}
+                    x \\ 0
+                \end{bmatrix} \in W
+            \end{align*}
+            showing not only that $W$ is $G$-invariant but also that the corresponding subrepresentation is trivial.
+        \end{proof}
+        \item $W$ admits no complementary subrepresentation.
+        \begin{proof}
+            We will show that $W$ is the only $G$-invariant subspace of dimension $1$. Let $U \leq V$ be a $G$-invariant subspace of dimension $1$. Then, $U$ is spanned by a vector $u = \begin{bmatrix} x \\ y \end{bmatrix}$ for some $x,y \in \F_p$. Since $U$ is $G$-invariant, in particular, there must exist some $\lambda \in \F_p$ such that
+            \begin{align*}
+                \rhoff{a^1}{u} = 
+                \begin{bmatrix}
+                    1 & 1 \\ 0 & 1
+                \end{bmatrix}
+                \begin{bmatrix}
+                    x \\ y
+                \end{bmatrix}
+                = \begin{bmatrix}
+                    x + y \\ y
+                \end{bmatrix}
+                = \lambda \begin{bmatrix}
+                    x \\ y
+                \end{bmatrix}
+            \end{align*}
+            For $y$ to be equal to $\lambda y$, we must have that $\lambda = 1$. This would then imply that $x = x + y$, requiring that $y$ be $0$. Therefore, $U$ must be equal to $W$. Hence, $W$ cannot admit a complementary subrepresentation, as such a subrepresentation would have to have degree $1$, which would make it equal to $W$.
+        \end{proof}
     \end{enumerate}
+    This illustrates that when the hypothesis of Maschke's Theorem (ie, that $\pchar{K} \nmid \abs{G}$) fails, so too might the conclusion. Indeed, the argument above also shows $\Vp$ to be indecomposable, as any decomposition would need to involve two distinct $G$-invariant subspaces of dimension $1$. This shows that the conclusion of Corollary~\ref{Ch1:Cor:Indecomp_implies_Irred_of_Maschke} can also fail when $\pchar{K} \mid \abs{G}$. Finally, if $\Vp$ is indecomposable and reducible, it cannot be completely reducible, demonstrating that the conclusion of Corollary~\ref{Ch1:Cor:Maschke} \textit{also} fails when $\pchar{K} \mid \abs{G}$.
 \end{boxnexample}
 
 It turns out that Maschke's Theorem also has a \textit{converse}.
 
-\begin{theorem}[Converse of Maschke's Theorem] \label{Ch1:Thm:Maschke_Converse}
+\begin{boxtheorem}[Converse of Maschke's Theorem] \label{Ch1:Thm:Maschke_Converse}
     \letfg\ such that every finite-dimensional representation of $G$ over some field $K$ is completely reducible. Then, $\pchar{K} \nmid \abs{G}$.
-\end{theorem}
+\end{boxtheorem}
 \begin{proof}
     Consider the regular representation $\parenth{K[G], \rho}$ of $G$ over $K$, with basis $\B = \set{e_g : g \in G}$. The idea is to take advantage of the $G$-invariant properties of $\B$.
 
@@ -288,14 +348,6 @@ It turns out that Maschke's Theorem also has a \textit{converse}.
     Comparing coefficients, we conclude that $\beta_{h\inv g} = \beta_g$ for all $h,g \in G$. Letting $h = g$, we get, in particular, that $\forall g \in G$, $\beta_g = \beta_1$. Therefore, $u = \beta_1 \sum_{g \in G} e_g$. This, in particular, implies that $u' := \sum_{g \in G} e_g \notin W$, because otherwise, $u = \beta_1 u'$ would also lie in $W$, which it does not. Therefore, the sum of the coordinates of $u'$ with respect to $\B$ cannot be zero. But, this sum is nothing but the cardinality of $G$ (or rather, its image in the canonical map $\Z \to K$). Since this is nonzero, it must be that $\pchar{K} \nmid \abs{G}$, as required.
 \end{proof}
 
-Combining Theorems~\ref{SP:Thm:Maschke} and \ref{Ch1:Thm:Maschke_Converse} gives us the promised partial converse of Proposition \ref{Ch1:Prop:Irred_implies_Indecomp}:
-\begin{corollary}
-    \letfg\ and let $K$ be a field. All indecomposable representations of $G$ are irreducible if and only if $\pchar{K}$ does not divide $\abs{G}$.
-\end{corollary}
-\begin{proof}
-    
-\end{proof}
-
 \subsection{$G$-Invariant Inner-Products}
 
 It turns out that we also have a notion of inner-products being compatible with representation strutures.
@@ -314,14 +366,14 @@ Intrinsic to the notion of an inner-product is that of orthogonality. In the fol
     \letgv\ over $\C$ of finite dimension. Let $\cycl{\cdot, \cdot}$ be a $G$-invariant inner-product on $V$. Then, the orthogonal complement of any $G$-invariant subspace of $V$ is also $G$-invariant.
 \end{proposition}
 \begin{proof}
-    Let $W \leq V$ be $G$-invariant, and denote by $W^\perp$ its orthogonal complement. Fix $g \in G$ and $w \in W^\perp$. To show that $\rhoff{g}{w} \in W^\perp$, we show it is orthogonal to every $v \in W$ with respect to $\cycl{\cdot, \cdot}$.
+    Let $W \leq V$ be $G$-invariant, and denote by $W^\perp$ its orthogonal complement. Fix $g \in G$ and $w \in W^\perp$. To show that $\rhoff{g}{w} \in W^\perp$, we show it is orthogonal to every $v \in W$.
 
     Fix $v \in W$. Then, since $\cycl{\cdot, \cdot}$ is $G$-invariant,
     \begin{align*}
         \cycl{v, \rhoff{g}{w}} &= \cycl{\rhoff{g\inv}{v}, \rhoff{g\inv g}{w}} \\
         &= \cycl{\rhoff{g\inv}{v}, w}
     \end{align*}
-    Since $W$ is $G$-invariant, $\rhoff{g\inv}{v} \in W$, making it orthogonal to $w$, which lies in the orthogonal complement of $W$. Therefore, $\cycl{v, \rhoff{g}{w}} = 0$, proving that $\rhoff{g}{w} \in W^\perp$ as required.
+    Since $W$ is $G$-invariant, $\rhoff{g\inv}{v} \in W$. Since $w \in W^\perp$, we may conclude that $\cycl{\rhoff{g\inv}{v}, w} = 0$. Therefore, $\cycl{v, \rhoff{g}{w}} = 0$ as well, proving that $\rhoff{g}{w} \in W^\perp$.
 \end{proof}
 
 \begin{corollary}

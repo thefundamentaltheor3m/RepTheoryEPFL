@@ -40,11 +40,13 @@
 \newcommand{\parenth}[1]{\left( #1 \right)}
 \newcommand{\brac}[1]{\left[ #1 \right]}
 \newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\setst}[2]{\set{#1 \; \middle\vert \; #2}}
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
 \newcommand{\cycl}[1]{\left\langle #1 \right\rangle}
+\newcommand{\grpres}[2]{\cycl{#1 \; \middle| \; #2}}  % \grpres{gens}{rels}
 
 % FUNCTIONS:
 
@@ -220,6 +222,7 @@
 \newcommand{\C}{\complex}
 \newcommand{\B}{\mathcal{B}}
 \newcommand{\I}{\mathcal{I}}
+\newcommand{\J}{\mathcal{J}}
 
 \newcommand{\psup}[1]{\sup\!\parenth{#1}}
 \newcommand{\pinf}[1]{\inf\!\parenth{#1}}
@@ -238,6 +241,7 @@
 \newcommand{\letgv}{\letg\ and let $\parenth{V, \rho}$ be a representation of $G$}
 \newcommand{\letfgv}{\letfg\ and let $\parenth{V, \rho}$ be a representation of $G$}
 \newcommand{\letfgfv}{\letfg\ and let $\parenth{V, \rho}$ be a finite-dimensional representation of $G$}
+\newcommand{\letfgfnzv}{\letfg\ and let $\parenth{V, \rho}$ be a finite-dimensional, non-zero representation of $G$}
 \newcommand{\letgvv}{\letg\ and let $\parenth{V, \rho}$ and $\parenth{V', \rho'}$ be representations of $G$}
 \newcommand{\Vp}{\parenth{V, \rho}}
 \newcommand{\CGM}{$\C G$-module}
