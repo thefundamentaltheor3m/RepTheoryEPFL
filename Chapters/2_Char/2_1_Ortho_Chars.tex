@@ -89,9 +89,9 @@ Immediately, we are able to ``import'' the following definitions from Chapter~\r
     We define the degree of a character to be that of its associated representation.
 \end{definition}
 
-\begin{definition}[Trivial Character]
-    We define the trivial character to be that associated with the trivial representation.
-\end{definition}
+% \begin{definition}[Trivial Character]
+%     We define the trivial character to be that associated with the trivial representation.
+% \end{definition}
 
 Characters have several important properties, which we list below. We will make extensive use of these properties for the remainder of this chapter.
 
@@ -139,7 +139,24 @@ Characters have several important properties, which we list below. We will make 
     \end{enumerate}
 \end{proof}
 
-We now give a few examples of characters of representations.
+We now give a few examples of characters of representations. We begin with characters that exist for \textit{any} $G$.
+
+\begin{boxexample}[The Trivial Character]
+    The trivial character of $G$ is the character associated to the trivial representation on $\C$---in other words, it is the character of $\C$ viewed as a \CGM\ where every element of $G$ acts as the identity. Often denoted $\chi_1$, the trivial character is identically equal to $1$.
+\end{boxexample}
+
+\begin{boxexample}[The Regular Character]\label{Ch2:Eg:Reg_Char_Vals}
+    The regular character of $G$ is the character associated to its regular representation $\Vp$. It is usually denoted $\chi_{\reg}$. We can exploit how closely the regular representation is tied to the structure of $G$ to explicitly compute the values of $\chi_{\reg}$. Write $G = \set{g_1 = 1, g_2, \ldots, g_r}$. Then, for any $g \in G$, the $ij$th entry of $\rhoof{g}$ (with respect to the basis $\set{e_{g_i}}_{i=1}^{r}$) is $1$ if $g \cdot g_j = g_i$ and $0$ otherwise. In particular, since the only element of $G$ that has any fixed points is $g_1$, the diagonal elements of $\rhoof{g_i}$ are all $0$ for all $i \neq 1$. On the contrary, $\rhoof{g_1}$ is the identity. Hence, for all $g \in G$,
+    \begin{align}
+        \chiof{\reg}{g} = \Tr{\rhoof{g}} = \begin{cases}
+            \abs{G} & \text{ if } g = 1 \\
+            0 & \text{ otherwise}
+        \end{cases}
+        \label{Ch2:Eq:Reg_Char_Vals}
+    \end{align}
+\end{boxexample}
+
+Next, we look at more specific examples.
 
 \begin{boxexample}[The Dihedral Group of Order $8$]
     Let $G = D_8$, the dihedral group of order $8$. Consider the presentation
@@ -320,7 +337,7 @@ It turns out that by simply unfolding a few definitions and playing with the ord
 
 We have the following important corollary.
 
-\begin{corollary}
+\begin{corollary}\label{Ch2:Cor:Fin_Irred_Char}
     Up to isomorphism, there are finitely many irreducible $\C G$-modules.
 \end{corollary}
 \begin{proof}
@@ -375,9 +392,10 @@ The Orthogonality Theorem tells us the following facts about Irreducible Charact
         \begin{description}
             \item[$\parenth{\implies}$] This follows immediately from the Orthogonality Theorem.
             \item[$\parenth{\impliedby}$] Let $\Irr{G} = \set{\chi_1, \ldots, \chi_r}$, with corresponding simple \CGM s $\set{V_1, \ldots, V_r}$. Denoting by $a_i$ the multiplicity of each $V_i$ in $V$, we have that
-            \begin{align*}
+            \begin{align}
                 V &= V_1^{\+ a_1} \+ \cdots \+ V_r^{\+ a_r}
-            \end{align*}
+                \label{Ch2:Eq:Simple_Mod_Decomp_Supscr_Not}
+            \end{align}
             where we use the notation $V_i^{\+ a_i}$ to mean $\underbrace{V_i \+ \cdots \+ V_i}_{a_i \text{ times}}$, allowing $a_i = 0$.
 
             We then have
@@ -390,9 +408,37 @@ The Orthogonality Theorem tells us the following facts about Irreducible Charact
     \end{enumerate}
 \end{proof}
 
-We now have everything we need to prove the following important theorem.
+\begin{boxexample}[The Regular Character: A Deep Dive]\label{Ch2:Eg:Mult_Reg_Rep}
+    We know, from Corollary~\ref{Ch1:Cor:Maschke}, that $\C G$ is semi-simple when viewed as a module over itself. Let $V_1, \ldots, V_r$ be all of the irreducible \CGM s (we know there are finitely many of them by Corollary~\ref{Ch2:Cor:Fin_Irred_Char}). Denote by $\chi_i$ the irreducible character corresponding to $V_i$. In the notation of \eqref{Ch2:Eq:Simple_Mod_Decomp_Supscr_Not}, we may write
+    \begin{align*}
+        \C G = V_1^{\+ a_1} \+ \cdots \+ V_r^{\+ a_r}
+    \end{align*}
+    Then, by Proposition~\ref{Ch2:Prop:Bhv_Char}, we have that
+    \begin{align*}
+        \chi_{\reg} = a_1 \chi_1 + \cdots + a_r \chi_r
+    \end{align*}
+    where $\chi_{\reg}$ is the character corresponding to the regular representation (ie, to $\C G$). As we have just seen in Proposition~\ref{Ch2:Prop:Bhv_Irred_Char},
+    \begin{align*}
+        a_i = \cycl{\chi_{\reg}, \chi_i} &= \frac{1}{\abs{G}} \sum_{g \in G} \chi_{\reg}(g) \ \overline{\chi_i(g)} \\
+        &= \frac{1}{\cancel{\abs{G}}} \sum_{g \in G} {\cancel{\abs{G}} \ \delta_1(g)} \ \bar{\chiof{i}{g}} \\
+        &= \chiof{i}{1} = \pdim{V_i}
+    \end{align*}
+    This tells us that the multiplicities of the simple constituents of $\C G$ are precisely their dimensions (as $\C$-vector spaces). This allows us to express $\chi_{\reg}$ in the following manner:
+    \begin{align}
+        \chi_{\reg} = \pdim{V_1} \chi_1 + \cdots + \pdim{V_r} \chi_r = \chi_1(1) \chi_1 + \cdots + \chi_r(1) \chi_r
+        \label{Ch2:Eq:Reg_Char_Dim}
+    \end{align}
+    In particular, we can evaluate both sides of \eqref{Ch2:Eq:Reg_Char_Dim} at $1$ to get the following nice expression for $\abs{G}$ in terms of the elements of $\Irr{G}$:
+    \begin{align}
+        \abs{G} = \pdim{\C G} = \chi_{\reg}(1) = \chi_1(1)^2 + \cdots + \chi_r(1)^2
+        \label{Ch2:Eq:Grp_Order_Sum_Char_Sq}
+    \end{align}
+    We will use \eqref{Ch2:Eq:Grp_Order_Sum_Char_Sq} extensively when constructing Character Tables.
+\end{boxexample}
 
-\begin{boxtheorem} \label{SP:Thm:Irred_Char_Basis}
+We now prove one of the most important theorems in this course.
+
+\begin{boxtheorem}\label{SP:Thm:Irred_Char_Basis}
     $\Irr{G}$ is a basis for $\Fcof{G, \C}$.
 \end{boxtheorem}
 \begin{proof}
@@ -457,7 +503,7 @@ We now have everything we need to prove the following important theorem.
     The above proof illustrates the power of several concepts we have learnt so far.
     \begin{enumerate}
         \item \underline{The \CGM-formulation of a representation} allowed us to simplify notation by constructing $\hat{f}$ as a (central) element of $\C G$, making it correspond effectively to a (central) element of $\GL{V}$ for \textit{any} representation $V$ of $G$.
-        \item \underline{The semi-simplicity of $\C G$ as a \CGM} (ie, the complete reducibility of the regular representation) allowed us to apply a result on simple \CGM s to study the properties of $G$ itself. In particular, by reducing to the case of simple \CGM s, we were able to apply Schur's Lemmas.
+        \item \underline{The semi-simplicity of $\C G$ as a \CGM} (ie, the complete reducibility of the regular representation\footnote{Indeed, Corollary~\ref{Ch1:Cor:Maschke} tells us that \textit{any} \CGM\ is semi-simple because $\pchar{\C} = 0$ cannot divide the order of a group (which cannot be zero).}) allowed us to apply a result on simple \CGM s to study the properties of $G$ itself. In particular, by reducing to the case of simple \CGM s, we were able to apply Schur's Lemmas.
         \item \underline{Schur's Lemmas} allowed us to express $\phi$ in a more convenient form, whereby we could simplify the problem of showing $\phi$ to be zero to that of showing its trace to be zero.
     \end{enumerate}
 \end{remark}

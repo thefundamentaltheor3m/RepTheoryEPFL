@@ -1,5 +1,7 @@
 \section{Character Tables}
 
+In Example~\ref{Ch2:Eg:Cycl_3_Char}, we constructed a table consisting of the character values of each conjugacy class of the cyclic group of order $3$ (in this case, each class consisted of only one element---but this is not always the case). Our approach in Example~\ref{Ch2:Eg:Cycl_3_Char} was direct computation, which, while straightforward, is not always practical---especially when dealing larger groups. In this section, we will introduce a more systematic way of constructing such tables using the orthogonality properties of irreducible characters.
+
 \subsection{The Orthogonality Relations}
 
 For the purposes of this subsection, let $C_1, \ldots, C_k$ be the conjugacy classes of $G$ with representatives $g_1, \ldots, g_k$ respectively. Recall that by the Orbit-Stabiliser Theorem,
@@ -9,20 +11,33 @@ For the purposes of this subsection, let $C_1, \ldots, C_k$ be the conjugacy cla
 where $C_G(\cdot)$ refers to the centraliser\footnote{Recall that the centraliser of a group element is the set of all elements that commute with it.} of an element in $G$. Now, let $\Irr{G} = \set{\chi_1, \ldots, \chi_k}$.
 
 \begin{boxdefinition}[Character Table]
-    A character table is a $k \times k$ table whose columns are the conjugacy classes (or their representatives) and whose rows are the irreducible characters. In other words, it is a table whose $\parenth{i,j}$th entry is $\chi_i(g_j)$.
+    A character table is a $k \times k$ table whose columns are the conjugacy classes (or their representatives) and whose rows are the irreducible characters.
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|ccc}
+            & $g_1$ & $\cdots$ & $g_k$ \\
+            \hline
+            $\chi_1$ & $\chiof{1}{g_1}$ & $\cdots$ & $\chiof{1}{g_k}$ \\
+            $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ \\
+            $\chi_k$ & $\chiof{k}{g_1}$ & $\cdots$ & $\chiof{k}{g_k}$
+        \end{tabular}
+    \end{table}
+    In other words, it is a table whose $\parenth{i,j}$th entry is $\chi_i(g_j)$.
     % Maybe draw this...
 \end{boxdefinition}
 
-We now have the following important result that lets us check orthogonality as we go across the columns.
+The table in Example~\ref{Ch2:Eg:Cycl_3_Char} is an example of a character table.
 
-\begin{boxproposition}[First Orthogonality Relation] \label{SP:1st_Orth_Rel}
+It turns out that we have a certain orthogonality property as we go across the columns of a character table.
+
+\begin{boxproposition}[First Orthogonality Relation]\label{SP:1st_Orth_Rel}
     Given $1 \leq r, s \leq k$, we have
     \begin{align*}
         \frac{1}{\abs{G}} \sum_{j=1}^{k} \abs{C_j} \chi_r\!\parenth{g_j} \chi_s\!\parenth{g_j\inv} &= \delta_{rs}
     \end{align*}
 \end{boxproposition}
 \begin{proof}
-    Observe that
+    The proof is quite straightforward. It merely involves applying the centrality of characters to the definition of the inner-product and concluding using the Orthogonality Theorem:
     \begin{align*}
         \delta_{rs} &=
         \cycl{\chi_r, \chi_s} \\
@@ -32,16 +47,25 @@ We now have the following important result that lets us check orthogonality as w
     \end{align*}
     where the last inequality follows from the fact that characters are central (ie, they are equal for all elements of a conjugacy class).
 \end{proof}
+\begin{remark}
+    Note that the result of Proposition~\ref{SP:1st_Orth_Rel} can be equivalently phrased in the following manner: given $1 \leq r, s \leq k$,
+    \begin{align}
+        \sum_{j=1}^{k} \frac{1}{\abs{C_G(g_j)}} \chi_r\!\parenth{g_j} \chi_s\!\parenth{g_j\inv} &= \delta_{rs}
+        \label{SP:Eq:1st_Orth_Rel_Conj_Cl}
+    \end{align}
+\end{remark}
 
+\begin{comment}
 We can use this to prove an important result about the regular representation.
 
-\begin{theorem} \label{Ch2:Thm:Reg_Rep_Col_1}
+\begin{theorem}\label{Ch2:Thm:Reg_Rep_Col_1}
     Let $\chi_{\reg}$ denote the character of the regular representation of $G$ over $\C$. Then,
     \begin{align*}
         \chi_{\reg} &= \sum_{j=1}^{k} \chiof{j}{1} \chi_j
     \end{align*}
 \end{theorem}
 \begin{proof}
+    
     \verb|sorry|  % From phone
 \end{proof}
 
@@ -49,12 +73,16 @@ We can use this to prove an important result about the regular representation.
     $\sum_{i=1}^{k} \parenth{\chiof{i}{1}}^2 = \abs{G}$.
 \end{corollary}
 \begin{proof}
-    $\chiof{\reg}{1} = \sum_{i=1}^{k} \parenth{\chi_i(1)}^2 = \abs{G}$.
+    We evaluate both sides of the expression in Theorem~\ref{Ch2:Thm:Reg_Rep_Col_1} at $1$ to obtain that
+    \begin{align*}
+        \chiof{\reg}{1} = \sum_{i=1}^{k} \parenth{\chi_i(1)}^2 = \abs{G}        
+    \end{align*}
 \end{proof}
+\end{comment}
 
-We now have a similar result about going down the rows.
+Indeed, we have a similar result about going down the rows.
 
-\begin{boxproposition}[Second Orthogonality Relation]
+\begin{boxproposition}[Second Orthogonality Relation]\label{SP:2nd_Orth_Rel}
     Given $1 \leq r, s \leq k$, we have
     \begin{align*}
         \sum_{i=1}^{k} \chiof{i}{g_r} \chiof{i}{g_s\inv} =
@@ -74,6 +102,16 @@ We now have a similar result about going down the rows.
     \end{align*}
     This proves that in fact, $AB = I$, the identity matrix. This, in particular, means that $BA = I$ as well. It turns out that setting $\delta_{pq} = \parenth{BA}_{pq}$ gives us the desired result. % TODO: COMPLETE!!!!!!!!!
 \end{proof}
+\begin{remark}
+    Note that the result of Proposition~\ref{SP:2nd_Orth_Rel} can be equivalently phrased in the following manner: given $1 \leq r, s \leq k$,
+    \begin{align}
+        \sum_{j=1}^{k} \frac{1}{\abs{C_G(g_r)}} \chiof{i}{g_r} \chiof{i}{g_s\inv} &= \delta_{rs}
+        \label{SP:Eq:2nd_Orth_Rel_Conj_Cl}
+    \end{align}
+    \eqref{SP:Eq:2nd_Orth_Rel_Conj_Cl} bears a striking similarity to \eqref{SP:Eq:1st_Orth_Rel_Conj_Cl}. The only difference is that in \eqref{SP:Eq:1st_Orth_Rel_Conj_Cl}, we fix the character and sum over the conjugacy classes (ie, fix the row and sum across the columns), while in \eqref{SP:Eq:2nd_Orth_Rel_Conj_Cl}, we fix the conjugacy class and sum over the characters (ie, fix the column and sum across the rows).
+\end{remark}
+
+In the next subsection, we will demonstrate how we can use these orthogonality relations, in combination with other results---most notably, \eqref{Ch2:Eq:Grp_Order_Sum_Char_Sq}---to construct character tables.
 
 \subsection{Character Tables of Symmetric Groups}
 
@@ -123,7 +161,7 @@ We now have a similar result about going down the rows.
         \end{align*}
         One can show that $\quotient{S_4}{N} \cong S_3$. Let $\pi : S_4 \surj S_3$ be the associated quotient map. Then, if $\rho : S_3 \to \GL{2, \C}$ is a $2$-dimensional irreducible representation of $S_3$, then the map $\rho' := \rho \circ \pi : S_4 \to \GL{2, \C}$ is also irreducible. We take $\chi_4$ to be the associated character.
 
-        \item $\chi_5$ is the \underline{regular character}\footnote{ie, that corresponding to the regular representation}. We can actually solve for $a,b,c,d,e$ using the Orthogonality Relations. From Corollary \ref{Ch2:Cor:Reg_Rep_Col_1_Grp_Size}, we know that
+        \item $\chi_5$ is the \underline{regular character}. We can actually solve for $a,b,c,d,e$ using the Orthogonality Relations. From \eqref{Ch2:Eq:Grp_Order_Sum_Char_Sq}, we know that
         \begin{align*}
             1 + 1 + 9 + 4 + a^2 = 24 = \abs{S_4}
         \end{align*}
