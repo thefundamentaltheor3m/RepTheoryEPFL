@@ -153,7 +153,9 @@ We also have a converse (of sorts) when working with algebras.
             &= \frac{1}{\abs{G}} \sum_{g \in G} \Tr{f \circ \rho_T\!\parenth{g} \circ \rho_S\!\parenth{g\inv}} \\
             &= \frac{1}{\abs{G}} \sum_{g \in G} \Tr{f} = \Tr{f}
         \end{align*}
-        where we can apply the Trace Theorem to the composition $\rho_T(g) \circ f \circ \rho_S\!\parenth{g\inv}$ because $S \cong T$, meaning $\rho_S = \rho_T$ and $\pdim{S} = \pdim{T}$ (meaning that we can, indeed, change the order of composition and get a `sensible' linear map, as all dimensions agree). Since the trace of a linear map is unique, we must have that $\lambda \cdot \pdim{S} = \Tr{f} \iff \lambda = \frac{1}{\pdim{S}} \Tr{f}$ (we know $\pdim{S} \neq 0$ because $S$ is simple). This then tells us that $\hat{f}$ is of the desired form.
+        where we can apply the Trace Theorem to the composition $\rho_T(g) \circ f \circ \rho_S\!\parenth{g\inv}$ to get the second inequality because $S \cong T$, meaning that we can, indeed, change the order of composition and get a `sensible' linear map, as all dimensions agree. Furthermore, since $S \cong T$, we have, in particular, that $\rho_S = \rho_T$, which gives us the third equality.
+        
+        Seeing as the trace of a linear map is unique, we must have that $\lambda \cdot \pdim{S} = \Tr{f} \iff \lambda = \frac{1}{\pdim{S}} \Tr{f}$ (we know $\pdim{S} \neq 0$ because $S$ is simple). This then tells us that $\hat{f}$ is of the desired form.
     \end{enumerate}
 \end{proof}
 
@@ -183,7 +185,7 @@ We now have a complete classification of irreducible representations of cyclic g
 
 Lemma \ref{Ch1:Lem:Fin_Ab_over_C} is also useful in the study of representations over $\C$ of arbitrary finite groups.
 
-\begin{proposition}
+\begin{proposition}\label{Ch1:Prop:Diag_Roots_of_Ord}
     \letfgv\ over $\C$. For all $g \in G$, there is a basis of $V$ with respect to which $\rho(g)$ has matrix $\diag{\eps_1, \cdots, \eps_n}$, with $\eps_i^{\ord{g}} = 1$ for all $1 \leq i \leq n$.
 \end{proposition}
 \begin{proof}

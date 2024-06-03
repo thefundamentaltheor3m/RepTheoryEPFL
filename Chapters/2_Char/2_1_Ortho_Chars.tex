@@ -102,28 +102,40 @@ Characters have several important properties, which we list below. We will make 
         \item  For all \CGM s $W$, $V \cong W \implies \chi_V = \chi_W$
         \item $\pdim{V} = \chi_V(1)$
         \item For all $g \in G$, $\chi_V(g)$ is a sum of $d$th roots of unity, where $d = \ord{g}$.
-        \item For all $g \in G$, $\abs{\chi_V(g)} \leq \pdim{V}$, with equality iff $g \in \pker{\rho}$.
+        \item For all $g \in G$, $\abs{\chi_V(g)} \leq \pdim{V}$, with equality if $g \in \pker{\rho}$.
         \item For all $g \in G$, $\chi_V\!\parenth{g\inv} = \overline{\chi_V(g)}$
         \item For all \CGM s $W$, $\chi_{V \otimes W} = \chi_V \cdot \chi_W$
     \end{enumerate}
 \end{boxproposition}
 \begin{proof}
-    We just give sketches here, not complete proofs.
+    We only prove the more nontrivial of the above results in detail; we merely offer sketches for the rest.
     \begin{enumerate}[noitemsep]
         \item This follows from the fact that the trace of a direct sum is the sum of the traces.
         \item This follows from the invariance of the trace under change of basis.
         \item This follows from the fact that the trace of the identity is the dimension of the space.
-        \item For any $g \in G$ of order $d$, $\rho(g)$ is of order $d$. Hence, its minimal polynomial divides $X^d - 1 \in \C[X]$, which has distinct roots in $\C$. This means that the eigenvalues of $\rho(g)$ are $d$th roots of unity. Putting $\rho(g)$ in Jordan Normal Form, we see that its trace is a sum of $d$th roots of unity.\footnote{It is not necessarily a sum of \textit{all} $d$th roots of unity, or even \textit{distinct} $d$th roots of unity.}
-        \item \verb|sorry|
-        \item \verb|sorry|
-        \item Let $B = \set{v_1, \ldots, v_n}$ and $B' = \set{w_1, \ldots, w_m}$ be bases of $V$ and $W$ respectively. Denote by $\rho'$ the representation associated to $W$, and fix an arbitrary $g \in G$. Let $\parenth{a_{ij}}_{1 \leq i, j \leq n}$ be the matrix of $\rho(g)$ with respect to $B$, and let $\parenth{b_{k, l}}_{1 \leq k, l \leq m}$ be that of $\rho'(g)$ with respect to $B'$. % As with most results on tensor products, we begin by proving it for the basis of $V \otimes W$ consisting of simple tensors.
-        For all $1 \leq i \leq n$ and $1 \leq l \leq m$, we have that
+        \item For any $g \in G$ of order $d$, $\rho(g)^d = \id_V$. Hence, the minimal polynomial of $\rho(g)$ divides $X^d - 1 \in \C[X]$, which has distinct roots in $\C$. This means that the eigenvalues of $\rho(g)$ are $d$th roots of unity. Putting $\rho(g)$ in Jordan Normal Form, we see that its trace is a sum of $d$th roots of unity.\footnote{It is not necessarily a sum of \textit{all} $d$th roots of unity, or even \textit{distinct} $d$th roots of unity.}\footnote{One could also prove this result using Proposition~\ref{Ch1:Prop:Diag_Roots_of_Ord}.}
+        \item We prove the inequality using the diagonalisation from Proposition~\ref{Ch1:Prop:Diag_Roots_of_Ord}. Fix $g \in G$, and write $\rho(g) = \diag{\eps_1, \ldots, \eps_{\pdim{V}}}$ in an appropriate basis, where each $\eps_i$ is a complex $\pdim{V}$-th root of unity. Then,
         \begin{align*}
-            \parenth{\rho \otimes \rho'}(g)(v_i \otimes w_l) &= \rho(g)(v_i) \otimes \rho'(g)(w_l) \\
-            &= \parenth{\sum_{j=1}^{n} a_{ij} v_j} \otimes \parenth{\sum_{k=1}^{m} b_{kl} w_k} \\
-            &= \sum_{j=1}^{n} \sum_{k=1}^{m} a_{ij} b_{kl} v_j \otimes w_k
+            \abs{\chi_V(g)} = \abs{\Tr{\begin{bmatrix}
+                \eps_1 & & \\ & \ddots & \\ & & \eps_{\pdim{V}}
+            \end{bmatrix}}} = \abs{\sum_{i=1}^{\pdim{V}} \eps_i} \leq \sum_{i=1}^{\pdim{V}} \abs{\eps_i} = \pdim{V}
         \end{align*}
-        Indeed, the coefficient of $v_i \otimes w_l$ in the above expression is $a_{ii}b_{ll}$, telling us that \verb|rest is easy|.
+        It is obvious that if $g \in \pker{\rho}$, then $\abs{\chi_V(g)} = \abs{\Tr{\id_V}} = \pdim{V}$.
+        \item Fix $g \in G$. Diagonalise $\rho(g)$ as $\diag{\eps_1, \ldots, \eps_{\pdim{V}}}$, as per Proposition~\ref{Ch1:Prop:Diag_Roots_of_Ord}. We know that $\rhoof{g\inv} = \rhoof{g}\inv$; hence, if we write $\rhoof{g\inv} = \diag{\eps'_1, \ldots, \eps'_{\pdim{V}}}$, it must be that for all $1 \leq i \leq \pdim{V}$, $\eps'_i = \eps_i\inv = \bar{\eps_i}$ because $\eps_i$ is a complex $\ord{g}$-th root of unity. Taking the trace of both sides then gives us the result.
+        \item Let $B = \set{v_1, \ldots, v_n}$ and $B' = \set{w_1, \ldots, w_m}$ be bases of $V$ and $W$ respectively. Denote by $\rho'$ the representation associated to $W$, and fix an arbitrary $g \in G$. Let $\parenth{a_{ij}}_{1 \leq i, j \leq n}$ be the matrix of $\rho(g)$ with respect to $B$, and let $\parenth{b_{kl}}_{1 \leq k, l \leq m}$ be that of $\rho'(g)$ with respect to $B'$. % As with most results on tensor products, we begin by proving it for the basis of $V \otimes W$ consisting of simple tensors.
+        For all $1 \leq j \leq n$ and $1 \leq l \leq m$, we have that
+        \begin{align*}
+            \parenth{\rho \otimes \rho'}\!(g)(v_j \otimes w_l) &= \rho(g)(v_j) \otimes \rho'(g)(w_l) \\
+            &= \parenth{\sum_{i=1}^{n} a_{ij} v_i} \otimes \parenth{\sum_{k=1}^{m} b_{kl} w_k} \\
+            &= \sum_{i=1}^{n} \sum_{k=1}^{m} a_{ij} b_{kl} v_i \otimes w_k
+        \end{align*}
+        Given that $\B := \set{v_j \otimes w_l : v_j \in B, w_l \in B'}$ is a basis of $V \otimes W$, the trace of $\parenth{\rho \otimes \rho'}\!(g)$ is the sum of all of the diagonal elements of its matrix with respect to $\B$. The diagonal elements are precisely the $\parenth{v_j \otimes w_l}$-components of $\parenth{\rho \otimes \rho'}\!(g)(v_j \otimes w_l)$, which we can deduce from the above expression to be $a_{jj}b_{ll}$. Therefore,
+        \begin{align*}
+            \chiof{V \otimes W}{g} = \Tr{\parenth{\rho \otimes \rho'}\!(g)} % \\
+            = \sum_{j=1}^{n} \sum_{l=1}^{m} a_{jj} b_{ll} % \\
+            = \parenth{\sum_{j=1}^{n} a_{jj}} \parenth{\sum_{l=1}^{m} b_{ll}} % \\
+            = \chiof{V}{g} \cdot \chiof{W}{g}
+        \end{align*}
     \end{enumerate}
 \end{proof}
 
@@ -132,7 +144,7 @@ We now give a few examples of characters of representations.
 \begin{boxexample}[The Dihedral Group of Order $8$]
     Let $G = D_8$, the dihedral group of order $8$. Consider the presentation
     \begin{align*}
-        G = \cycl{a, b \mid a^4 = b^2 = 1, b\inv a b = a\inv}
+        G = \grpres{a, b}{a^4 = b^2 = 1, b\inv a b = a\inv}
     \end{align*}
     Let $\rho : G \to \GL{2, \C}$ be a representation of $G$ over $\C$ given by
     \begin{align*}
@@ -147,7 +159,7 @@ We now give a few examples of characters of representations.
     The associated character $\chi_V$ then takes on the following values:
     \begin{table}[H]
         \centering
-        \hspace{-0.3cm}
+        \hspace{-0.4cm}
         \begin{tabular}{C{1.1cm}|C{1.1cm} C{1.38cm} C{1.67cm} C{1.38cm} C{1.38cm} C{1.67cm} C{1.38cm} C{1.1cm}}
             $g$ & $1$ & $a$ & $a^2$ & $a^3$ & $b$ & $ab$ & $a^2 b$ & $a^3 b$ \\
             \hline \\[-11pt]
@@ -258,7 +270,7 @@ First, we state and prove a useful lemma that helps us understand the \textit{ma
     \end{enumerate}
 \end{proof}
 \begin{remark}
-    As per Dr. Rizzoli, on the exam, it's more important to know the idea of such a proof than the specifics of \textit{which index goes where}.
+    As per Dr.\ Rizzoli, on the exam, it's more important to know the idea of such a proof than the specifics of \textit{which index goes where}.
 \end{remark}
 
 It turns out that by simply unfolding a few definitions and playing with the order of summations, we can use the above lemma to prove the Orthogonality Theorem.
