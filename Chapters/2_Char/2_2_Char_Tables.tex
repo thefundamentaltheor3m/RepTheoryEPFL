@@ -28,7 +28,7 @@ where $C_G(\cdot)$ refers to the centraliser\footnote{Recall that the centralise
 
 The table in Example~\ref{Ch2:Eg:Cycl_3_Char} is an example of a character table.
 
-It turns out that we have a certain orthogonality property as we go across the columns of a character table.
+It turns out that we have a certain orthogonality property as we fix two rows and sum across the columns of a character table.
 
 \begin{boxproposition}[First Orthogonality Relation]\label{SP:1st_Orth_Rel}
     Given $1 \leq r, s \leq k$, we have
@@ -80,7 +80,7 @@ We can use this to prove an important result about the regular representation.
 \end{proof}
 \end{comment}
 
-Indeed, we have a similar result about going down the rows.
+Indeed, we have a similar result about fixing two columns and summing down the rows.
 
 \begin{boxproposition}[Second Orthogonality Relation]\label{SP:2nd_Orth_Rel}
     Given $1 \leq r, s \leq k$, we have
@@ -93,7 +93,7 @@ Indeed, we have a similar result about going down the rows.
     \end{align*}
 \end{boxproposition}
 \begin{proof}
-    Let $A$ be the matrix $\parenth{A_{ij}}_{ij}$, where $A_{ij} := \chiof{i}{g_j}$. Similarly, let $B$ be the matrix $\parenth{B_{ij}}_{ij}$, where $B_{ij} := \frac{\abs{C_i}}{\abs{G}} \chiof{j}{g_i\inv}$. Then, writing $AB = \parenth{AB}_{pq}$, we have
+    Let $A$ be the matrix $\parenth{A_{ij}}_{1 \leq i, j \leq k}$, where $A_{ij} := \chiof{i}{g_j}$. Similarly, let $B$ be the matrix $\parenth{B_{ij}}_{1 \leq i, j \leq k}$, where $B_{ij} := \frac{\abs{C_i}}{\abs{G}} \chiof{j}{g_i\inv}$. Then, writing $AB = \parenth{AB}_{pq}$, we have
     \begin{align*}
         \parenth{AB}_{pq} &=
         \sum_{l=1}^{k} A_{pl} B_{lq} \\
