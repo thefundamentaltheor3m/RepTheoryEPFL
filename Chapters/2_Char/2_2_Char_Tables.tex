@@ -4,11 +4,13 @@ In Example~\ref{Ch2:Eg:Cycl_3_Char}, we constructed a table consisting of the ch
 
 \subsection{The Orthogonality Relations}
 
+\begin{boxnotation}
 For the purposes of this subsection, let $C_1, \ldots, C_k$ be the conjugacy classes of $G$ with representatives $g_1, \ldots, g_k$ respectively. Recall that by the Orbit-Stabiliser Theorem,
 \begin{align*}
     \abs{C_i} &= \frac{\abs{G}}{\abs{C_G(g_i)}}
 \end{align*}
 where $C_G(\cdot)$ refers to the centraliser\footnote{Recall that the centraliser of a group element is the set of all elements that commute with it.} of an element in $G$. Now, let $\Irr{G} = \set{\chi_1, \ldots, \chi_k}$.
+\end{boxnotation}
 
 \begin{boxdefinition}[Character Table]
     A character table is a $k \times k$ table whose columns are the conjugacy classes (or their representatives) and whose rows are the irreducible characters.
@@ -42,7 +44,7 @@ It turns out that we have a certain orthogonality property as we fix two rows an
         \delta_{rs} &=
         \cycl{\chi_r, \chi_s} \\
         &= \frac{1}{\abs{G}} \sum_{g \in G} \chi_r(g) \chi_s\!\parenth{g\inv} \\
-        &= \frac{1}{\abs{G}} \sum_{j=1}^{k} \parenth{\sum_{g \in C_i} \chi_r(g) \chi_s\!\parenth{g\inv}} \\
+        &= \frac{1}{\abs{G}} \sum_{j=1}^{k} \parenth{\sum_{g \in C_j} \chi_r(g) \chi_s\!\parenth{g\inv}} \\
         &= \frac{1}{\abs{G}} \sum_{j=1}^{k} \abs{C_j} \chi_r\!\parenth{g_j} \chi_s\!\parenth{g_j\inv}
     \end{align*}
     where the last inequality follows from the fact that characters are central (ie, they are equal for all elements of a conjugacy class).
@@ -93,22 +95,32 @@ Indeed, we have a similar result about fixing two columns and summing down the r
     \end{align*}
 \end{boxproposition}
 \begin{proof}
-    Let $A$ be the matrix $\parenth{A_{ij}}_{1 \leq i, j \leq k}$, where $A_{ij} := \chiof{i}{g_j}$. Similarly, let $B$ be the matrix $\parenth{B_{ij}}_{1 \leq i, j \leq k}$, where $B_{ij} := \frac{\abs{C_i}}{\abs{G}} \chiof{j}{g_i\inv}$. Then, writing $AB = \parenth{AB}_{pq}$, we have
+    Let $A$ be the matrix $\parenth{A_{ij}}_{1 \leq i, j \leq k}$, where $A_{ij} := \chiof{i}{g_j}$. Similarly, let $B$ be the matrix $\parenth{B_{ij}}_{1 \leq i, j \leq k}$, where $B_{ij} := \frac{\abs{C_i}}{\abs{G}} \chiof{j}{g_i\inv}$. Then, writing $AB = \parenth{\parenth{AB}_{pq}}_{1 \leq p, q \leq k}$, we have
     \begin{align*}
         \parenth{AB}_{pq} &=
         \sum_{l=1}^{k} A_{pl} B_{lq} \\
-        &= \sum_{l=1}^{k} \chiof{p}{g_l} \frac{\abs{C_l}}{\abs{G}} \chiof{q}{g_l\inv} \\
+        &= \frac{1}{\abs{G}} \sum_{l=1}^{k} \abs{C_l} \chiof{p}{g_l} \chiof{q}{g_l\inv} \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} \chi_p(g) \chi_q(g\inv) \\
         &= \cycl{\chi_p, \chi_q} = \delta_{pq}
     \end{align*}
-    This proves that in fact, $AB = I$, the identity matrix. This, in particular, means that $BA = I$ as well. It turns out that setting $\delta_{pq} = \parenth{BA}_{pq}$ gives us the desired result. % TODO: COMPLETE!!!!!!!!!
-\end{proof}
-\begin{remark}
-    Note that the result of Proposition~\ref{SP:2nd_Orth_Rel} can be equivalently phrased in the following manner: given $1 \leq r, s \leq k$,
+    with the third inequality holding because all characters are class functions, meaning that terms in summation on the third line such that $g$ is conjugate to $g_l$ will be repeated $\abs{C_l}$ times.
+    
+    The above computation proves that $AB = I$, the identity matrix. This, in particular, means that $BA = I$ as well. In particular, writing $BA = \parenth{\parenth{BA}_{pq}}_{1 \leq p, q \leq k}$, we see that
     \begin{align}
-        \sum_{j=1}^{k} \frac{1}{\abs{C_G(g_r)}} \chiof{i}{g_r} \chiof{i}{g_s\inv} &= \delta_{rs}
+        \delta_{pq} = \parenth{BA}_{pq} &= \sum_{l=1}^{k} B_{pl} A_{lq} \nonumber \\
+        &= \sum_{l=1}^{k} \frac{\abs{C_p}}{\abs{G}} \chiof{l}{g_p\inv} \chiof{l}{g_q} \nonumber \\
+        &= \sum_{j=1}^{k} \frac{1}{\abs{C_G(g_r)}} \chiof{i}{g_r} \chiof{i}{g_s\inv}
         \label{SP:Eq:2nd_Orth_Rel_Conj_Cl}
     \end{align}
-    \eqref{SP:Eq:2nd_Orth_Rel_Conj_Cl} bears a striking similarity to \eqref{SP:Eq:1st_Orth_Rel_Conj_Cl}. The only difference is that in \eqref{SP:Eq:1st_Orth_Rel_Conj_Cl}, we fix the character and sum over the conjugacy classes (ie, fix the row and sum across the columns), while in \eqref{SP:Eq:2nd_Orth_Rel_Conj_Cl}, we fix the conjugacy class and sum over the characters (ie, fix the column and sum across the rows).
+    A simple rearrangement then yields the desired result.
+\end{proof}
+\begin{remark}
+    % Note that the result of Proposition~\ref{SP:2nd_Orth_Rel} can be equivalently phrased in the following manner: given $1 \leq r, s \leq k$,
+    % \begin{align}
+    %     \sum_{j=1}^{k} \frac{1}{\abs{C_G(g_r)}} \chiof{i}{g_r} \chiof{i}{g_s\inv} &= \delta_{rs}
+    %     \label{SP:Eq:2nd_Orth_Rel_Conj_Cl}
+    % \end{align}
+    Observe that \eqref{SP:Eq:2nd_Orth_Rel_Conj_Cl} bears a striking similarity to \eqref{SP:Eq:1st_Orth_Rel_Conj_Cl}. The only difference is that in \eqref{SP:Eq:1st_Orth_Rel_Conj_Cl}, we fix the character and sum over the conjugacy classes (ie, fix the row and sum across the columns), while in \eqref{SP:Eq:2nd_Orth_Rel_Conj_Cl}, we fix the conjugacy class and sum over the characters (ie, fix the column and sum across the rows).
 \end{remark}
 
 In the next subsection, we will demonstrate how we can use these orthogonality relations, in combination with other results---most notably, \eqref{Ch2:Eq:Grp_Order_Sum_Char_Sq}---to construct character tables.
