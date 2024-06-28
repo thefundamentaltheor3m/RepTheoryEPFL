@@ -2,15 +2,15 @@
 
 In Example~\ref{Ch2:Eg:Cycl_3_Char}, we constructed a table consisting of the character values of each conjugacy class of the cyclic group of order $3$ (in this case, each class consisted of only one element---but this is not always the case). Our approach in Example~\ref{Ch2:Eg:Cycl_3_Char} was direct computation, which, while straightforward, is not always practical---especially when dealing larger groups. In this section, we will introduce a more systematic way of constructing such tables using the orthogonality properties of irreducible characters.
 
-\subsection{The Orthogonality Relations}
-
 \begin{boxnotation}
-For the purposes of this subsection, let $C_1, \ldots, C_k$ be the conjugacy classes of $G$ with representatives $g_1, \ldots, g_k$ respectively. Recall that by the Orbit-Stabiliser Theorem,
-\begin{align*}
-    \abs{C_i} &= \frac{\abs{G}}{\abs{C_G(g_i)}}
-\end{align*}
-where $C_G(\cdot)$ refers to the centraliser\footnote{Recall that the centraliser of a group element is the set of all elements that commute with it.} of an element in $G$. Now, let $\Irr{G} = \set{\chi_1, \ldots, \chi_k}$.
-\end{boxnotation}
+    For the purposes of this section, let $C_1, \ldots, C_k$ be the conjugacy classes of $G$ with representatives $g_1, \ldots, g_k$ respectively. Recall that by the Orbit-Stabiliser Theorem,
+    \begin{align*}
+        \abs{C_i} &= \frac{\abs{G}}{\abs{C_G(g_i)}}
+    \end{align*}
+    where $C_G(\cdot)$ refers to the centraliser\footnote{Recall that the centraliser of a group element is the set of all elements that commute with it.} of an element in $G$. Now, let $\Irr{G} = \set{\chi_1, \ldots, \chi_k}$.
+    \end{boxnotation}
+
+\subsection{The Orthogonality Relations}
 
 \begin{boxdefinition}[Character Table]
     A character table is a $k \times k$ table whose columns are the conjugacy classes (or their representatives) and whose rows are the irreducible characters.
@@ -115,19 +115,16 @@ Indeed, we have a similar result about fixing two columns and summing down the r
     A simple rearrangement then yields the desired result.
 \end{proof}
 \begin{remark}
-    % Note that the result of Proposition~\ref{SP:2nd_Orth_Rel} can be equivalently phrased in the following manner: given $1 \leq r, s \leq k$,
-    % \begin{align}
-    %     \sum_{j=1}^{k} \frac{1}{\abs{C_G(g_r)}} \chiof{i}{g_r} \chiof{i}{g_s\inv} &= \delta_{rs}
-    %     \label{SP:Eq:2nd_Orth_Rel_Conj_Cl}
-    % \end{align}
     Observe that \eqref{SP:Eq:2nd_Orth_Rel_Conj_Cl} bears a striking similarity to \eqref{SP:Eq:1st_Orth_Rel_Conj_Cl}. The only difference is that in \eqref{SP:Eq:1st_Orth_Rel_Conj_Cl}, we fix the character and sum over the conjugacy classes (ie, fix the row and sum across the columns), while in \eqref{SP:Eq:2nd_Orth_Rel_Conj_Cl}, we fix the conjugacy class and sum over the characters (ie, fix the column and sum across the rows).
 \end{remark}
 
 In the next subsection, we will demonstrate how we can use these orthogonality relations, in combination with other results---most notably, \eqref{Ch2:Eq:Grp_Order_Sum_Char_Sq}---to construct character tables.
 
-\subsection{Character Tables of Symmetric Groups}
+\subsection{Constructing Character Tables}
 
-\begin{boxexample}[$S_3$]
+First, we construct the character table of $S_3$ using relatively unsophisticated machinery.
+
+\begin{boxexample}[$S_3$]\label{Ch2:Eg:S3_CharTable}
     $S_3$ has precisely three conjugacy classes $C_1$, $C_2$ and $C_3$ with representatives $g_1 = 1$, $g_2 = \parenth{1 2}$ and $g_3 = \parenth{1 2 3}$. We then have the following character table for $S_3$:
     \begin{table}[H]
         \centering
@@ -142,11 +139,17 @@ In the next subsection, we will demonstrate how we can use these orthogonality r
     Here, $\chi_1$ corresponds to the trivial representation (of degree $1$), $\chi_2$ to the sign representation (of degree $1$), and $\chi_3$ to the subrepresentation $W = \Span{e_1 - e_2, e_1 - e_3}$ (of degree $2$) of the permutation representation on $\C^3$. Note that all of these representations are irreducible, the first two because their degrees are $1$, and the third because we can show $\cycl{\chi_W, \chi_W}$ to be equal to $1$ (cf. the fourth point of Proposition \ref{Ch2:Prop:Bhv_Irred_Char}).
 \end{boxexample}
 
+The maxim of `the larger the object, the more involved the computations' holds no less true for character tables. To construct the character table of $S_4$, we will need to use two ingredients that we did not require to construct the character table of $S_3$. The first consists of the Orthogonality Relations, and the second of the following result on lifting characters of quotients, which we will be able to apply to lift characters of $S_3$ to characters of $S_4$.
+
+\begin{proposition}[Lifting of Characters]\label{Ch2:Prop:Lifting_Chars}
+    Let $N \nsg G$. If $\chi : \quotient{G}{N} \to \C$ is a character of $\quotient{G}{N}$, then the map $\chi' : G \to \C : g \mapsto \chi(gN)$ is a character of $G$. In particular, $\chi$ is irreducible if and only if $\chi'$ is irreducible.
+\end{proposition}
+\begin{proof}
+    The result follows immediately from Proposition~\ref{Ch1:Prop:Lifting}.
+\end{proof}
 
 \begin{boxexample}[$S_4$]
-    Observe that the conjugacy classes $C_i$, $i = 1, \ldots, 5$, of $S_4$ correspond precisely to the various possible cycle shapes. They therefore have representatives $g_1 = 1$, $g_2 = \parenth{12}$, $g_3 = \parenth{123}$, $g_4 = \parenth{12}\parenth{34}$, and $g_5 = \parenth{1234}$. The conjugacy classes have sizes $1$, $6$, $8$, $3$ and $6$ respectively.
-
-    We then have the following character table for $S_4$:
+    Observe that the conjugacy classes $C_i$, $i = 1, \ldots, 5$, of $S_4$ correspond precisely to the various possible cycle shapes. They therefore have representatives $g_1 = 1$, $g_2 = \parenth{12}$, $g_3 = \parenth{123}$, $g_4 = \parenth{12}\parenth{34}$, and $g_5 = \parenth{1234}$. The conjugacy classes have sizes $1$, $6$, $8$, $3$ and $6$ respectively. As there are five conjugacy classes, there are, in particular, exactly five irreducible characters of $S_4$. We can compute the values of four of them with relative ease, but for the fifth, we will, for now, fill in the table with placeholder variables:
     \begin{table}[H]
         \centering
         \begin{tabular}{c|ccccc}
@@ -159,21 +162,21 @@ In the next subsection, we will demonstrate how we can use these orthogonality r
             $\chi_5$ & $a$ & $b$ & $c$ & $d$ & $e$
         \end{tabular}
     \end{table}
-    where the characters $\chi_i$ are as follows:
+    We now describe each character and how the above values were computed. In the case of $\chi_5$, we will solve for $a$, $b$, $c$, $d$ and $e$ using the Orthogonality Relations.
     \begin{enumerate}
-        \item $\chi_1$ is the \underline{trivial character}.
+        \item $\chi_1$ is the \underline{trivial character}. It takes the value $1$ on all elements of $S_4$.
         
-        \item $\chi_2$ is the \underline{sign character}\footnote{ie, that corresponding to the sign representation}.
+        \item $\chi_2$ is the \underline{sign character}\footnote{ie, that corresponding to the sign representation}. It takes the value $1$ on all even permutations and $-1$ on all odd permutations---indeed, it is exactly equal to the sign homomorphism.
         
-        \item $\chi_3$ is the \underline{deleted permutation character} given by the subrepresentation of the permutation representation\footnote{ie, that corresponding to its action on $\C^4$ by permuting the standard basis} of $S_4$ corresponding to $\Span{e_1 - e_2, e_2 - e_3, e_3 - e_4}$, an $S_4$-invariant subspace of $\C^4$.
+        \item $\chi_3$ is the \underline{deleted permutation character} given by the subrepresentation of the permutation representation\footnote{ie, that corresponding to its action on $\C^4$ by permuting the standard basis} of $S_4$ corresponding to $\Span{e_1 - e_2, e_2 - e_3, e_3 - e_4}$, an $S_4$-invariant subspace of $\C^4$. The values it takes can be computed by taking the traces of the orthogonal matrices corresponding to the action of $S_4$ on this subspace.
         
-        \item $\chi_4$ is given by the following construction. Consider
+        \item $\chi_4$ is given by \underline{lifting a character of $S_3$}. Consider
         \begin{align*}
             N = \set{1, (12)(34), (13)(24), (14)(23)} \nsg S_4
         \end{align*}
-        One can show that $\quotient{S_4}{N} \cong S_3$. Let $\pi : S_4 \surj S_3$ be the associated quotient map. Then, if $\rho : S_3 \to \GL{2, \C}$ is a $2$-dimensional irreducible representation of $S_3$, then the map $\rho' := \rho \circ \pi : S_4 \to \GL{2, \C}$ is also irreducible. We take $\chi_4$ to be the associated character.
-
-        \item $\chi_5$ is the \underline{regular character}. We can actually solve for $a,b,c,d,e$ using the Orthogonality Relations. From \eqref{Ch2:Eq:Grp_Order_Sum_Char_Sq}, we know that
+        One can show that $\quotient{S_4}{N} \cong S_3$. We can then apply Proposition~\ref{Ch2:Prop:Lifting_Chars}, taking advantage of the irreducibility equivalence, to lift the three irreducible characters from Example~\ref{Ch2:Eg:S3_CharTable} to irreducible characters of $S_4$. The lifts of the first two are $\chi_1$ and $\chi_2$, so we choose $\chi_4$ to be a lift of the third.
+        
+        \item $\chi_5$ is the \underline{regular character}. We can solve for $a,b,c,d,e$ using the Orthogonality Relations. From \eqref{Ch2:Eq:Grp_Order_Sum_Char_Sq}, we know that
         \begin{align*}
             1 + 1 + 9 + 4 + a^2 = 24 = \abs{S_4}
         \end{align*}

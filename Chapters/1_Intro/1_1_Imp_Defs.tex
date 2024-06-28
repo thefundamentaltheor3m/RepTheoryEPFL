@@ -219,3 +219,31 @@ We also have the following interesting criterion for irreducibility of represent
     %% (PS 1, Qn 9)
     We argue by contraposition. Suppose that $\parenth{\C^2, \rho}$ is reducible. Let $W \leq \C^2$ denote a proper, nonzero, $G$-invariant subspace. Clearly, $\pdim{W} = 1$. This means that as a $\C$-vector space, $W \cong \C$. Indeed, $\GL{W} \cong \C^{\times}$. Seeing as $\C^{\times}$ is abelian, there cannot possibly exist such a $g$ and $h$. So, if they do exist, then $\parenth{\C^2, \rho}$ must be irreducible.
 \end{proof}
+
+\subsection{Lifting Representations}
+
+In this short subsection, we will investigate the lifting property of representations, which will allow us to construct representations of groups from those of their factor groups. For the purposes of this subsection, let $G$ be any group, $N \nsg G$ a normal subgroup of $G$, $H$ the factor group $\quotient{G}{N}$ and $\pi : G \surj H$ the canonical surjection.
+
+\begin{boxdefinition}[Lifting of Representations]
+    Let $\Vp$ be a representation of $H$. We define a lift of $\rho$ to be the map $\rho' = \rho \circ \pi : G \to \GL{V}$, where $\pi : G \surj \quotient{G}{N}$ is the canonical surjection. Diagrammatically,
+    \begin{cd}
+        G \arrow[r, "\rho'"] \arrow[d, "\pi"', two heads] & \GL{V} \\
+        H \arrow[ur, "\rho"']
+    \end{cd}
+\end{boxdefinition}
+
+The lift of a representation has several useful properties.
+
+\begin{proposition}\label{Ch1:Prop:Lifting}
+    Let $\Vp$ be a representation of $H$. Then, $\parenth{V, \rho'}$ is a representation of $G$, where $\rho' = \rho \circ \pi$ is a lift of $\rho$. Furthermore, $\Vp$ is irreducible if and only if $\parenth{V, \rho'}$ is.
+\end{proposition}
+\begin{proof}
+    As a composition of homomorphisms, $\rho'$ is a homomorphism from $G$ to $\GL{V}$, making $\parenth{V, \rho'}$ a representation of $G$. We now show that $\Vp$ is irreducible iff $\parenth{V, \rho'}$ is.
+    \begin{description}
+        \item[$\parenth{\implies}$] Assume $\Vp$ is irreducible. Suppose $V$ contains a proper, nonzero subspace $W$ that is invariant under the action of $G$ via $\rho'$. Then, by the construction of $\rho'$, we know that $W$ must be invariant under the action of $H = \pi(G)$ via $\rho$. However, this would make $W$ $H$-invariant, contradicting the irreducibility of $\Vp$. Hence, $\parenth{V, \rho'}$ cannot contain any proper, nonzero subrepresentations.
+
+        \item[$\parenth{\impliedby}$] Assume $\parenth{V, \rho'}$ is irreducible. Suppose $V$ contains a proper, nonzero subspace $W$ that is invariant under the action of $H$ via $\rho$. Then, $W$ must be invariant under the action of $G$ via $\rho' = \rho \circ \pi$, because $\pi$ maps any $g \in G$ to an element of $H$, making $W$ invariant under the action via $\rho$ of $\pi(g) \in H$. However, this would make $W$ $G$-invariant, contradicting the irreducibility of $\parenth{V, \rho'}$. Hence, $\Vp$ cannot contain any proper, nonzero subrepresentations.
+    \end{description}
+\end{proof}
+
+These properties will prove especially useful when we study character theory. Specifically, they will help us determine the values of irreducible characters of certain large groups using those of much smaller factor groups. For now, though, we close this subsection and move on to studying the compatibility of linear algebraic constructions with representation structures.
