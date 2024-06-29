@@ -173,9 +173,14 @@ It is natural to wonder what the purpose was of studying group algebras and modu
     \begin{align*}
         \phi_h : V \to V : v \mapsto h \cdot v
     \end{align*}
-    By Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we know that $\exists \lambda_h \in \C$ such that $\widehat{\phi_h} = \phi_h = \lambda_h \cdot \id_V$. Hence, any subspace of $V$ must be a $\C G$-submodule. But, since $V$ is irreducible, $V$ cannot admit any nonzero, proper $\C G$-submodules unless $V$ is of ($\C$-)dimension $1$.
+    By Theorem \ref{SP:Thm:Schur_fin_G_over_C}, we know that $\exists \lambda_h \in \C$ such that $\widehat{\phi_h} = \phi_h = \lambda_h \cdot \id_V$. Hence, any subspace of $V$ must be a $\C G$-submodule. Therefore, the only way for $V$ to be irreducible is for it to \textit{admit} no proper, nonzero subspaces in the first place, which would necessitate that $\pdim{V} = 1$.
 \end{proof}
+\begin{remark}
+    It goes without saying that any degree $1$ representation of a group is irreducible. Hence, the above Lemma effectively tells us that irreducibility is equivalent to having degree $1$ when working with finite abelian groups over $\C$.
+\end{remark}
+
 We now have a complete classification of irreducible representations of cyclic groups over $\C$.
+
 \begin{corollary}\label{Ch1:Cor:Irr_Cycl}
     Let $G = C_n = \cycl{a}$ be the cyclic group of order $n$. Then, there are precisely $n$ irreducible representations of $G$ over $\C$.
     \begin{proof}
@@ -183,7 +188,26 @@ We now have a complete classification of irreducible representations of cyclic g
     \end{proof}
 \end{corollary}
 
-Lemma \ref{Ch1:Lem:Fin_Ab_over_C} is also useful in the study of representations over $\C$ of arbitrary finite groups.
+Combining this with the structure theorem for finite abelian groups, we can classify all irreducible representations thereof over $\C$.
+
+\begin{boxtheorem}\label{Ch1:Thm:Irreps_Fin_Ab_Grps_C}
+    Let $G$ be a finite abelian group. Then, there are precisely $\abs{G}$ irreducible representations of $G$ over $\C$.
+\end{boxtheorem}
+\begin{proof}
+    Let $G = C_{n_1} \times \cdots \times C_{n_r}$ be the decomposition of $G$ into cyclic groups of orders $n_i$. We know that $G$ has generators $e_i = \parenth{0, \ldots, 0, 1, 0, \ldots, 0}$, with $1$ in the $i$th coordinate. There are precisely $n_i$ choices of where to send $e_i$, namely, the $n_i$th roots of unity. Given that group homomorphisms are uniquely defined by where they map the generators, the degree $1$ representations are those mapping the $e_i$s to each possible $n_i$th root of unity. Hence, there are $n_1 \times \cdots \times n_r = \abs{G}$ irreducible representations of $G$ over $\C$.
+\end{proof}
+\begin{remark}
+    We will see later on that the sum of the squares of the dimensions of all of the irreducible representations of a group will need to equal its order (cf. \eqref{Ch2:Eq:Grp_Order_Sum_Char_Sq}). This is another way to see that there must be exactly $\abs{G}$ irreducible complex representations of a finite abelian group $G$. Specifically, this works because of Lemma~\ref{Ch1:Lem:Fin_Ab_over_C}.
+\end{remark}
+This tells us a little something about representations of any finite group over $\C$.
+\begin{corollary}
+    Let $G$ be a finite group. The number of irreducible representations of $G$ over $\C$ is precisely $\abs{G} / \abs{\brac{G, G}}$.
+\end{corollary}
+\begin{proof}
+    We know, from Corollary~\ref{Ch1:Cor:Degree1Lifts} that the irreducible complex representations of $G$ are in bijection with those of its abelianisation $\quotient{G}{\brac{G, G}}$. Given that $G$ is finite, so is its abelianisation. Therefore, by Theorem~\ref{Ch1:Thm:Irreps_Fin_Ab_Grps_C}, the number of such irreducible representations is the cardinality of its abelianisation.
+\end{proof}
+
+Lemma~\ref{Ch1:Lem:Fin_Ab_over_C} is also useful in the study of arbitrary complex representations over $\C$ of finite groups.
 
 \begin{proposition}\label{Ch1:Prop:Diag_Roots_of_Ord}
     \letfgv\ over $\C$. For all $g \in G$, there is a basis of $V$ with respect to which $\rho(g)$ has matrix $\diag{\eps_1, \cdots, \eps_n}$, with $\eps_i^{\ord{g}} = 1$ for all $1 \leq i \leq n$.

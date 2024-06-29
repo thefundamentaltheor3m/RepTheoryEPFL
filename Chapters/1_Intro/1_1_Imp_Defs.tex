@@ -246,4 +246,17 @@ The lift of a representation has several useful properties.
     \end{description}
 \end{proof}
 
+We can do even better when $N = \brac{G, G}$, the commutator subgroup of $G$.
+
+\begin{corollary}\label{Ch1:Cor:Degree1Lifts}
+    Let $k$ be a field. Then, there is a one-to-one correspondence between degree $1$ representations of $G$ over $k$ and those of $H$.
+\end{corollary}
+\begin{proof}
+    Degree $1$ representations of $G$ and $H$ are precisely group homomorphisms from $G$ and $H$ to $k^{\times}$. Seeing as $k^{\times}$ is abelian and $H$ is the abelianisation of $G$, any homomorphism from $G$ to $k^{\times}$ must factor uniquely through $H$. This gives us a map from degree $1$ representations of $G$ to degree $1$ representations of $H$. The inverse of this map is precisely the lift of any degree $1$ representation of $H$ to one of $G$, as described in Proposition~\ref{Ch1:Prop:Lifting}. These are the maps that take the solid arrows to the dashed arrows (\textcolor{brown}{brown to brown}, \textcolor{pink}{pink to pink}) in the following diagrams:
+    \begin{cd*}
+    {G} \arrow[d, two heads, gray] \arrow[r, brown] & {k^{\times}} &  &  & {G} \arrow[d, two heads, gray] \arrow[r, dashed, pink] & {k^{\times}} \\
+    {H} \arrow[ru, dashed, brown]          &    &  &  & {H} \arrow[ru, pink]          &   
+    \end{cd*}
+\end{proof}
+
 These properties will prove especially useful when we study character theory. Specifically, they will help us determine the values of irreducible characters of certain large groups using those of much smaller factor groups. For now, though, we close this subsection and move on to studying the compatibility of linear algebraic constructions with representation structures.
