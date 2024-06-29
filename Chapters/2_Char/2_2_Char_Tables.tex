@@ -178,16 +178,45 @@ The maxim of `the larger the object, the more involved the computations' holds n
         
         \item $\chi_5$ is the \underline{regular character}. We can solve for $a,b,c,d,e$ using the Orthogonality Relations. From \eqref{Ch2:Eq:Grp_Order_Sum_Char_Sq}, we know that
         \begin{align*}
-            1 + 1 + 9 + 4 + a^2 = 24 = \abs{S_4}
+            1 + 1 + 9 + 4 + a^2 = 15 + a^2 = 24 = \abs{S_4}
         \end{align*}
-        from which we can conclude that $a = 3$. Then, using the First Orthonality Relation (Proposition \ref{SP:1st_Orth_Rel}), we can see that
+        from which we can conclude that $a = \pm 3$. Seeing as $\chi_5(1)$ must correspond to the dimension of a representation, $a$ must be positive. So, $a = 3$. Then, applying the Second Orthonality Relation (Proposition~\ref{SP:2nd_Orth_Rel}) to the first two columns,
         \begin{align*}
-            1 - 1 + 3 + 0 + ab = 0
+            1 - 1 + 3 + 0 + ab = 3 + 3b = 0
         \end{align*}
-        from which we can conclude that $b = -1$.
-
-        \verb|sorry|
+        from which we can conclude that $b = -1$. In similar fashion, we can apply the Second Orthogonality Relation to the second and third columns to solve for $c$:
+        \begin{align*}
+            1 - 1 + 0 + 0 - c = 0 - c = 0
+        \end{align*}
+        giving $c = 0$. To solve for $d$, it does not make sense to apply the Second Orthogonality Relation to the third and fourth columns, because $cd = 0$, but we can certainly apply it to the \textit{second} and fourth columns:
+        \begin{align*}
+            1 - 1 - 1 + 0 - d = -1 - d = 0
+        \end{align*}
+        giving $d = -1$. Finally, we can apply the Second Orthogonality Relation to the fourth and fifth columns to solve for $e$:
+        \begin{align*}
+            1 - 1 + 1 + 0 - e = 1 - e = 0
+        \end{align*}
+        giving $e = 1$.
     \end{enumerate}
+    Thus, the character table of $S_4$ is as follows:
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|ccccc}
+            & $1$ & $\parenth{12}$ & $\parenth{123}$ & $(12)(34)$ & $(1234)$ \\
+            \hline
+            $\chi_1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+            $\chi_2$ & $1$ & $-1$ & $1$ & $1$ & $-1$ \\
+            $\chi_3$ & $3$ & $1$ & $0$ & $-1$ & $-1$ \\
+            $\chi_4$ & $2$ & $0$ & $-1$ & $2$ & $0$ \\
+            $\chi_5$ & $3$ & $-1$ & $0$ & $-1$ & $1$
+        \end{tabular}
+    \end{table}
+    We can double-check our computations for the regular character by applying the First Orthogonality Relation (Proposition~\ref{SP:2nd_Orth_Rel}) to the first and last rows (ie, by showing $\cycl{\chi_1, \chi_5} = 0$): clearly,
+    \begin{align*}
+        \frac{1}{\abs{G}} \sum_{i=1}^{5} \abs{C_i} \chiof{1}{g}\chiof{5}{g\inv} &= \frac{1}{24} \parenth{1 \cdot \bar{a} + 6 \cdot \bar{b} + 8 \cdot \bar{c} + 3 \cdot \bar{d} + 6 \cdot \bar{e}} \\
+        &= \frac{1}{24}\parenth{3 - 6 + 0 - 3 + 6} = 0
+    \end{align*}
+    We do not prove here that the conjugacy classes have sizes $1$, $6$, $8$, $3$ and $6$ respectively, but this can be done by direct computation.
 \end{boxexample}
 
 Note that the number of irreducible characters of degree $1$ of any group $G$ is $\abs{G} / \abs{G'}$, where $G'$ is the derived subgroup of $G$. Indeed, there is a one-to-one correspondence between degree $1$ irreducible characters of $G$ and those of $\quotient{G}{G'}$.
