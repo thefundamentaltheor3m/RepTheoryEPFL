@@ -57,9 +57,10 @@ In the next subsection, we begin to develop the theory of morphisms of represent
 
 \begin{boxdefinition}[Homomorphism of Representations]
     \letg\ and let $\parenth{V,\rho}$ and $\parenth{V',\rho'}$ be two representations of $G$. A homomorphism of representations $T : V \to V$ is a linear map $T : V \to V'$ such that $\forall g \in G$,
-    \begin{align*}
+    \begin{align}
         T \circ \rhoof{g} &= \rho'(g) \circ T
-    \end{align*}
+        \label{Ch1:Eq:Def_Rep_Morph}
+    \end{align}
     or equivalently, the following diagram commutes:
     \begin{cd}
         V \arrow[r, "\rho(g)"] \arrow[d, "T"'] & V \arrow[d, "T"] \\

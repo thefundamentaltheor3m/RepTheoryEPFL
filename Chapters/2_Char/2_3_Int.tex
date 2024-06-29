@@ -1,5 +1,7 @@
 \section{Integrality}
 
+In this section, we exploit our understanding of the complex numbers to gain insight into the characters of finite groups.
+
 \subsection{The Algebraic Integers}
 
 First, we recall the notion of integrality over an integral domain.
@@ -11,63 +13,140 @@ First, we recall the notion of integrality over an integral domain.
         \item The minimal polynomial of $s$ over $\Frac{R}$ is actually in $R[X]$.
     \end{itemize}
 \end{boxdefinition}
+
 We now define what it means for a complex number to be an algebraic integer.
+
 \begin{boxdefinition}[Algebraic Integer]
     We say that a number $\alpha \in \C$ is an algebraic integer if it is integral over $\Z$.
 \end{boxdefinition}
+
+One can show that the set of all algebraic integers forms a ring. Indeed, this is nothing but the integral closure of $\Z$ in $\C$. This has an important consequence as far as character theory is concerned.
+
+\begin{proposition}\label{Ch2:Prop:Char_Val_Alg_Int}
+    For all characters $\chi$ of $G$ and $g \in G$, $\chi(g)$ is an algebraic integer.
+\end{proposition}
+\begin{proof}
+    Fix $g \in G$ and a character $\chi$. Let $d = \ord{g}$. The fourth point of Proposition~\ref{Ch2:Prop:Bhv_Char} tells us that $\chi(g)$ is a sum of $d$th roots of unity, which, as roots of $X^d - 1 \in \Z[X]$, are certainly algebraic integers. Thus, as a sum of algebraic integers, $\chi(g)$ is an algebraic integer. 
+\end{proof}
+
+We now proceed to prove several results on the conjugacy classes of $G$. We begin by defining a simple way to obtain a central element of $\C G$ from a conjugacy class of $G$.
 
 \begin{boxnotation}
     Given a conjugacy class $C$ of $G$, we define
     \begin{align}
         \hat{C} := \sum_{g \in C} g
+        \label{Ch2:Eq:Hat_C}
     \end{align}
-    to be an element of $\C G$.
+    as an element of $\C G$.
 \end{boxnotation}
 
-\begin{lemma} \label{Ch2:Lem:Scalar_Action_Alg_Int}
-    Let $g \in G$ and let $C = g^G$ % Conjugacy class of g?
-    Let $S$ be a simple \CGM. Then, for all $s \in S$, we have an action by scalar multiplication
+\begin{lemma}
+    For any conjugacy class $C$ of $G$, $\hat{C} \in \Zof{\C G}$.
+\end{lemma}
+\begin{proof}
+    It is clear that $\hat{C}$ commutes with every element of $\C \subset \C G$. We proceed to show that they also commute with elements of $G \subset \C G$. Let $g \in C$ be a representative of $C$. We know that every term in the sum in \eqref{Ch2:Eq:Hat_C} (ie, every element of $C$) is of the form $hgh\inv$ for some $h \in H$. For some $j \in G$, we have that
+    \begin{align*}
+        j\parenth{hgh\inv} = \parenth{\underbrace{j h g h\inv j\inv}_{\in C}} j
+    \end{align*}
+    Hence, left-multiplication by $j$ acts as a permutation of $C$. Therefore, $j \hat{C} = \hat{C} j$.
+\end{proof}
+
+\begin{lemma}\label{Ch2:Lem:Scalar_Action_Alg_Int}
+    Let $g \in G$ and $C$ be the conjugacy class of $g$.
+    Let $S$ be a simple \CGM\ with associated character $\chi_S$. The action of $\hat{C}$ on $S$ (as an element of $\C G$) can be simplified to one of scalar multiplication by a complex number $\lambda$:
     \begin{align*}
         \hat{C} \cdot s = \lambda s
     \end{align*}
-    where $\displaystyle \lambda = \frac{\abs{C}}{\abs{C_G(g)}} \frac{\chi(g)}{\chi_s(1)} = \abs{C} \frac{\chi_s(g)}{\chi_s(1)}$.
+    where $\displaystyle \lambda % = \frac{\abs{C}}{\abs{C_G(g)}} \frac{\chi(g)}{\chi_s(1)}
+    = \abs{C} \frac{\chi_s(g)}{\chi_s(1)}$.
 \end{lemma}
 \begin{proof}
-    Define a function $\phi : S \to S : s \mapsto \hat{C} \cdot s$. Since $\hat{C} \in \Zof{\C G}$, % EXERCISE!
-    we have that $\forall x \in G$, $x \cdot \phi(s) = \phi(x \cdot s)$. This makes $\phi$ a \CGM\ homomorphism. Then, by Schur's Lemmas, we know that $\phi = \lambda \id$. This means that... % finish
-\end{proof}
-
-\begin{lemma}
-    Let $r = \sum_{g \in G} \alpha_g g$ for some $\alpha_g \in \Z$. Suppose that $\exists \lambda, v \in \C G \setminus \set{0}$ such that $rv = \lambda v$. Then, $\lambda$ is an algebraic integer.
-\end{lemma}
-\begin{proof}
-    Let $G = \set{g_1, \ldots, g_n}$. For all $1 \leq i \leq n$,
+    Define a function $\phi : S \to S : s \mapsto \hat{C} \cdot s$. Since $\hat{C} \in \Zof{\C G}$, we have that $\forall x \in G$, $x \cdot \phi(s) = \phi(x \cdot s)$. This makes $\phi$ a \CGM\ homomorphism. Then, by Corollary~\ref{SP:Cor:Schur_fin_G_over_C_Morhp_Ver}, we know that $\phi = \lambda \id$, where $\lambda = \Tr{\phi} / \pdim{S}$. Note that $\pdim{S} = \chiof{S}{1}$. Further, if we write $\phi_h : S \to S : s \mapsto h \cdot s$ for $h \in C$, then we can express $\phi$ as $\sum_{h \in C} \phi_h$. Then,
     \begin{align*}
-        r g_i &= \sum_{j=1}^{n} \alpha_{ij} g_j
+        \Tr{\phi} &= \sum_{h \in C} \Tr{\phi_h} \\
+        &= \sum_{h \in G} \chiof{S}{h} \\
+        &= \abs{C} \chiof{S}{g}
     \end{align*}
-    The key observation here is that $\alpha_{ij} \in \Z$ for all $1 \leq i,j \leq n$. % WHY????
-    Then, if $rv = \lambda v$, we have that $\lambda$ is an eigenvalue of the matrix $A := \parenth{\alpha_{ij}}_{1 \leq i,j \leq n} \in \mat{n}{n}{\Z}$. This makes $\lambda$ a root of the characteristic polynomial of $A$ (over $\Z$), which is monic and of degree $n$.
+    where $g$ was our chosen representative of $C$. Therefore, $\displaystyle \lambda = \abs{C} \frac{\chi_s(g)}{\chi_s(1)}$.
 \end{proof}
 
-The point of lemmas $1$ and $2$ is the following Corollary, the proof of which is trivial:
-\begin{corollary}\label{Ch2:Cor:lambda_Alg_Int}
-    For any $\chi \in \Irr{G}$ and $g \in G$, the quantity $\lambda = \frac{\abs{G}}{\abs{C_G(g)}} \frac{\chi(g)}{\chi(1)}$ is an algebraic integer.
-\end{corollary}
-This leads us to the following important connection between algebraic integers and irreducible representations.
-
-\begin{theorem} \label{Ch2:Thm:Char_div_Ord_Grp}
-    For all $\chi \in \Irr{G}$, $\chi(1) \vert \abs{G}$.
-\end{theorem}
+\begin{lemma}\label{Ch2:Lem:Alg_Int_Eigen}
+    Let $G = \set{g_1, \ldots, g_n}$. Define $r := \sum_{i=1}^{n} \alpha_i g_i$ for some $\alpha_i \in \Z$. Suppose that $\exists \lambda, v \in \C G \setminus \set{0}$ such that $rv = \lambda v$. Then, $\lambda$ is an algebraic integer.
+\end{lemma}
 \begin{proof}
-    \verb|Check phone|
+    For all $1 \leq j \leq n$,
+    \begin{align*}
+        r g_j = \sum_{i=1}^{n} \alpha_{i} g_i g_j = \sum_{i=1}^{n} \alpha_{ij} g_i
+    \end{align*}
+    where $\parenth{\alpha_{ij}}_{1 \leq i \leq n}$ is a permutation of the $\alpha_i$ induced by the action of $g_j$. This means, in particular, that $\alpha_{ij} \in \Z$ for all $1 \leq i,j \leq n$. Suppose $\exists \lambda, v \in \C G \setminus \set{0}$ such that $rv = \lambda v$. Writing $v = \sum_{j=1}^{n} \mu_i g_i$ for $\mu_i \in \C$, we can see that
+    \begin{align*}
+        rv = \sum_{j=1}^{n} \mu_j r g_j = \sum_{j=1}^{n} \mu_j \sum_{i=1}^{n} \alpha_{ij} g_i = \sum_{i=1}^{n} g_i \sum_{j=1}^{n} \alpha_{ij} \mu_j = \sum_{i=1}^{n} g_i \lambda \mu_i = \lambda v
+    \end{align*}
+    This tells us that $\lambda \mu_i = \sum_{j=1}^{n} \alpha_{ij} \mu_j$. In matrix form,
+    \begin{align*}
+        \begin{bmatrix}
+            \alpha_{11} & \cdots & \alpha_{1n} \\
+            \vdots & \ddots & \vdots \\
+            \alpha_{n1} & \cdots & \alpha_{nn}
+        \end{bmatrix}
+        \begin{bmatrix}
+            \mu_1 \\ \vdots \\ \mu_n
+        \end{bmatrix}
+        = \lambda
+        \begin{bmatrix}
+            \mu_1 \\ \vdots \\ \mu_n
+        \end{bmatrix}
+    \end{align*}
+    This makes $\lambda$ is an eigenvalue of the matrix $A := \parenth{\alpha_{ij}}_{1 \leq i,j \leq n} \in \mat{n}{n}{\Z}$, and thereby, a (complex) root of the characteristic polynomial of $A$. This polynomial is monic, with coefficients in $\Z$, making $\lambda$ integral over $\Z$, and thereby, an algebraic integer.
 \end{proof}
+
+The point of the above Lemmas is the following Corollary.
+
+\begin{corollary}\label{Ch2:Cor:lambda_Alg_Int}
+    For any $\chi \in \Irr{G}$ and $g \in G$, the quantity $\lambda = \frac{\abs{G}}{\abs{C_G(g)}} \frac{\chi(g)}{\chi(1)} = \abs{C} \frac{\chi(g)}{\chi(1)}$ is an algebraic integer, where $C$ is the conjugacy class of $g$.
+\end{corollary}
+\begin{proof}
+    % Recall that $C_G(g)$ is the centraliser of $g$. If $C$ is the conjugacy class of $g$, then $\frac{\abs{G}}{\abs{C_G(x)}} = \abs{C}$. Hence, $\lambda = \abs{C} \frac{\chi(g)}{\chi(1)}$.
+    Lemma~\ref{Ch2:Lem:Scalar_Action_Alg_Int} tells us that $s \mapsto \lambda s$ is, indeed, a \CGM\ homomorphism. We can then apply Lemma~\ref{Ch2:Lem:Alg_Int_Eigen} to $\lambda$ and any $s \in S \setminus \set{0}$ to conclude that $\lambda$ is an algebraic integer.
+\end{proof}
+
+We can now show that the dimension of any irreducible representation of $G$ must divide $\abs{G}$.
+
+\begin{boxtheorem}\label{Ch2:Thm:Char_div_Ord_Grp}
+    For all $\chi \in \Irr{G}$, $\chi(1) \vert \abs{G}$.
+\end{boxtheorem}
+\begin{proof}
+    It is a well-known fact that the integral closure of $\Z$ in $\Q$ is $\Z$ itself\footnote{ie, the only elements of $\Q$ that are integral over $\Z$ are the integers themselves.}. Hence, if we can show that $\frac{\abs{G}}{\chi(1)}$ is an algebraic integer, the fact that it is also rational will guarantee that it is an integer. We exploit the fact that $\cycl{\chi, \chi} = 1$ to write
+    \begin{align*}
+        \frac{\abs{G}}{\chi(1)} &= \frac{\abs{G}}{\chi(1)} \cycl{\chi, \chi} \\
+        &= \frac{\cancel{\abs{G}}}{\chi(1)} \frac{1}{\cancel{\abs{G}}} \sum_{g \in G} \chi(g)\chi\!\parenth{g\inv}
+    \end{align*}
+    If $G$ has conjugacy classes $C_1, \ldots, C_r$ with representatives $g_1, \ldots, g_r$, then we can write
+    \begin{align*}
+        \frac{\abs{G}}{\chi(1)} &= \sum_{i=1}^{r} \frac{\abs{C_i}}{\chi(1)}\chi\!\parenth{g_i}\chi\!\parenth{g_i\inv}
+    \end{align*}
+    From Corollary~\ref{Ch2:Cor:lambda_Alg_Int} and Proposition~\ref{Ch2:Prop:Char_Val_Alg_Int}, we know that both $\frac{\abs{C_i}}{\chi(1)}\chi\!\parenth{g_i}$ and $\chi\!\parenth{g_i\inv}$ are algebraic integers. Hence, we can conclude that $\frac{\abs{G}}{\chi(1)}$ is an algebraic integer, and therefore, an integer.
+\end{proof}
+
+Corollary~\ref{Ch2:Cor:lambda_Alg_Int} also gives us another way to prove the specialisation of Proposition~\ref{Ch2:Prop:Char_Val_Alg_Int} to irreducible characters.
+
+\begin{corollary}
+    For any $\chi \in \Irr{G}$, $\chi(g)$ is an algebraic integer for all $g \in G$.
+\end{corollary}
+\begin{proof}
+    Fix $g \in G$. We know that $\frac{\abs{G}}{\abs{C_G(g)}}\frac{\chi(g)}{\chi(1)}$ is an algebraic integer. Furthermore, we know that $\frac{\abs{G}}{\abs{C_G(g)} \cdot \chi(1)} \in \Q^{\times}$, and that the integral closure of $\Z$ in $\C$ (ie, the set of all algebraic integers) is a ring. Hence, $\chi(g) = \parenth{\frac{\abs{G}}{\abs{C_G(g)} \cdot \chi(1)}}\inv \frac{\abs{G}}{\abs{C_G(g)}}\frac{\chi(g)}{\chi(1)}$ is an algebraic integer.
+\end{proof}
+
+
 
 \subsection{The $n$th Roots of Unity}
 
-\begin{lemma} \label{Ch3:Lem:Int_Sum_Coprime_Roots_Unity}
+We begin by stating a number theoretic result.
+
+\begin{lemma}\label{Ch3:Lem:Int_Sum_Coprime_Roots_Unity}
     Let $w$ be an $n$th root of unity in $\C$. Then,
     \begin{align*}
-        \sum_{1 \leq i \leq m, \parenth{i,n} = 1} w^i \in \Z
+        \sum_{\substack{1 \leq i \leq n \\ \parenth{i,n} = 1}} w^i \in \Z
     \end{align*}
 \end{lemma}
 \begin{proof}
@@ -78,7 +157,7 @@ This leads us to the following important connection between algebraic integers a
     Let $g \in G$ be of order $n$. Suppose that $g^i$ is conjugate to $g$ for all $1 \leq i \leq n$ such that $\parenth{i,n} = 1$. Then, for all characters $\chi$ of $G$, $\chi(g)$ is an integer.
 \end{proposition}
 \begin{proof}
-    Let $\chi$ be a character of $G$, with associated representation $\Vp$ of degree $m$ over $\C$. We know that $\chi(g) = \sum_{i=1}^{m} w_i$, where each $w_i$ is an $n$th root of unity (cf. Proposition \ref{Ch2:Prop:Bhv_Char}). Indeed, the idempotent linear map $\rho(g)$ is diagonalisable, with matrix $\diag{w_1, \ldots, w_m}$ with respect to an appropriate basis. Hence, we have that $\rhoof{g^i} = \diag{w_1^i, \ldots, w_m^i}$, meaning that $\chi\!\parenth{g^i} = \sum_{j=1}^{m} w_j^i$. But this is nothing but $\sum_{1 \leq i \leq m, \parenth{i,n} = 1} w^i$, by assumption. Hence, $\chi(g)$ is an integer, by Lemma \ref{Ch3:Lem:Int_Sum_Coprime_Roots_Unity}.
+    Let $\chi$ be a character of $G$, with associated representation $\Vp$ of degree $m$ over $\C$. We know that $\chi(g) = \sum_{i=1}^{m} w_i$, where each $w_i$ is an $n$th root of unity (cf. the fourth point of Proposition~\ref{Ch2:Prop:Bhv_Char}). Indeed, the idempotent linear map $\rho(g)$ is diagonalisable, with matrix $\diag{w_1, \ldots, w_m}$ with respect to an appropriate basis (cf. Proposition~\ref{Ch1:Prop:Diag_Roots_of_Ord}). Hence, we have that $\rhoof{g^i} = \diag{w_1^i, \ldots, w_m^i}$, meaning that $\chi\!\parenth{g^i} = \sum_{j=1}^{m} w_j^i$. But this is nothing but $\sum_{1 \leq i \leq m, \parenth{i,n} = 1} w^i$, by assumption. Hence, $\chi(g)$ is an integer, by Lemma \ref{Ch3:Lem:Int_Sum_Coprime_Roots_Unity}.
 \end{proof}
 
 % \subsection{Congruence Conditions}
@@ -109,7 +188,7 @@ This leads us to the following important connection between algebraic integers a
 For the remainder of this subsection, let $n$ = $\abs{G}$, and let $\zeta = e^{\frac{2\pi i}{n}}$ be a primitive $n$th root of unity. Define $\Z[\zeta]$ to be the subring of $\C$ generated by $\Z$ and $\zeta$. Let $p$ be a prime number and $p\Z[\zeta]$ be the principal ideal of $\Z[\zeta]$ generated by $p$. By the Correspondence Theorem, the ideals of $\Z[\zeta]$ containing $p\Z[\zeta]$ are in bijection with the ideals of $\quotient{\Z[\zeta]}{p\Z[\zeta]}$. Since the latter object is finite, it contains finitely many ideals, meaning that only finitely many of the ideals of $\Z[\zeta]$ contain $p\Z[\zeta]$. We can then look at the maximal (proper) ideal amongst these, which is a maximal ideal of $\Z[\zeta]$. Denote it by $P$. Indeed, we can show that $P \cap \Z = p\Z$.
 
 \begin{theorem}
-    Let $g \in G$, and let $y$ be the $p'$-part of $g$ for some $p$ prime. For all characters $\chi$ of $G$, $\chi(g) - \chi(y)$ lies in the maximal ideal $P$.
+    Let $g \in G$, and let $y$ be the $p'$-part of $g$ for some $p$ prime. For all characters $\chi$ of $G$, $\chi(g) - \chi(y)$ lies in the maximal ideal $P$ defined above.
 \end{theorem}
 \begin{proof}
     Let $m = \ord{g} = u p^v$. Let $a,b \in \Z$ be such that $au + b p^v = 1$ (as in the proof of Lemma \ref{Ch2:Lem:p_and_p'_parts}). We have that $y = g^{bp^v}$. We know that $\chi(g), \chi(y) \in \Z[\zeta]$.
@@ -145,7 +224,7 @@ This theorem has several important consequences.
 \end{corollary}
 
 \begin{boxexample}[Constructing the Character Table of $G = \PSL{2, 7}$]
-    First, note that $\abs{G} = 168$ and that $G$ has $6$ conjugacy classes. Denote them by $C_1, \ldots, C_6$ with representatives $g_1, \ldots, g_6$, with $g_1 = 1$. It turns out we have exactly $6$ irreducible characters of $G$. \\ % HOW DO WE KNOW THIS?
+    First, note that $\abs{G} = 168$ and that $G$ has $6$ conjugacy classes (and hence, $6$ irreducible representations over $\C$). Denote the conjugacy classes by $C_1, \ldots, C_6$, with respective representatives $g_1, \ldots, g_6$. As per convention, $g_1 = 1$. \\
 
     We begin filling the table as follows.
     \begin{table}[H]

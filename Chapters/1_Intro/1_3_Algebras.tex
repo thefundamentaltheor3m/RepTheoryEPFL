@@ -141,7 +141,7 @@ We also have a converse (of sorts) when working with algebras.
     \begin{align*}
         \rho_T(h) \circ \hat{f} &= \rho_T(h)\!\parenth{\frac{1}{\abs{G}} \sum_{g \in G} \rho_T(g) \circ f \circ \rho_S\!\parenth{g\inv}} \\
         &= \frac{1}{\abs{G}} \sum_{g \in G} \rho_T(hg) \circ f \circ \rho_S\!\parenth{g\inv} \circ \rho_S\!\parenth{h\inv} \circ \rho_S(h) \\
-        &= \frac{1}{\abs{G}} \sum_{g \in G} \parenth{\rho_T(hg) \circ f \circ \rho_S\!\parenth{g\inv h\inv}} \circ \circ \rho_S(h) \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} \parenth{\rho_T(hg) \circ f \circ \rho_S\!\parenth{g\inv h\inv}} \circ \rho_S(h) \\
         &= \hat{f} \circ \rho_S(h)
     \end{align*}
     proving that $\hat{f}$ is, indeed, a homomorphism of $\C G$-modules. Then,
@@ -157,6 +157,26 @@ We also have a converse (of sorts) when working with algebras.
         
         Seeing as the trace of a linear map is unique, we must have that $\lambda \cdot \pdim{S} = \Tr{f} \iff \lambda = \frac{1}{\pdim{S}} \Tr{f}$ (we know $\pdim{S} \neq 0$ because $S$ is simple). This then tells us that $\hat{f}$ is of the desired form.
     \end{enumerate}
+\end{proof}
+We can simplify the above a little when $f$ is a \CGM\ homomorphism.
+\begin{corollary}\label{SP:Cor:Schur_fin_G_over_C_Morhp_Ver}
+    \letfg\ and let $S$ and $T$ be simple $\C G$ modules that are finite-dimensional (as vector spaces) over $K$, with associated representations $\rho_S : G \to \GL{S}$ and $\rho_T : G \to \GL{T}$. Let $f : S \to T$ be a \CGM\ homomorphism. Then,
+    \begin{enumerate}[label = \normalfont \arabic*.]
+        \item If $S \not\cong T$, then $f$ is identically zero.
+        \item If $S \cong T$, then
+        \begin{align*}
+            f &= \frac{1}{\pdim{S}} \Tr{f} \cdot \id_S
+        \end{align*}
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    We simply show that $f = \hat{f}$, where $\hat{f}$ is as defined in \eqref{SP:eq:Def_Hat_Map}: for all $s \in S$,
+    \begin{align*}
+        \hat{f} &= \frac{1}{\abs{G}} \sum_{g \in G} \rho_T(g) \circ f \circ \rho_S\!\parenth{g\inv} \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} \rho_T(g) \circ \rho_T\!\parenth{g\inv} \circ f \\
+        &= \frac{1}{\abs{G}} \sum_{g \in G} f = f
+    \end{align*}
+    where the second equality follows from the fact that $f$ is a \CGM\ homomorphism, and therefore, a homomorphism of representations---cf. \eqref{Ch1:Eq:Def_Rep_Morph}. We can now simply apply Theorem~\ref{SP:Thm:Schur_fin_G_over_C} to get the desired result.
 \end{proof}
 
 Schur's Lemmas (especially the version thereof pertaining to complex representations of finite groups) will prove to be incredibly useful. In the next subsection, we will give a direct application to the classification of representations of finite abelian groups; however, this is not the last that we will be seeing of them.
